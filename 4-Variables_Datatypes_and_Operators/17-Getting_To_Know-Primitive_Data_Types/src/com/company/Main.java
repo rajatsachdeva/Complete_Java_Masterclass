@@ -59,13 +59,16 @@ public class Main {
         byte myByte = 10;
 
         // Create a short variable
-        short myShort = 20000;
+        short myShort = 200;
 
         // Create an int variable
-        int myInt = 4000000;
+        int myInt = 400;
 
         // Create a long variable
-        long myLong = (long) (50000 + (10 * (myByte + myShort + myInt)));
+        long myLong = 50000L + 10L * (myByte + myShort + myInt);
         System.out.println("myLong: " + myLong);
+
+        short myShortTotal = (short) (10000 + 10 * (myByte + myShort + myInt));
+        System.out.println("myShortTotal: " + myShortTotal);
     }
 }
