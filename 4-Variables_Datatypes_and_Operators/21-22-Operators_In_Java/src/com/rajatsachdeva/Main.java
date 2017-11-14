@@ -1,5 +1,7 @@
 package com.rajatsachdeva;
 
+import java.util.ResourceBundle;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -66,8 +68,45 @@ public class Main {
 
         topScore = 80;
         int secondTopScore = 60;
-        if( topScore > secondTopScore && topScore < 100)
+        if( (topScore > secondTopScore) && (topScore < 100))
             System.out.println("Greater than second top score and less than 100");
+
+        if ((topScore > 90) || (topScore < 100))
+            System.out.println("One of these tests is true");
+
+        int newValue = 50;
+        if(newValue == 50)
+            System.out.println("This is true");
+
+        // boolean case
+        boolean isCar = false;
+        // there is no error here, boolean assignment results in true
+        // so need to care while using == operator
+        if(isCar = true)
+            System.out.println("This should not happen");
+
+        // Ternary operator
+        boolean wasCar = isCar ? true : false;
+        System.out.println("wasCar = " + wasCar);
+
+        // Challenge
+        /* 1. Create a double variable with the value 20
+         * 2. Create a second variable of type double with value 80
+         * 3. Add both numbers up and multiply by 25
+         * 4. Use the remainder operator to figure out the remainder from the
+         * sum of #3 divided by 40
+         * 5. Write an "if" statement that displays a message "Total was over the
+         * limit" if the remaining total (#4) is equal to 20 or less
+         */
+
+        double firstDouble = 20d;
+        double secondDouble = 80d;
+        double resultDouble = ((firstDouble + secondDouble) * 25) % 40 ;
+
+        if (resultDouble <= 20)
+            System.out.println("Total was over the limit");
+
+
 
     }
 }
