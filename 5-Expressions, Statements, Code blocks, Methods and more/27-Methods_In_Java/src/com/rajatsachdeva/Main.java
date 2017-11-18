@@ -4,13 +4,10 @@ public class Main {
 
     // main method
     public static void main(String[] args) {
-	    boolean gameOver = true;
-	    int score = 800;
-	    int levelCompleted = 5;
-	    int bonus = 100;
 
         /* First call */
 	    calculateScore(true, 800, 5, 100);
+	    
 	    /* Second Call */
         calculateScore(true,10000, 8, 200 );
     }
