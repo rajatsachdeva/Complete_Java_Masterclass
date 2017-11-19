@@ -19,8 +19,8 @@ public class Main {
         } else {
             System.out.println(feet + " feet and " + inches + " inches = "
             + centimeters + " centimeters");
-            inches = 24;
         }
+        inches = 157;
         centimeters =  calcFeetAndInchesToCentimeters(inches);
         System.out.println(inches +" inches = " + centimeters + " centimeters");
     }
@@ -99,9 +99,11 @@ public class Main {
             return -1;
         }
 
-        double feet = inches / 12;
-        inches = inches % 12;
-        centimeters = calcFeetAndInchesToCentimeters(feet, inches);
+        double feet = (int) inches / 12;
+        double remaingInches = (int) inches % 12;
+        System.out.println(inches + " inches is equal to " + feet +
+        " feet and " + remaingInches + " inches");
+        centimeters = calcFeetAndInchesToCentimeters(feet, remaingInches);
         return centimeters;
     }
 }
