@@ -12,13 +12,17 @@ public class Main {
         calculateScore();
 
         double feet = 1;
-        double inches = 1;
+        double inches = 0;
         double centimeters = calcFeetAndInchesToCentimeters(feet, inches);
-        System.out.println(feet + " feet and " + inches + " inches are equal to"
-        + centimeters + " centimeters");
-        inches = 24;
+        if (centimeters < 0){
+            System.out.println("Invalid parameters");
+        } else {
+            System.out.println(feet + " feet and " + inches + " inches = "
+            + centimeters + " centimeters");
+            inches = 24;
+        }
         centimeters =  calcFeetAndInchesToCentimeters(inches);
-        System.out.println(inches +" inches is equal to " + centimeters + " centimeters");
+        System.out.println(inches +" inches = " + centimeters + " centimeters");
     }
 
     public  static int calculateScore(String playerName, int score) {
@@ -77,6 +81,7 @@ public class Main {
 
         // validate input feet and inches
         if(!(feet >=0 && (inches >= 0 && inches <= 12))){
+            System.out.println("Invalid feet or inches parameters");
             return -1;
         }
 
