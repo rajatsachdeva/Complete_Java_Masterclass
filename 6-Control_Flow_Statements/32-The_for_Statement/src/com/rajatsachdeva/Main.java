@@ -91,7 +91,7 @@ public class Main {
     }
 
     // Optimized version
-    // Reduces the numbers of iterations hence efficient 
+    // Reduces the numbers of iterations hence efficient
     public static boolean isPrime2(int n) {
 
         if(n == 1) {
