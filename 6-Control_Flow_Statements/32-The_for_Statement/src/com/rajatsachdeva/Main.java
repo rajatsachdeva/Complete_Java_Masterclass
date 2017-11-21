@@ -36,13 +36,30 @@ public class Main {
                     + String.format("%.2f", calculateInterest(10000.0, i)));
         }
 
+        System.out.println("*******************");
         int numberOfPrime = 0;
-        for (int i = 600; i <= 700; i++) {
+        for (int i = 20; i <= 30; i++) {
             //Check if prime
             if(isPrime(i)) {
                 System.out.println(i + " is a Prime");
                 numberOfPrime++;
                 if(numberOfPrime == 3) {
+                    System.out.println("Exiting for loop");
+                    break;
+                }
+            }
+        }
+
+        System.out.println("*******************");
+        System.out.println("Calling Optimized version");
+        numberOfPrime = 0;
+        for (int i = 20; i <= 30; i++) {
+            //Check if prime
+            if(isPrime2(i)) {
+                System.out.println(i + " is a Prime");
+                numberOfPrime++;
+                if(numberOfPrime == 3) {
+                    System.out.println("Exiting for loop");
                     break;
                 }
             }
@@ -64,6 +81,7 @@ public class Main {
         }
 
         for(int i = 2; i <= n/2; i++) {
+            System.out.println("Loop number " + i);
             if(n % i == 0) {
                 return false;
             }
@@ -71,6 +89,25 @@ public class Main {
 
         return true;
     }
+
+    // Optimized version
+    // Reduces the numbers of iterations hence efficient 
+    public static boolean isPrime2(int n) {
+
+        if(n == 1) {
+            return false;
+        }
+
+        for(int i = 2; i <= (long)Math.sqrt(n); i++) {
+            System.out.println("Loop number " + i);
+            if(n % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 
     // Simple Interest
     public static double calculateInterest(double amount, double interestRate) {
