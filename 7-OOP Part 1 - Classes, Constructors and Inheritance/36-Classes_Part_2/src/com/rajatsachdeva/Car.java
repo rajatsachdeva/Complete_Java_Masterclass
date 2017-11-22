@@ -1,5 +1,7 @@
 package com.rajatsachdeva;
 
+
+// command + n is shortcut to create getter/setter/constructors etc.
 public class Car {
     private int doors;
     private int wheels;
