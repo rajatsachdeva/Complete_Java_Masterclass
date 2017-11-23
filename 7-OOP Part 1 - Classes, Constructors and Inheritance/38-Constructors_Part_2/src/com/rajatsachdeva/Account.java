@@ -1,15 +1,5 @@
 package com.rajatsachdeva;
-// Create a new class for a bank account
-// Create fields for the account number, balance, customer name, email and phone number.
-//
-// Create getters and setters for each field
-// Create two additional methods
-// 1. To allow the customer to deposit funds (this should increment the balance field).
-// 2. To allow the customer to withdraw funds. This should deduct from the balance field,
-// but not allow the withdrawal to complete if their are insufficient funds.
-// You will want to create various code in the Main class (the one created by IntelliJ) to
-// confirm your code is working.
-// Add some System.out.println's in the two methods above as well.
+
 public class Account {
 
     //Fields
@@ -23,7 +13,7 @@ public class Account {
     public void deposit(double amount) {
         balance += amount;
         System.out.println(amount + " deposited to " + accountNumber);
-        System.out.println("Deposit: A/C "+accountNumber + ": Balance = " + balance);
+        System.out.println("Deposit: A/C " + accountNumber + ": Balance = " + balance);
     }
 
     public Account() {
@@ -36,6 +26,9 @@ public class Account {
     }
 
     public Account(String accountNumber, double balance, String customerName, String email, String phoneNumber) {
+        // It's better to directly assign the member variables values as compared
+        // to using the setters inside constructors as there may be a case
+        // where setters are not even called.
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.customerName = customerName;
@@ -44,9 +37,17 @@ public class Account {
         System.out.println("Account Constructor with parameters called");
     }
 
-    public void withdraw(double amount){
+    public Account(String customerName, String email, String phoneNumber) {
+//        this.customerName = customerName;
+//        this.email = email;
+//        this.phoneNumber = phoneNumber;
+        this("999", 100.00, customerName, email, phoneNumber);
+        System.out.println("Constructor called with 3 parameters");
+    }
+
+    public void withdraw(double amount) {
         // Check if balance available
-        if (balance <= amount) {
+        if (balance < amount) {
             System.out.println("Withdraw: A/C " + accountNumber + ": Insufficient Funds !");
             System.out.println("Available Balance = " + balance);
             return;
@@ -54,7 +55,7 @@ public class Account {
 
         balance -= amount;
         System.out.println(amount + " withdrew from " + accountNumber);
-        System.out.println("Withdraw: "+accountNumber + ": Balance = " + balance);
+        System.out.println("Withdraw: " + accountNumber + ": Balance = " + balance);
     }
 
     public String getAccountNumber() {

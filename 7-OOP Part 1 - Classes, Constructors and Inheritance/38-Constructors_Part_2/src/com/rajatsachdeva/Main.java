@@ -25,7 +25,7 @@ public class Main {
 
         rajatsAccount.withdraw(100);
         rajatsAccount.deposit(50);
-        rajatsAccount.withdraw(100);
+        rajatsAccount.withdraw(50);
         rajatsAccount.deposit(501);
         rajatsAccount.withdraw(100);
 
@@ -34,5 +34,37 @@ public class Main {
 
         System.out.println(bobsAccount.getAccountNumber());
         System.out.println(bobsAccount.getBalance());
+
+        Account timsAccount = new Account("Tim", "tim@abc.com", "12244323");
+        System.out.println(timsAccount.getCustomerName());
+        System.out.println(timsAccount.getAccountNumber());
+        System.out.println(timsAccount.getBalance());
+
+        // Create a new class VipCustomer
+        // it should have 3 fields name, credit limit, and email address.
+        // create 3 constructors
+        // 1st constructor empty should call the constructor with 3 parameters with default values
+        // 2nd constructor should pass on the 2 values it receives and add a default value for the 3rd
+        // 3rd constructor should save all fields.
+        // create getters only for this using code generation of intellij as setters wont be needed
+        // test and confirm it works.
+
+        System.out.println("\n\n************************\n\n");
+
+        VipCustomer firstVipPerson = new VipCustomer();
+        System.out.println("name: " + firstVipPerson.getName() + "\ncredit Limit: "
+                + firstVipPerson.getCreditLimit() + "\nemail: " + firstVipPerson.getEmail());
+        System.out.println("firstVipPerson created successfully\n");
+
+        VipCustomer secondVipPerson = new VipCustomer("SecondPerson", 900000, "xyz@abc.com");
+        System.out.println("name: " + secondVipPerson.getName() + "\ncredit Limit: "
+                + secondVipPerson.getCreditLimit() + "\nemail: " + secondVipPerson.getEmail());
+        System.out.println("secondVipPerson created successfully\n");
+
+        VipCustomer thirdVipPerson = new VipCustomer("ThirdPerson", 80000);
+        System.out.println("name: " + thirdVipPerson.getName() + "\ncredit Limit: "
+                + thirdVipPerson.getCreditLimit() + "\nemail: " + thirdVipPerson.getEmail());
+        System.out.println("thirdVipPerson created\n");
+
     }
 }
