@@ -4,6 +4,14 @@ public class Main {
 
     public static void main(String[] args) {
 
+        City city = new City(36);
+        city.steer(45);
+        System.out.println();
+        city.accelerate(30);
+        System.out.println();
+        city.accelerate(20);
+        System.out.println();
+        city.accelerate(-42);
     }
 
     // Challenge.
