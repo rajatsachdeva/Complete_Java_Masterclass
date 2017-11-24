@@ -13,5 +13,11 @@ public class Main {
         dog.walk();
         System.out.println();
         dog.run();
+
+        System.out.println();
+        Fish fish = new Fish("Nemo", 1, 10,
+                2, 2, 3);
+
+        fish.swim(10);
     }
 }
