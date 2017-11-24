@@ -9,5 +9,9 @@ public class Main {
                 1, 20, "long silky");
 
         dog.eat();
+        System.out.println();
+        dog.walk();
+        System.out.println();
+        dog.run();
     }
 }

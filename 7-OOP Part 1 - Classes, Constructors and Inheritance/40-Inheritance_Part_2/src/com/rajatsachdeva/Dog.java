@@ -37,9 +37,24 @@ public class Dog extends Animal {
 
     public void walk() {
         System.out.println("Dog.walk() called");
+        // Parent Class (Animal) move is called
+        super.move(5);
     }
 
     public void run() {
         System.out.println("Dog.run() called");
+        // Over ridden move() is called
+        move(10);
+    }
+
+    private void moveLegs(int speed) {
+        System.out.println("Dog.moveLegs() called. Dog moving legs at " + speed);
+    }
+
+    @Override
+    public void move(int speed) {
+        System.out.println("Dog.moveLegs() called");
+        moveLegs(speed);
+        super.move(speed);
     }
 }
