@@ -30,5 +30,16 @@ public class Main {
         // burger
         // For the two additional classes this may require you to be looking at the base class for pricing and then
         // adding totals onto that.
+
+        Hamburger hamburger = new Hamburger("Basic", "Chicken", 6.21,"White");
+        double price = hamburger.itemizeHamburger();
+        System.out.println("Total Price of burger: " + price);
+        hamburger.addHamburgerAddition1("Tomato", 1.00);
+        hamburger.addHamburgerAddition2("Cheese", 2.00);
+        hamburger.addHamburgerAddition3("Lettuce", 2.00);
+        System.out.println();
+        price = hamburger.itemizeHamburger();
+        System.out.println("Total Price of burger: " + price);
+
     }
 }
