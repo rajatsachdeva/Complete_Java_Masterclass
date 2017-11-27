@@ -35,6 +35,13 @@ public class Main {
         double price = hamburger.itemizeHamburger();
         System.out.println("Total Price of burger: " + price);
         hamburger.addHamburgerAddition1("Tomato", 1.00);
+
+        System.out.println();
+        price = hamburger.itemizeHamburger();
+        System.out.println("Total Price of burger: " + price);
+
+        // seems we can always modify the addition type and price with multiple calls ? Bug or expected ?
+        hamburger.addHamburgerAddition1("Tomato", 10.00);
         hamburger.addHamburgerAddition2("Cheese", 2.00);
         hamburger.addHamburgerAddition3("Lettuce", 2.00);
         System.out.println();
