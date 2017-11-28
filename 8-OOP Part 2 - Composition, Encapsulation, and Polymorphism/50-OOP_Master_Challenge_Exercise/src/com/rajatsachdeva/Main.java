@@ -41,6 +41,7 @@ public class Main {
         System.out.println("Total Price of burger: " + price);
 
         // seems we can always modify the addition type and price with multiple calls ? Bug or expected ?
+        // Valid Use Case
         hamburger.addHamburgerAddition1("Tomato", 10.00);
         hamburger.addHamburgerAddition2("Cheese", 2.00);
         hamburger.addHamburgerAddition3("Lettuce", 2.00);
@@ -48,5 +49,29 @@ public class Main {
         price = hamburger.itemizeHamburger();
         System.out.println("Total Price of burger: " + price);
 
+        System.out.println("\nHealthy Burger");
+        HealthyBurger healthyBurger = new HealthyBurger("no meat", 7.29);
+        System.out.println("Base price for Healthy Burger : " + healthyBurger.itemizeHamburger());
+
+        healthyBurger.addHamburgerAddition1("Tomato", 1.56);
+        healthyBurger.addHamburgerAddition2("Onion", 2.56);
+        healthyBurger.addHamburgerAddition3("Cheese", 2.99);
+        healthyBurger.addHamburgerAddition4("pickle", 1.99);
+        System.out.println("price for healthy burger: " + healthyBurger.itemizeHamburger());
+
+        healthyBurger.addHealthyAddition1("Egg", 4.78);
+        healthyBurger.addHealthyAddition2("Lentils", 0.55);
+        System.out.println("\n");
+        System.out.println("price for healthy burger: " + healthyBurger.itemizeHamburger());
+
+        System.out.println("\nDeluxe Burger");
+        DeluxeBurger deluxeBurger = new DeluxeBurger();
+        System.out.println("Base price for Deluxe Burger: " + deluxeBurger.itemizeHamburger() + "\n");
+
+        deluxeBurger.addHamburgerAddition1("lettuce", 100);
+        deluxeBurger.addHamburgerAddition2("Tomato", 200);
+        deluxeBurger.addHamburgerAddition3("Cheese", 300);
+        deluxeBurger.addHamburgerAddition4("Egg", 400);
+        System.out.println("Base price for Deluxe Burger: " + deluxeBurger.itemizeHamburger());
     }
 }
