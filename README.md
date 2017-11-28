@@ -10,3 +10,4 @@ Topics:<br />
 [Section 6: Control Flow Statements](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/6-Control_Flow_Statements)<br />
 [Section 7: OOP Part 1 - Classes, Constructors and Inheritance](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/7-OOP%20Part%201%20-%20Classes%2C%20Constructors%20and%20Inheritance)<br />
 [Section 8: OOP Part 2 - Composition, Encapsulation, and Polymorphism](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/8-OOP%20Part%202%20-%20Composition%2C%20Encapsulation%2C%20and%20Polymorphism)<br />
+[Section 9: Arrays, Java inbuilt Lists, Autoboxing and Unboxing](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/9-Arrays%2C%20Java%20inbuilt%20Lists%2C%20Autoboxing%20and%20Unboxing)<br />
