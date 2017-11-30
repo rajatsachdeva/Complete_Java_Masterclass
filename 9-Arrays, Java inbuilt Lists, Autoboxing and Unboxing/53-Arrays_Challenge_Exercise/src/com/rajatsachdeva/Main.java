@@ -19,13 +19,19 @@ public class Main {
         // you will have to figure out how to copy the array elements from the passed array into a new
         // array and sort them and return the new sorted array.
 
-        System.out.println("Enter size of integer array: ");
+        System.out.print("Enter size of integer array: ");
         int size = scanner.nextInt();
 
-        int []array = getIntegers(size);
+        int[] array = getIntegers(size);
         printArray(array);
-        array = sortIntegers(array);
+        array = sortIntegers3(array);
         printArray(array);
+
+//        int[] sortedArray = sortIntegers2(array);
+//        System.out.println("\nInput array:");
+//        printArray(array);
+//        System.out.println("\nSorted array:");
+//        printArray(sortedArray);
     }
 
     // method to print array
@@ -41,18 +47,41 @@ public class Main {
         int[] array = new int[size];
 
         System.out.println("Enter " + size + " array elements:\r");
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             array[i] = scanner.nextInt();
         }
         return array;
     }
 
-    public static int[] sortIntegers(int [] array) {
+    // Using copy of input array
+    public static int[] sortIntegers2(int[] array) {
+        System.out.println("Sorting array 2");
+
+        int[] sortedArray = new int[array.length];
+        // copy the array
+        for (int i = 0; i < sortedArray.length; i++) {
+            sortedArray[i] = array[i];
+        }
+
+        int temp = 0;
+        for (int i = 0; i < sortedArray.length; i++) {
+            for (int j = i + 1; j < sortedArray.length; j++) {
+                if (sortedArray[i] > sortedArray[j]) {
+                    temp = sortedArray[i];
+                    sortedArray[i] = sortedArray[j];
+                    sortedArray[j] = temp;
+                }
+            }
+        }
+        return sortedArray;
+    }
+
+    public static int[] sortIntegers(int[] array) {
         System.out.println("Sorting array");
         int temp = 0;
-        for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             for (int j = i + 1; j < array.length; j++) {
-                if(array[i] < array[j]) {
+                if (array[i] < array[j]) {
                     temp = array[i];
                     array[i] = array[j];
                     array[j] = temp;
@@ -61,4 +90,33 @@ public class Main {
         }
         return array;
     }
+
+    // Using copy of input array
+    public static int[] sortIntegers3(int[] array) {
+        System.out.println("Sorting array 3");
+
+        int[] sortedArray = new int[array.length];
+        // copy the array
+        for (int i = 0; i < sortedArray.length; i++) {
+            sortedArray[i] = array[i];
+        }
+
+        int temp = 0;
+        boolean flag = true;
+
+        while (flag) {
+            flag = false;
+            for (int i = 0; i < sortedArray.length - 1; i++) {
+                if (sortedArray[i] < sortedArray[i + 1]) {
+                    //swap
+                    temp = sortedArray[i];
+                    sortedArray[i] = sortedArray[i + 1];
+                    sortedArray[i + 1] = temp;
+                    flag = true;
+                }
+            }
+        }
+        return sortedArray;
+    }
+
 }
