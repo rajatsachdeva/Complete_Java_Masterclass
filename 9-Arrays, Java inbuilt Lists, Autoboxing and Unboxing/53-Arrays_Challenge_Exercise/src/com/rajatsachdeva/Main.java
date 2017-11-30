@@ -1,5 +1,6 @@
 package com.rajatsachdeva;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -57,11 +58,16 @@ public class Main {
     public static int[] sortIntegers2(int[] array) {
         System.out.println("Sorting array 2");
 
+        /*
         int[] sortedArray = new int[array.length];
-        // copy the array
+        //copy the array
         for (int i = 0; i < sortedArray.length; i++) {
             sortedArray[i] = array[i];
         }
+        */
+
+        // Another way of copying array
+        int [] sortedArray = Arrays.copyOf(array, array.length);
 
         int temp = 0;
         for (int i = 0; i < sortedArray.length; i++) {
