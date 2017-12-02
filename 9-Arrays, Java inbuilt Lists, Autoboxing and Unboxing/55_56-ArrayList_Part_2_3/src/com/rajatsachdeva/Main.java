@@ -82,24 +82,25 @@ public class Main {
     }
 
     public static void modifyItem() {
-        System.out.print("\nEnter position:");
-        int position = scanner.nextInt();
-        scanner.nextLine(); // what is the use of this ? to remove the new line ?
+        System.out.print("\nEnter old item name: ");
+        String oldItem = scanner.nextLine();
         System.out.print("\nEnter new item name: ");
         String item = scanner.nextLine();
-        groceryList.modifyGroceryItem(position - 1, item);
+        groceryList.modifyGroceryItem(oldItem, item);
     }
 
     public static void removeItem() {
-        System.out.print("\nEnter position to be removed: ");
-        int position = scanner.nextInt();
-        groceryList.removeGroceryItem(position - 1);
+        System.out.print("\nEnter item to be removed: ");
+        String item = scanner.nextLine();
+        groceryList.removeGroceryItem(item);
     }
 
     public static void searchForItem() {
         System.out.print("\nEnter search item: ");
-        String searchItem = groceryList.findItem(scanner.nextLine());
-        if (searchItem != null) {
+        String searchItem = scanner.nextLine();
+        int position = groceryList.findItem(searchItem);
+
+        if (position >= 0) {
             System.out.println(searchItem + " is present in the list.");
         } else {
             System.out.println(searchItem + " is not present in the list.");
