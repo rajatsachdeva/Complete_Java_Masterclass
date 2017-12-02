@@ -1,5 +1,6 @@
 package com.rajatsachdeva;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -54,15 +55,34 @@ public class Main {
                 case 5:
                     searchForItem();
                     break;
+
                 case 6:
+                    processArrayList();
+                    break;
+                case 7:
                     quit = true;
                     System.out.println("Exiting. . .");
                     break;
                 default:
-                    System.out.println("wrong choice. Enter 0-6.");
+                    System.out.println("wrong choice. Enter 0-7.");
                     break;
             }
         }
+    }
+
+    // How to copy one ArrayList to another
+    public static void processArrayList() {
+        ArrayList<String> newArray = new ArrayList<String>();
+
+        // copy array list
+        newArray.addAll(groceryList.getGroceryList());
+
+        // Copy constructor
+        ArrayList<String> nextArray = new ArrayList<String>(groceryList.getGroceryList());
+
+        // Copying to an array
+        String[] myArray = new String[groceryList.getGroceryList().size()];
+        myArray = groceryList.getGroceryList().toArray(myArray);
     }
 
     public static void printInstructions() {
@@ -98,9 +118,7 @@ public class Main {
     public static void searchForItem() {
         System.out.print("\nEnter search item: ");
         String searchItem = scanner.nextLine();
-        int position = groceryList.findItem(searchItem);
-
-        if (position >= 0) {
+        if(groceryList.onFile(searchItem)) {
             System.out.println(searchItem + " is present in the list.");
         } else {
             System.out.println(searchItem + " is not present in the list.");

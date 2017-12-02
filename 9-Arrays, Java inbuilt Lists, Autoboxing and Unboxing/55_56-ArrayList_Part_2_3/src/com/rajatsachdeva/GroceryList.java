@@ -44,7 +44,19 @@ public class GroceryList {
         System.out.println("Grocery item " + theItem + " at " + (position + 1) + " position removed");
     }
 
-    public int findItem(String searchItem) {
+    private int findItem(String searchItem) {
         return groceryList.indexOf(searchItem);
+    }
+
+    public boolean onFile(String searchItem) {
+        int position = findItem(searchItem);
+        if(position >= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public ArrayList<String> getGroceryList() {
+        return groceryList;
     }
 }
