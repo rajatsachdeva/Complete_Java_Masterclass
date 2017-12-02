@@ -30,6 +30,7 @@ public class Main {
         System.out.println();
     }
 
+    // Resize array
     private static void resizeArray() {
         int[] original = baseData;
         baseData = new int[12];
