@@ -1,11 +1,10 @@
 package com.rajatsachdeva;
 
-import javax.crypto.Cipher;
 import java.util.Scanner;
 
 public class Main {
 
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
     private static MobilePhone mobilePhone;
 
     public static void main(String[] args) {
@@ -24,14 +23,14 @@ public class Main {
 
         System.out.print("Enter your phone number: ");
         mobilePhone = new MobilePhone(scanner.nextLine());
-        System.out.println("Staring Mobile phone . . .");
 
         int choice = 0;
         boolean quit = false;
+        startPhone();
         printMenu();
 
         while(!quit) {
-            System.out.print("\nEnter the choice: ");
+            System.out.print("\nEnter the choice: (0 to display actions)");
             choice = scanner.nextInt();
             scanner.nextLine(); // to handle the enter key
 
@@ -65,8 +64,12 @@ public class Main {
         }
     }
 
+    public static void startPhone() {
+        System.out.println("Staring Mobile phone . . .");
+    }
+
     public static void printMenu(){
-        System.out.println("\nPress:");
+        System.out.println("\nAvailable actions:\nPress:");
         System.out.println("\t0 - Display Menu");
         System.out.println("\t1 - Display Contacts");
         System.out.println("\t2 - Add contact");
@@ -74,6 +77,7 @@ public class Main {
         System.out.println("\t4 - Remove contact");
         System.out.println("\t5 - Search contact");
         System.out.println("\t6 - Quit");
+        System.out.println("Choose you action:");
     }
 
 
@@ -83,9 +87,11 @@ public class Main {
         String name = scanner.nextLine();
         System.out.print("Enter Contact's number: ");
         String number = scanner.nextLine();
-        Contact newContact = new Contact(name , number);
+        // Using the static method/ Factory method directly from class name
+        Contact newContact = Contact.createContact(name, number);
+
         if(mobilePhone.addNewContact(newContact)){
-            System.out.println("New contact added successfully");
+            System.out.println("New contact added successfully: " + name + ", phone = " + number);
         } else {
             System.out.println("Contact already exists. Cannot be added.");
         }
@@ -93,35 +99,54 @@ public class Main {
 
     public static void updateContact() {
         System.out.print("Enter old contact name: ");
-        String oldContact = scanner.nextLine();
+        String oldContactName = scanner.nextLine();
+
+        Contact oldContact = mobilePhone.queryContact(oldContactName);
+        if (null == oldContact) {
+            System.out.println("Contact not present in the File. Cannot be udpated");
+            return;
+        }
 
         System.out.print("Enter new contact name: ");
         String newContactName = scanner.nextLine();
         System.out.print("Enter new contact number: ");
         String newNumber = scanner.nextLine();
-        Contact newContact = new Contact(newContactName, newNumber);
+        Contact newContact = Contact.createContact(newContactName, newNumber);
 
         if(mobilePhone.updateContact(oldContact, newContact)) {
             System.out.println("Contact Updated Successfully");
+        } else {
+            System.out.println("Error while updating contact record");
         }
-
     }
 
     public static void removeContact() {
         System.out.print("Enter the Contact Name: ");
-        if(mobilePhone.removeContact(scanner.nextLine())){
-            System.out.println("Contact Deleted Successfully");
+        String oldContactName = scanner.nextLine();
+
+        Contact oldContact = mobilePhone.queryContact(oldContactName);
+        if (null == oldContact) {
+            System.out.println("Contact not present in the File. Cannot be Removed");
+            return;
+        }
+
+        if (mobilePhone.removeContact(oldContactName)) {
+            System.out.println(String.format("Contact %s deleted successfully from File.", oldContactName));
+        } else {
+            System.out.println("Error while removing the record from File.");
         }
     }
 
     public static void searchContact() {
         System.out.println("Enter the Contact Name: ");
-        String contact = scanner.nextLine();
+        String contactName = scanner.nextLine();
 
-        if (mobilePhone.searchContact(contact) != null) {
-            System.out.println(contact + " present in the File.");
+        Contact contact = mobilePhone.queryContact(contactName);
+        if (null == contact) {
+            System.out.println(String.format("Contact %s not present in the File.", contactName));
         } else {
-            System.out.println(contact + " not present in the File.");
+            System.out.println(String.format("Contact %s present in the File. Here are the details:", contactName));
+            System.out.println(contact.getName() + "\t->\t" + contact.getPhoneNumber());
         }
     }
 }

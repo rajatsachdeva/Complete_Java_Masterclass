@@ -29,11 +29,11 @@ public class MobilePhone {
     }
 
     public void printContacts() {
-        System.out.println("There are " + myContacts.size() + " contacts in file.");
+        System.out.println("There are " + myContacts.size() + " contacts in file.\nContact List");
         Contact contact;
         for (int i = 0; i < myContacts.size(); i++) {
             contact = myContacts.get(i);
-            System.out.println((i + 1) + ". " + contact.getName() + "\t" + contact.getPhoneNumber());
+            System.out.println((i + 1) + ". " + contact.getName() + "\t->\t\t" + contact.getPhoneNumber());
         }
     }
 
@@ -45,9 +45,35 @@ public class MobilePhone {
         }
 
         myContacts.set(position, newContact);
-        System.out.println(oldContact + ", was replace with " + newContact.getName());
+        System.out.println(oldContact + ", was replaced with " + newContact.getName());
         return true;
     }
+
+    public boolean updateContact(Contact oldContact, Contact newContact) {
+        int position = findContact(oldContact);
+        if (position < 0) {
+            System.out.println(oldContact.getName() + " was not found.");
+            return false;
+        }
+
+        myContacts.set(position, newContact);
+        System.out.println(oldContact.getName() + ", was replaced with " + newContact.getName());
+        return true;
+    }
+
+    public boolean removeContact(Contact contact) {
+        int position = findContact(contact);
+        if (position < 0) {
+            System.out.println(String.format("Contact %s not present in the File. Cannot be removed.",
+                    contact.getName()));
+            return false;
+        }
+        myContacts.remove(position);
+        System.out.println(String.format("Contact %s at position %d was removed from File.", contact.getName(),
+                position + 1));
+        return true;
+    }
+
 
     public boolean removeContact(String contactName) {
         int position = findContact(contactName);
@@ -81,5 +107,20 @@ public class MobilePhone {
             }
         }
         return -1;
+    }
+
+    public String queryContact(Contact contact) {
+        if (findContact(contact) >= 0) {
+            return contact.getName();
+        }
+        return null;
+    }
+
+    public Contact queryContact(String name) {
+        int foundPosition = findContact(name);
+        if (foundPosition >= 0) {
+            return myContacts.get(foundPosition);
+        }
+        return null;
     }
 }
