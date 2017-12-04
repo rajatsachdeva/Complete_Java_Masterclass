@@ -51,11 +51,11 @@ public class Branch {
         return null;
     }
 
-    private int findCustomerPosition(String CustomerName) {
+    private int findCustomerPosition(String customerName) {
         Customer customer = null;
         for(int i = 0; i < customers.size(); i++) {
             customer = customers.get(i);
-            if(customer.getCustomerName().equals(customer)) {
+            if (customer.getCustomerName().equals(customerName)) {
                 return i;
             }
         }
@@ -70,6 +70,7 @@ public class Branch {
             System.out.println(String.format("%d -> %s", (i + 1), customer.getCustomerName()));
             if(displayTransactions) {
                 customer.displayTransactions();
+                System.out.println();
             }
         }
     }

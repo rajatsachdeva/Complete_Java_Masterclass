@@ -32,7 +32,7 @@ public class Customer {
         System.out.println("There are total " + transactions.size() + " transactions for " + customerName) ;
         System.out.println("Transactions: ");
         for (int i = 0; i < transactions.size(); i++) {
-            System.out.println(String.format("%d -> %f", (i + 1), transactions.get(i)));
+            System.out.println(String.format("[%d] %f", (i + 1), transactions.get(i)));
         }
     }
 }

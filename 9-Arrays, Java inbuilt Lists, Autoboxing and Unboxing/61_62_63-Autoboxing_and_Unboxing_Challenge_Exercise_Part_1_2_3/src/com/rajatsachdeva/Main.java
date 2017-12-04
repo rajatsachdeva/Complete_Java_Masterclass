@@ -72,13 +72,15 @@ public class Main {
             System.out.println("Adelaide branch already exists");
         }
 
-//        if(!bank.addNewTransaction("Adelaide", "Fergus", 52.33)) {
-//            System.out.println("Customer does not exist at branch");
-//        }
-//
-//        if(!bank.addCustomer("Adelaide", "Tim", 12.21)) {
-//            System.out.println("Customer Tim already exists");
-//        }
+        if (!bank.addNewTransaction("Adelaide", "Fergus", 52.33)) {
+            System.out.println("Customer does not exist at branch");
+        }
+
+        if (!bank.addNewCustomer("Adelaide", "Tim", 12.21)) {
+            System.out.println("Customer Tim already exists");
+        }
+
+        bank.displayCustomers("Melbourne", true);
 
     }
 }

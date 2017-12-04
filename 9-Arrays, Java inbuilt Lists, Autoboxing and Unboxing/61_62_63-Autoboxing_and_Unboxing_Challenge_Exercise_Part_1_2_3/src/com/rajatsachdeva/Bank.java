@@ -23,19 +23,19 @@ public class Bank {
         return branch.addNewCustomer(customerName, initialTransactioAmount);
     }
 
-    public void addNewTransaction(String branchName, String customerName, double transaction) {
+    public boolean addNewTransaction(String branchName, String customerName, double transaction) {
         // validate branch
         Branch branch = findBranch(branchName);
 
         if(null == branch) {
             System.out.println("Branch " + branchName + " is not a valid branch. Cannot add new  transaction for " +
                     "customer: " + customerName);
-            return;
+            return false;
         }
 
         // add the transaction
         branch.addNewTransaction(customerName, transaction);
-
+        return true;
     }
 
     public boolean addNewBranch(String branchName) {
@@ -72,10 +72,13 @@ public class Bank {
         return -1;
     }
 
-    public void displayCustomers(String branchName, boolean displayTransactions){
+    public boolean displayCustomers(String branchName, boolean displayTransactions) {
         Branch branch = findBranch(branchName);
         if(null != branch) {
             branch.displayCustomers(displayTransactions);
+            System.out.println();
+            return true;
         }
+        return false;
     }
 }
