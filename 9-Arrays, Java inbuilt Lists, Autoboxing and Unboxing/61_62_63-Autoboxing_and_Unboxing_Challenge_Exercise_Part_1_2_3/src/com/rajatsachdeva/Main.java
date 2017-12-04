@@ -80,8 +80,5 @@ public class Main {
 //            System.out.println("Customer Tim already exists");
 //        }
 
-
     }
-
-
 }
