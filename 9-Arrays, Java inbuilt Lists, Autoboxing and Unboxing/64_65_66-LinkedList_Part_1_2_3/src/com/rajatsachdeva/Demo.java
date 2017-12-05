@@ -78,12 +78,12 @@ public class Demo {
                 stringListIterator.previous(); // go to previous record
                 stringListIterator.add(newCity);
                 return true;
-            } else if(comparison < 0) {
+            } else if (comparison < 0) {
                 // move on to next city
             }
         }
         stringListIterator.add(newCity);
-        return  true;
+        return true;
     }
 
     private static void visit(LinkedList cities) {
@@ -100,7 +100,7 @@ public class Demo {
 //        }
 
         // check if cities list is empty
-        if(cities.isEmpty()) {
+        if (cities.isEmpty()) {
             System.out.println("No cities in the itinerary");
             return;
         } else {
@@ -108,23 +108,23 @@ public class Demo {
             System.out.println("Now visiting " + listIterator.next());
             printMenu();
         }
-        while(!quit) {
+        while (!quit) {
             int action = scanner.nextInt();
             scanner.nextLine(); // to take care of enter key
-            switch(action) {
+            switch (action) {
                 case 0:
                     System.out.println("Holiday (Vacation) over");
                     quit = true;
                     break;
 
                 case 1:
-                    if(!goingForward) {
+                    if (!goingForward) {
                         if (listIterator.hasNext()) {
                             listIterator.next();
                         }
                         goingForward = true;
                     }
-                    if(listIterator.hasNext()) {
+                    if (listIterator.hasNext()) {
                         System.out.println("Now visiting " + listIterator.next());
                     } else {
                         System.out.println("Reached end of list");
@@ -133,8 +133,8 @@ public class Demo {
                     break;
 
                 case 2:
-                    if(goingForward) {
-                        if(listIterator.hasPrevious()) {
+                    if (goingForward) {
+                        if (listIterator.hasPrevious()) {
                             listIterator.previous();
                         }
                         goingForward = false;
