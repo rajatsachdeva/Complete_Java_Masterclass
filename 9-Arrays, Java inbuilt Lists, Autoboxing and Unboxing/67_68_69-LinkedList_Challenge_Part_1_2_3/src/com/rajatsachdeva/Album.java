@@ -36,7 +36,7 @@ public class Album {
         return null;
     }
 
-//
+//     Old approach
 //    public Song findSong(String title) {
 //        Song song;
 //        for(int i = 0; i < songs.size(); i++) {
