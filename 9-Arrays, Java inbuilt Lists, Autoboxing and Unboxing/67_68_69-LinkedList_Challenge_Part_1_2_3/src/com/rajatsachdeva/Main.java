@@ -17,6 +17,7 @@ public class Main {
     // started tracking the direction we were going.
     // As an optional extra, provide an option to remove the current song from the playlist
     // (hint: listiterator.remove()
+    // Playlist is a linkedList
 
     public static void main(String[] args) {
 

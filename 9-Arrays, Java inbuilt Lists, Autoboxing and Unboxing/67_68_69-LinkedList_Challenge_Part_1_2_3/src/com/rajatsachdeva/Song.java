@@ -14,4 +14,9 @@ public class Song {
         return title;
     }
 
+    //To String
+    @Override
+    public String toString() {
+        return this.title + ": " + this.duration;
+    }
 }
