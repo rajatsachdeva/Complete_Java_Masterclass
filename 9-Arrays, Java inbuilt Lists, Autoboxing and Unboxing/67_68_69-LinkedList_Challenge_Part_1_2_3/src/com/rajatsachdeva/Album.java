@@ -18,7 +18,7 @@ public class Album {
     }
 
     public boolean addSong(String title, double duration) {
-        if(null == findSong(title)) {
+        if (null == findSong(title)) {
             songs.add(new Song(title, duration));
             return true;
         }
@@ -28,8 +28,8 @@ public class Album {
     // Use of for each loop
     // Array list is iterable
     public Song findSong(String title) {
-        for(Song song: this.songs) {
-            if(song.getTitle().equals(title)) {
+        for (Song song : this.songs) {
+            if (song.getTitle().equals(title)) {
                 return song;
             }
         }
@@ -48,10 +48,9 @@ public class Album {
 //        return null;
 //    }
 
-
     public boolean addToPlayList(int trackNumber, LinkedList<Song> playList) {
         int index = trackNumber - 1;
-        if((index > 0) && (index <= this.songs.size())) {
+        if ((index > 0) && (index <= this.songs.size())) {
             playList.add(this.songs.get(index));
             return true;
         }
@@ -70,4 +69,6 @@ public class Album {
         System.out.println("The song " + title + " is not in this album");
         return false;
     }
+
+
 }
