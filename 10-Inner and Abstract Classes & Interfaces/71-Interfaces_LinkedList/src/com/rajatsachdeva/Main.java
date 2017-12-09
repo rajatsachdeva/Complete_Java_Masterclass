@@ -21,6 +21,8 @@ public class Main {
     // (hint: listiterator.remove()
     // Playlist is a linkedList
 
+    // Interfaces : what a class/object/something/someone 'can' do
+
     //              Interface               Class
     private static List<Album> albums = new ArrayList<Album>();
 
