@@ -35,6 +35,11 @@ public class Main {
         loadObject(rajat);
         System.out.println(rajat.toString());
 
+        ISaveable werewolf = new Monster("Werewolf", 20, 40);
+
+        System.out.println(werewolf); // implicitly calls toString method
+        saveObject(werewolf);
+
     }
 
     public static ArrayList<String> readValues() {
