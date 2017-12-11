@@ -25,6 +25,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Player rajat = new Player("Rajat", 10, 15);
+        System.out.println(rajat.toString());
+        saveObject(rajat);
+        rajat.setWeapon("Stormbringer");
+        rajat.setHitPoints(8);
+        saveObject(rajat);
+        System.out.println(rajat.toString());
+        loadObject(rajat);
+        System.out.println(rajat.toString());
 
     }
 
@@ -53,6 +62,9 @@ public class Main {
                     values.add(index, stringInput);
                     index++;
                     break;
+
+                default:
+                    System.out.println("Wrong input.Enter 0-1");
             }
         }
         return values;
