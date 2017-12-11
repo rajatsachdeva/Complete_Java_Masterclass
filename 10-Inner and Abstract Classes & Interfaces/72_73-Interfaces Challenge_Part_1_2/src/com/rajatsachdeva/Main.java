@@ -36,7 +36,8 @@ public class Main {
         System.out.println(rajat.toString());
 
         ISaveable werewolf = new Monster("Werewolf", 20, 40);
-
+        // werewolf.getStrength(); Cannot do this
+        System.out.println("Strength = " +  ((Monster) werewolf).getStrength());
         System.out.println(werewolf); // implicitly calls toString method
         saveObject(werewolf);
 
