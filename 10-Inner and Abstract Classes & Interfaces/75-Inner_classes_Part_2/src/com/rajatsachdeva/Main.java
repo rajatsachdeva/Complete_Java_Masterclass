@@ -16,6 +16,7 @@ public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
     private static Button btnPrint = new Button("Print");
+
     public static void main(String[] args) {
         // Instances will be created using outer class only
 //        Gearbox mcLaren = new Gearbox(6);
@@ -69,13 +70,13 @@ public class Main {
             }
         });
 
-  //      btnPrint.setOnClickListener(new ClickListener());
+        //      btnPrint.setOnClickListener(new ClickListener());
         listen();
     }
 
     private static void listen() {
         boolean quit = false;
-        while(!quit) {
+        while (!quit) {
             int choice = scanner.nextInt();
             scanner.nextLine();
 
