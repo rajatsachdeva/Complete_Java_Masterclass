@@ -7,7 +7,7 @@ package com.rajatsachdeva;
 
     Interfaces are abstract
 
-    Abstract Class cannot be Instantiated
+    Abstract Class cannot be Instantiated but can be inherited
 */
 public class Main {
 
