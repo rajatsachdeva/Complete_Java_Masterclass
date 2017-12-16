@@ -45,7 +45,7 @@ public class Main {
         //
         // Optional: create a class to use your concrete class to implement a Binary Search Tree:
         // When adding items to a Binary Search Tree, if the item to be added is less than the current item
-        // then move to the left, if it is greater than the current item then move to the right.
+        // then move to the left,
         //
         // The new item is added when an attempt to move in the required direction would involve following a
         // null reference.
@@ -54,14 +54,44 @@ public class Main {
         // Hint: to avoid typing loads of "addItem" lines, split a string into an array and create your list in
         // a loop as in the example below.
         //
+
+        MyLinkedList list = new MyLinkedList(null);
+        list.traverse(list.getRoot());
+
         // Create a string data array to avoid typing loads of addItem instructions:
-        /**
-         *String stringData = "Darwin Brisbane Perth Melbourne Canberra Adelaide Sydney Canberra";
+
+        String stringData = "5 7 3 9 8 2 1 0 4 6 1 1 1 1";
 
         String[] data = stringData.split(" ");
         for (String s : data) {
             // create new item with value set to the string s
+            list.addItem(new Node(s));
         }
-         */
+
+        list.traverse(list.getRoot());
+
+        list.removeItem(new Node("3"));
+        list.traverse(list.getRoot());
+
+        list.removeItem(new Node("5"));
+        list.traverse(list.getRoot());
+
+        list.removeItem(new Node("0"));
+        list.removeItem(new Node("4"));
+        list.removeItem(new Node("2"));
+        list.traverse(list.getRoot());
+
+        list.removeItem(new Node("9"));
+        list.removeItem(new Node("9"));
+        list.traverse(list.getRoot());
+        list.removeItem(new Node("8"));
+        list.traverse(list.getRoot());
+        list.removeItem(new Node("6"));
+        list.traverse(list.getRoot());
+        list.removeItem(list.getRoot());
+        list.traverse(list.getRoot());
+        list.removeItem(list.getRoot());
+        list.traverse(list.getRoot());
+
     }
 }

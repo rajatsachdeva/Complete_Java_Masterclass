@@ -23,7 +23,7 @@ public class Node extends ListItem {
     }
 
     @Override
-    ListItem SetPrevious(ListItem item) {
+    ListItem setPrevious(ListItem item) {
         this.leftLink = item;
         return this.leftLink;
     }
