@@ -13,3 +13,7 @@ Topics:<br />
 [Section 9: Arrays, Java inbuilt Lists, Autoboxing and Unboxing](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/9-Arrays%2C%20Java%20inbuilt%20Lists%2C%20Autoboxing%20and%20Unboxing)<br />
 [Section 10: Inner and Abstract Classes & Interfaces](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/10-Inner%20and%20Abstract%20Classes%20%26%20Interfaces)<br />
 [Section 11: Java Generics](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/11-Java%20Generics)<br />
+
+
+Online Practice Solutions:
+[HackerRank](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank)<br />
