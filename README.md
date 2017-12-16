@@ -15,5 +15,5 @@ Topics:<br />
 [Section 11: Java Generics](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/11-Java%20Generics)<br />
 
 
-Online Practice Solutions:
+Online Practice Solutions:<br />
 [HackerRank](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank)<br />
