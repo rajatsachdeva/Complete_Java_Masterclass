@@ -19,14 +19,17 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int n=sc.nextInt();
-        String ans="";
+        String ans="Weird";
         if(n%2==1){
-            ans = "Weird";
+            // Do nothing
         }
         else{
-
             //Complete the code
-
+            if((n >=2 && n < 5 ) || n > 20) {
+                ans = "Not Weird";
+            } else {
+                // Do nothing
+            }
         }
         System.out.println(ans);
     }
