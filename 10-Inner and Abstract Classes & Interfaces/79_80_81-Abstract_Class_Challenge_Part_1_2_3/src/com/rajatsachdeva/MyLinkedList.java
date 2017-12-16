@@ -94,6 +94,18 @@ public class MyLinkedList implements NodeList {
         return false;
     }
 
+    /*// recursive implementation, but it's not a good idea to use
+    // as we don't know how many times it will be called and , it uses
+    // stack to keep the track of each call, so it may get exhausted in extreme case.
+    // It make more sense for trees , and may crash for linkedlist
+    // 63 is maximum depth level for trees
+    @Override
+    public void traverse(ListItem root) {
+        if (root != null) {
+            System.out.println(root.getValue());
+            traverse(root.next());
+        }
+    }*/
     @Override
     public void traverse(ListItem root) {
         if (root == null) {

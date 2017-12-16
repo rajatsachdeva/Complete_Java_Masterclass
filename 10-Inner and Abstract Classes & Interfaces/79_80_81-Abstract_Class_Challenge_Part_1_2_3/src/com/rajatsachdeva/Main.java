@@ -59,7 +59,6 @@ public class Main {
         list.traverse(list.getRoot());
 
         // Create a string data array to avoid typing loads of addItem instructions:
-
         String stringData = "5 7 3 9 8 2 1 0 4 6 1 1 1 1";
 
         String[] data = stringData.split(" ");
@@ -93,5 +92,42 @@ public class Main {
         list.removeItem(list.getRoot());
         list.traverse(list.getRoot());
 
+        System.out.println("\n*****************SEARCH TREE*******************\n");
+
+        SearchTree searchTree = new SearchTree(null);
+        searchTree.traverse(list.getRoot());
+
+        String stringDataTree = "5 7 3 9 8 2 1 0 4 6 1 1 1 1";
+
+        String[] dataTree = stringDataTree.split(" ");
+        for (String s : dataTree) {
+            // create new item with value set to the string s
+            searchTree.addItem(new Node(s));
+        }
+
+        searchTree.traverse(searchTree.getRoot());
+
+        searchTree.removeItem(new Node("3"));
+        searchTree.traverse(searchTree.getRoot());
+
+        searchTree.removeItem(new Node("5"));
+        searchTree.traverse(searchTree.getRoot());
+
+        searchTree.removeItem(new Node("0"));
+        searchTree.removeItem(new Node("4"));
+        searchTree.removeItem(new Node("2"));
+        searchTree.traverse(searchTree.getRoot());
+
+        searchTree.removeItem(new Node("9"));
+        searchTree.removeItem(new Node("9"));
+        searchTree.traverse(searchTree.getRoot());
+        searchTree.removeItem(new Node("8"));
+        searchTree.traverse(searchTree.getRoot());
+        searchTree.removeItem(new Node("6"));
+        searchTree.traverse(searchTree.getRoot());
+        searchTree.removeItem(searchTree.getRoot());
+        searchTree.traverse(searchTree.getRoot());
+        searchTree.removeItem(searchTree.getRoot());
+        searchTree.traverse(searchTree.getRoot());
     }
 }
