@@ -1,0 +1,21 @@
+Java Doubts/ Topics to Read
+- annotations
+- super keyword 
+- overriding methods
+- composition (objects within objects) vs inheritance
+- Inline Class - shared in lecture 49 polymorphism 2
+- Inheritance and Interfaces 
+- Dynamic binding 
+- Polymorphism 
+- Inner Classes
+- Autoboxing and unboxing
+- Multiple inheritance not supported in java ? ( implemented using interfaces )
+- when to use following : 
+ - Inheritance
+ - Interfaces
+ - Composition
+- Abstract Classes/ Methods
+ - difference between interfaces and Abstract Classes
+ - Abstract class Challenge - here Listitem has abstract methods , which have been implemented by Node class. Now MyLinkedList class has object of ListItem, so where does it picks up the implementation from (here From Node class as passed it's object right ?) now what if I had passes another class object with different implementation
+ Then it could have that kind of object only, ok got >? 
+- Binary Search Tree
