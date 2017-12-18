@@ -1,0 +1,29 @@
+How to run the java program from CLI ?
+
+[Mon Dec 18 22:30:33 Rajat]:out>tree 
+.
+└── production
+    └── Challenge_9
+        └── com
+            └── rajatsachdeva
+                └── Main.class
+
+4 directories, 1 file
+[Mon Dec 18 22:30:36 Rajat]:out>cd production/
+[Mon Dec 18 22:30:41 Rajat]:production>ls
+Challenge_9
+[Mon Dec 18 22:30:41 Rajat]:production>cd Challenge_9/
+[Mon Dec 18 22:30:44 Rajat]:Challenge_9>ls
+com
+[Mon Dec 18 22:30:44 Rajat]:Challenge_9>java com.rajatsachdeva.Main
+Hello
+1 Hello
+How are you 
+2 How are you 
+I am fine
+3 I am fine
+how are you 
+4 how are you 
+<<<<PRESS CTRL-D to give EOF>>>>>
+[Mon Dec 18 22:31:12 Rajat]:Challenge_9>
+
