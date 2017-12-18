@@ -11,4 +11,4 @@ Topics:<br />
 [Challenge 6: Java Loops I](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_6/src/com/rajatsachdeva)<br />
 [Challenge 7: Java Loops II](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_7/src/com/rajatsachdeva)<br />
 [Challenge 8: Java Datatypes](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_8/src/com/rajatsachdeva)<br />
-[Challenge 9: Java End-of-file](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_9/src/com/rajatsachdeva)<br />
+[Challenge 9: Java End-of-file](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_9)<br />
