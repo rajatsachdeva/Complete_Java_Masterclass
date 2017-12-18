@@ -12,3 +12,4 @@ Topics:<br />
 [Challenge 7: Java Loops II](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_7/src/com/rajatsachdeva)<br />
 [Challenge 8: Java Datatypes](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_8/src/com/rajatsachdeva)<br />
 [Challenge 9: Java End-of-file](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_9)<br />
+[Challenge 10: Java Static Initializer Block](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges/Challenge_10/src/com/rajatsachdeva)<br />
