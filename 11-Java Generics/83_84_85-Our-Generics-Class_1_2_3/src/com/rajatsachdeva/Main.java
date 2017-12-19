@@ -29,7 +29,27 @@ public class Main {
         System.out.println(soccerPlayerTeam.numPlayers());
 
         // Now it's still have limitations like we can give any object type for team
-        Team<String> brokenStringTeam = new Team<>("Broken String Team");
-        brokenStringTeam.addPlayer("No One"); // generates an Exception
+        // Now once we have bounded type parameter such that it only extends from Player class
+        // Following won't get compiled.
+        // Team<String> brokenStringTeam = new Team<>("Broken String Team");
+        // brokenStringTeam.addPlayer("No One"); // generates an Exception
+
+        Team<FootballPlayer> melbourne = new Team<>("Melbourne");
+        FootballPlayer banks = new FootballPlayer("Gordon");
+        melbourne.addPlayer(banks);
+
+        Team<FootballPlayer> hawthorn = new Team<>("Hawthorn");
+        Team<FootballPlayer> fremantle = new Team<>("Fremantle");
+
+        hawthorn.matchResult(fremantle, 1, 0);
+        hawthorn.matchResult(footballPlayerTeam, 3, 8);
+
+        footballPlayerTeam.matchResult(fremantle, 2, 1);
+        // Following is a limitation or bug where we are able to compete between
+        // football team and base ball team , which is not correct
+        // Now we changed the matchResult opponent Type to Generic Type so
+        // that will do strict type safety and hence following won't compile
+        //footballPlayerTeam.matchResult(baseballPlayerTeam, 1, 1);
+
     }
 }
