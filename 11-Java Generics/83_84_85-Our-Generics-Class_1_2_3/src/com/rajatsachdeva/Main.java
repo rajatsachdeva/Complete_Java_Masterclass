@@ -51,5 +51,19 @@ public class Main {
         // that will do strict type safety and hence following won't compile
         //footballPlayerTeam.matchResult(baseballPlayerTeam, 1, 1);
 
+        System.out.println("\n" + footballPlayerTeam.toString());
+        System.out.println(hawthorn.toString());
+        System.out.println(fremantle.toString());
+        System.out.println(melbourne.toString());
+
+        System.out.println("\nRankings:\n" + footballPlayerTeam.getName() + ":" + footballPlayerTeam.ranking());
+        System.out.println(hawthorn.getName() + ":" + hawthorn.ranking());
+        System.out.println(fremantle.getName() + ":" + fremantle.ranking());
+        System.out.println(melbourne.getName() + ":" + melbourne.ranking());
+
+        System.out.println(footballPlayerTeam.compareTo(melbourne));
+        System.out.println(footballPlayerTeam.compareTo(hawthorn));
+        System.out.println(hawthorn.compareTo(footballPlayerTeam));
+        System.out.println(melbourne.compareTo(fremantle));
     }
 }
