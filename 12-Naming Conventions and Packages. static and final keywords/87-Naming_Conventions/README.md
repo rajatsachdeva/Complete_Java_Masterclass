@@ -5,13 +5,13 @@ Naming Conventions: [Link](https://docs.oracle.com/javase/tutorial/java/nutsandb
 Notes: <br />
 
 ## Things that will be named in Java
-	-	Packages 
-	-	Classes 
-	-	Interfaces 
-	-	Methods 
-	-	Constants 
-	-	Variables 
-	-	Type Parameters
+	- Packages
+	- Classes
+	- Interfaces
+	- Methods
+	- Constants
+	- Variables
+	- Type Parameters
 
 ### Packages
 	- Always lower Case
@@ -40,5 +40,18 @@ Notes: <br />
 ### Constants
       - All UPPER_CASE
       - Separate words with underscore _
-      - Declared using **final** keyword
-      -
+      - Declared using ```final``` keyword
+      - e.g. static final int MAX_INT , static final short SEVERITY_ERROR, static final double PI = 3.14159265358979323846
+
+### Variable Names
+      - mixedCase
+      - Meaningful and indicative
+      - Start with a lower case letter
+      - Do _not_ use underscores
+      - e.g. i, league, sydneySwans, boxLength
+  
+### Type Parameters Names
+      - Single character, *captial* letters
+      - Guidelines at Link[https://docs.oracle.com/javase/tutorial/java/generics/types.html]
+      - e.g. E - Element (used extensively by the java collections framework), K - Key, N - Number, T - Type, V - Value, S, U, V etc. - 2nd , 3rd, 4th types
+      
