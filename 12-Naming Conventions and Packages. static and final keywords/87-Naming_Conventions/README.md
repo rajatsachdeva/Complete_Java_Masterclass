@@ -40,5 +40,5 @@ Notes: <br />
 ### Constants
       - All UPPER_CASE
       - Separate words with underscore _
-      - Declared using ***final*** keyword
+      - Declared using **final** keyword
       -
