@@ -40,18 +40,18 @@ Notes: <br />
 ### Constants
       - All UPPER_CASE
       - Separate words with underscore _
-      - Declared using <b>final</b> keyword
+      - Declared using final keyword
       - e.g. static final int MAX_INT , static final short SEVERITY_ERROR, static final double PI = 3.14159265358979323846
 
 ### Variable Names
       - mixedCase
       - Meaningful and indicative
       - Start with a lower case letter
-      - Do <b>not</b> use underscores
+      - Do not use underscores
       - e.g. i, league, sydneySwans, boxLength
   
 ### Type Parameters Names
-      - Single character, <strong>captial<strong\> letters
+      - Single character, captial letters
       - Guidelines at Link[https://docs.oracle.com/javase/tutorial/java/generics/types.html]
       - e.g. E - Element (used extensively by the java collections framework), K - Key, N - Number, T - Type, V - Value, S, U, V etc. - 2nd , 3rd, 4th types
       
