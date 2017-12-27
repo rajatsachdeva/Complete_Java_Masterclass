@@ -14,11 +14,11 @@ Notes: <br />
 7. [Type Parameters](#typeparameters)
 
 ### Packages <a name="packages">
-> Always lower Case
-> Package names should be *unqiue*
-> Use your internet domain name, reversed, as a prefix for the package name
-> Oracle specify a convention for package names at [Link](https://docs.oracle.com/javase/specs/jls/se6/html/packages.html#7.7)
-> e.g. com.rajatsachdeva, java.lang, java.io, org.xml.sax.helpers
+> Always lower Case <br />
+> Package names should be ***unqiue*** <br />
+> Use your internet domain name, reversed, as a prefix for the package name <br />
+> Oracle specify a convention for package names at [*Link*](https://docs.oracle.com/javase/specs/jls/se6/html/packages.html#7.7) <br />
+> e.g. com.rajatsachdeva, java.lang, java.io, org.xml.sax.helpers <br />
 
 ### Class Names <a name="classes">
 	- Camel Case
