@@ -1,6 +1,6 @@
 # Lecture 87 - Naming Conventions 
 
-Naming Conventions: [Link](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html#naming)<br />
+Naming Conventions: [*Link*](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html#naming)<br />
 
 Notes: <br />
 
@@ -52,6 +52,6 @@ Notes: <br />
   
 ### Type Parameters Names <a name="typeparameters">
 > Single character, captial letters <br />
-> Guidelines at Link[https://docs.oracle.com/javase/tutorial/java/generics/types.html] <br />
+> Guidelines at [*Link*](https://docs.oracle.com/javase/tutorial/java/generics/types.html) <br />
 > e.g. E - Element (used extensively by the java collections framework), K - Key, N - Number, T - Type, V - Value, S, U, V etc. - 2nd , 3rd, 4th types <br />
       
