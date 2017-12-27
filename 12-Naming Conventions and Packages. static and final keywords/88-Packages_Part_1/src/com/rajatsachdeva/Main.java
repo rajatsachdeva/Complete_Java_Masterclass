@@ -4,6 +4,7 @@ package com.rajatsachdeva;
 
 import javafx.scene.Node;
 // import org.w3c.dom.Node; // won't compile
+// import java.lang.Integer;
 
 public class Main {
 
@@ -17,6 +18,7 @@ public class Main {
         org.w3c.dom.Node anotherNode = null;
 
         Node thirdNode = null; // will take import package Node type, and will work
+
 
 
     }
