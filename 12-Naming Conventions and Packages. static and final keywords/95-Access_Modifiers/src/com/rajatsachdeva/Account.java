@@ -19,7 +19,7 @@ public class Account {
 
     public void deposit(int amount) {
         if(amount > 0) {
-            transactions.add(amount);
+            this.transactions.add(amount);
             this.balance += amount;
             System.out.println(amount + " deposited. New Balance = " + this.balance);
         } else {
@@ -28,12 +28,21 @@ public class Account {
     }
 
     public void withdraw(int amount) {
-        if(amount > 0) {
-            transactions.add(amount);
-            this.balance += amount;
-            System.out.println(amount + " deposited. New Balance = " + this.balance);
+        int withdrawal = -amount;
+        if(withdrawal < 0 && (-withdrawal <= this.balance)) {
+            this.transactions.add(withdrawal);
+            this.balance += withdrawal;
+            System.out.println(amount + " withdrawn. New Balance = " + this.balance);
         } else {
-            System.out.println("Cannot deposit negative or zero amount");
+            System.out.println("Cannot withdraw negative or zero amount");
         }
+    }
+
+    public void calculateBalance() {
+        this.balance = 0;
+        for(int i: this.transactions) {
+            this.balance += i;
+        }
+        System.out.println("Calculated Balance is " + this.balance);
     }
 }

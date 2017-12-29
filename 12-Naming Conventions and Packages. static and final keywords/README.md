@@ -15,15 +15,15 @@ __Lectures__: _87-98_
 92. Scope
 >   [_Source Code_](92-Scope)
 93. Scope Part 2 and Visibility
->   [_Source Code_]()
+>   [_Source Code_](93-Scope_Part_2_and_Visibility)
 94. Scope + Challenge
->   [_Source Code_]()
+>   [_Source Code_](94-Scope_plus_Challenge)
 95. Access Modifiers
->   [_Source Code_]()
+>   [_Source Code_](95-Access_Modifiers)
 96. The Static Statement
->   [_Source Code_]()
+>   [_Source Code_](96-The_static_statement)
 97. The final Statement
->   [_Source Code_]() 
+>   [_Source Code_](97-The_final_statement) 
 98. The final Statement Part 2 + Challenge
->   [_Source Code_]()
+>   [_Source Code_](98-Final_Part_2_and_Static_Initializers)
 
