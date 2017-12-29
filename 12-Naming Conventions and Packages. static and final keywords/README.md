@@ -13,7 +13,7 @@ __Lectures__: _87-98_
 91. Packages Challenge
 >   [_Source Code_](91-Packages_Challenge)
 92. Scope
->   [_Source Code_]()
+>   [_Source Code_](92-Scope)
 93. Scope Part 2 and Visibility
 >   [_Source Code_]()
 94. Scope + Challenge
