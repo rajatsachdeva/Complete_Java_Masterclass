@@ -8,9 +8,8 @@ __Lectures__: _87-98_
 88. Packages
 >   [_Source Code_](88-Packages_Part_1)
 89. Packages Part 2
->   [_Source Code_]()
 90. Packages Part 3
->   [_Source Code_]()
+>   [_Source Code_](89-Packages_Part_2)
 91. Packages Challenge
 >   [_Source Code_]()
 92. Scope
