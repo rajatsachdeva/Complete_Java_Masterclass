@@ -1,10 +1,13 @@
 package com.rajatsachdeva;
 
+import java.util.Scanner;
+
 public class X {
     private int x;
 
-   public X(int x) {
-        this.x = x;
+    public X(Scanner x) {
+        System.out.print("Enter Number: ");
+        this.x = x.nextInt();
         System.out.println("X is created with value: " + this.x);
     }
 

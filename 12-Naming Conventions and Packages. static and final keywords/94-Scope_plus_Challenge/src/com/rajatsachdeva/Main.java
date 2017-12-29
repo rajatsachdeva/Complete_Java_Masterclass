@@ -22,13 +22,13 @@ import java.util.Scanner;
 // instance) are called x.
 public class Main {
 
-    public static Scanner scanner = new Scanner(System.in);
+    //public static Scanner x = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        System.out.print("Enter number: ");
+        //System.out.print("Enter number: ");
 
-        X x = new X(scanner.nextInt());
+        X x = new X(new Scanner(System.in));
         x.x();
     }
 }
