@@ -2,48 +2,40 @@ package com.rajatsachdeva;
 
 public class ScopeCheck {
     public int publicVar = 0;
-    private int privateVar = 1;
+    private int varOne = 1;
 
     public ScopeCheck() {
-        System.out.println("ScopeCheck created, publicVar = " + publicVar + ": privateVar = " + privateVar);
+        System.out.println("ScopeCheck created, publicVar = " + publicVar + ": varOne = " + varOne);
     }
 
-    public int getPrivateVar() {
-        return privateVar;
+    public int getVarOne() {
+        return varOne;
     }
 
     public void timesTwo() {
-        // local variable declared in method
-        // scope is local to this method
-        // java will consider this declaration over class member named as privateVar
-        // but if we remove following declaration then it will take member as default
-        int privateVar = 2;
+        int varTwo = 2;
 
         for (int i = 0; i < 10; i++) {
-            System.out.println(i + " times two is " + i * privateVar);
-
-            // Now if we want to use the class member privateVar then to qualify the scope we need to use 'this'
-            //System.out.println(i + " times one is " +  i * this.privateVar);
+            System.out.println(i + " times two is " + i * varTwo);
         }
+    }
 
-        // i has local scope to for loop and cannot be accessed outside the loop so if we try following then it will
-        // error out, i.e. will not compile, as symbol i cannot be resolved outside the code block (for loop)
-        //System.out.println("Value of i is now " + i);
+    public void useInner() {
+        InnerClass innerClass = new InnerClass();
+        System.out.println("varThree from outer class: " + innerClass.varThree);
     }
 
     public class InnerClass {
-        public int privateVar = 3;
+        private int varThree = 3;
 
         public InnerClass() {
-            System.out.println("InnerClass created, privateVar is " + privateVar);
+            System.out.println("InnerClass created, varOne is " + varOne + " and varThree is " + varThree);
         }
 
         public void timesTwo() {
-            //int privateVar = 2;
+            System.out.println("varOne is still available here " + varOne);
             for (int i = 0; i < 10; i++) {
-                //System.out.println(i + " times two is " + i * ScopeCheck.this.privateVar);
-                //System.out.println(i + " times two is " + i * privateVar);
-                System.out.println(i + " times two is " + i * this.privateVar);
+                System.out.println(i + " times two is " + i * this.varThree);
             }
         }
     }

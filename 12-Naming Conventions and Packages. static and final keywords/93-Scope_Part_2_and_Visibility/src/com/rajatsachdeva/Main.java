@@ -5,11 +5,16 @@ public class Main {
     public static void main(String[] args) {
 
         // local or private to main method
-        String privateVar = "This is private to main()";
+        String varFour = "This is private to main()";
 
         ScopeCheck scopeCheck = new ScopeCheck();
-        System.out.println("scopeCheck privateVar is " + scopeCheck.getPrivateVar());
-        System.out.println(privateVar);
+        scopeCheck.useInner();
+//        ScopeCheck.InnerClass innerClass = scopeCheck.new InnerClass();
+        // Cannot access the private member of a class, external to the class
+        //innerClass.varThree = 10;
+
+        System.out.println("scopeCheck varOne is " + scopeCheck.getVarOne());
+        System.out.println(varFour);
         System.out.println("scopeCheck publicVar is " + scopeCheck.publicVar);
 
         scopeCheck.timesTwo();

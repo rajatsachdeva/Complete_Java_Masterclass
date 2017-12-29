@@ -11,4 +11,5 @@ case there is no such declaration then it errors out <br />
 > Concept of scope applies not only to variables but also to methods and classes <br />
 
 ## Visibility <a name="visibility">
-> 
+> Object's scope/visibility is the block in which it's declared including any contained blocks <br />
+> An Object's visibility is governed by the access modifiers <br />
