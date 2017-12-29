@@ -29,6 +29,6 @@ public class Main {
         System.out.print("Enter number: ");
 
         X x = new X(scanner.nextInt());
-        x.printTable();
+        x.x();
     }
 }
