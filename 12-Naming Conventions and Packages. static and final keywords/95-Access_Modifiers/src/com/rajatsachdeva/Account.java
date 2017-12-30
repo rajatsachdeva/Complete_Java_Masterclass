@@ -3,9 +3,9 @@ package com.rajatsachdeva;
 import java.util.ArrayList;
 
 public class Account {
-    public String accountName;
-    public int balance = 0;
-    public ArrayList<Integer> transactions;
+    private String accountName;
+    private int balance = 0;
+    private ArrayList<Integer> transactions;
 
     public Account(String accountName) {
         this.accountName = accountName;
