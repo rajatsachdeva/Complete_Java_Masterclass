@@ -23,7 +23,5 @@ __Lectures__: _87-98_
 96. The Static Statement
 >   [_Source Code_](96-The_static_statement)
 97. The final Statement
->   [_Source Code_](97-The_final_statement) 
 98. The final Statement Part 2 + Challenge
->   [_Source Code_](98-Final_Part_2_and_Static_Initializers)
-
+>   [_Source Code_](97-The_final_statement)
