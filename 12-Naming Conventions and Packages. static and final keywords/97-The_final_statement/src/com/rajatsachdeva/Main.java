@@ -16,5 +16,20 @@ public class Main {
 
         // Cannot assign value to final variable
         // one.instanceNumber = 5;
+        System.out.println(Math.PI);
+        // cannot instantiate Math class as constructor is private
+        // and fields are public static final, And Math class is marked as final
+        // Math m = new Math();
+
+        int pw = 674312;
+        Password password = new Password(pw);
+        password.storePassword();
+
+        password.letMeIn(1);
+        password.letMeIn(234234);
+        password.letMeIn(0);
+        password.letMeIn(1);
+        password.letMeIn(674312);
+
     }
 }
