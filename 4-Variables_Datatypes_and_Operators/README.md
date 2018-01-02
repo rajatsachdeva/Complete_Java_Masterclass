@@ -4,7 +4,7 @@ __Lectures__: *15-22*
 
 15. Introduction
 16. What are Variables ?
->   [_Source Code_](16-What_Are_Variables/src)
+>   [_Source Code_](16-What_Are_Variables)
 17. Getting To Know Primitive Data Types - The Byte, Short, Int And Long
 >   [_Source Code_](17-Getting_To_Know-Primitive_Data_Types_whole_numbers/src/com/company)
 18. Getting To Know Primitive Data Types - Float And Double
