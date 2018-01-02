@@ -3,9 +3,9 @@
 > `int gear = 1;`
 
 ## Numeric Primitive Data Types
-> Ranges are defined using, here n is number of bits used to store data type variable: <br />
-
-`-2^(n-1) to (2^(n-1))-1`
+> Ranges are defined using following: <br />
+`-2^(n-1) to (2^(n-1))-1` <br />
+>, here n is number of bits used to store data type variable
 
 |   Type	|  Bytes(bits)	|	Range  	|
 |-----------|---------------|-----------|
@@ -13,6 +13,5 @@
 |	short	|	2 (16)	 	|			|
 |	int		|	4 (32)		|			|
 |	long	|	8 (64)	 	|			|
-|			|			 	|			|
 
 [Reference](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html)
