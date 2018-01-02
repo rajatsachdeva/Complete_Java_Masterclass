@@ -12,7 +12,7 @@ __Lectures__: *15-22*
 19. Getting To Know Primitive Data Types - Char And Boolean
 >   [_Source Code_](19-Getting_To_Know_Primitive_Data_Types_Char_And_Boolean)
 20. Understanding Strings And Finishing Up Primitive Data Types
->   [_Source Code_](20-Understanding_Strings_And_Finishing_Up_Primitive_Data_Typesa)
+>   [_Source Code_](20-Understanding_Strings_And_Finishing_Up_Primitive_Data_Types)
 21. Operators In Java
 22. More On Operators And Operator Precedence
 >   [_Source Code_](21-22-Operators_In_Java)
