@@ -14,6 +14,7 @@ Topics:<br />
 [Section 10: Inner and Abstract Classes & Interfaces](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/10-Inner%20and%20Abstract%20Classes%20%26%20Interfaces)<br />
 [Section 11: Java Generics](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/11-Java%20Generics)<br />
 [Section 12: Naming Conventions and Packages. static and final keywords](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/12-Naming%20Conventions%20and%20Packages.%20static%20and%20final%20keywords)<br />
+[Section 13: Java Collections](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/13-Java_Collections)<br />
 
 
 Online Practice Solutions:<br />
