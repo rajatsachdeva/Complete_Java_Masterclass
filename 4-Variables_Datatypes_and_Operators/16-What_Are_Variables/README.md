@@ -1,7 +1,7 @@
 # What are Variables ?
 
-> Variables are used to store information to be referenced and manipulated in a computer program. They also provide a way of labeling data with a descriptive name, so our programs can be understood more clearly by the reader and ourselves. <br />
-> With reference to java class, class field stores _state_ of the class <br />
+Variables are used to store information to be referenced and manipulated in a computer program. They also provide a way of labeling data with a descriptive name, so our programs can be understood more clearly by the reader and ourselves. <br />
+With reference to java class, class field stores _state_ of the class <br />
 
 Java defines various kinds of variables, which are listed below : <br />
 1. **Instance Variables** _(Non-Static Fields)_ Technically speaking, objects store their individual states in "non-static fields", that is, fields declared without the _static_ keyword. Non-static fields are also known as instance variables because their values are unique to each instance of a class (to each object, in other words); the currentSpeed of one bicycle is independent from the currentSpeed of another
@@ -15,3 +15,6 @@ Java defines various kinds of variables, which are listed below : <br />
 [Reference](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/variables.html)
 
 Please refer to [_Naming convention_](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/12-Naming%20Conventions%20and%20Packages.%20static%20and%20final%20keywords/87-Naming_Conventions) sections for rules to name the variables in java  
+
+In this lecture the basics of variable declaration, initialization, assignment is discussed <br />
+[_Source Code_](src/Variables.java)
