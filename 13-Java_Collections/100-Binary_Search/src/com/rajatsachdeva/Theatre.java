@@ -7,7 +7,28 @@ public class Theatre {
 
     private final String theatreName;
     private List<Seat> seats = new ArrayList<>();
+    // Changing the Implementation from ArrayList to LinkedList
+    // It will work as same as before
+    //private List<Seat> seats = new LinkedList<>();
 
+    // Making it really generic by making it type of Collection
+    // Advantage of using the collection is use to any type of collection classes
+    // private Collection<Seat> seats = new LinkedList<>();
+    //private Collection<Seat> seats = new HashSet<>();
+    //private Collection<Seat> seats = new LinkedHashSet<>();
+
+    /**
+     * we get following exception
+     * objc[2061]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/bin/java (0x10908f4c0) and /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/libinstrument.dylib (0x10a0b64e0). One of the two will be used. Which one is undefined.
+     * Exception in thread "main" java.lang.ClassCastException: com.rajatsachdeva.Theatre$Seat cannot be cast to java.lang.Comparable
+     * at java.util.TreeMap.compare(TreeMap.java:1294)
+     * at java.util.TreeMap.put(TreeMap.java:538)
+     * at java.util.TreeSet.add(TreeSet.java:255)
+     * <p>
+     * As TreeSet is below the SortedSet, we can't use that directly
+     * We can only use the ones that are below Collections
+     */
+    //private Collection<Seat> seats = new TreeSet<>();
     public Theatre(String theatreName, int numRows, int seatsPerRow) {
         this.theatreName = theatreName;
         int lastRow = 'A' + (numRows - 1);
@@ -27,6 +48,7 @@ public class Theatre {
         Seat requestedSeat = null;
 
         for (Seat seat : seats) {
+            System.out.print("."); // to check the number of comparisons to find if seat is reserved or not
             if (seat.getSeatNumber().equals(seatNumber)) {
                 requestedSeat = seat;
                 break;
