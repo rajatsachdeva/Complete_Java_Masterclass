@@ -1,6 +1,6 @@
 # Lecture 100 - Binary Search
 
-[_Collections Interfaces_](https://docs.oracle.com/javase/tutorial/collections/interfaces/index.html)
+[_Collection Interface_](https://docs.oracle.com/javase/tutorial/collections/interfaces/index.html)
 
 Core Collection is interface encapsulate different types of collections. <br />
 These interfaces allow collections to be manipulated independently of the details of their representation. <br /> 
