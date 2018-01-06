@@ -1,4 +1,4 @@
-# Lec**ture 100 - Binary Search
+# Lecture 100 - Binary Search
 
 [_Collection Interface_](https://docs.oracle.com/javase/tutorial/collections/interfaces/index.html)
 
