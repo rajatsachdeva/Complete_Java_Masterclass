@@ -6,7 +6,7 @@ import java.util.List;
 public class Theatre {
 
     private final String theatreName;
-    private List<Seat> seats = new ArrayList<>();
+    public List<Seat> seats = new ArrayList<>();
     // Changing the Implementation from ArrayList to LinkedList
     // It will work as same as before
     //private List<Seat> seats = new LinkedList<>();
@@ -76,7 +76,7 @@ public class Theatre {
         }
     }
 
-    private class Seat implements Comparable<Seat> {
+    public class Seat implements Comparable<Seat> {
 
         private final String seatNumber;
         private boolean reserved = false;
