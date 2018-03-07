@@ -14,7 +14,4 @@ is pretty simple.
 
 Both Approaches are good, depending upon usecase, but LBYL is more common
 
-
-
-
-
+We can write many lines in a try block 
