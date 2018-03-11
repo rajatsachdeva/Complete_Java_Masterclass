@@ -14,4 +14,10 @@ execution
 
 In Case of Exception(where a program crashes) A call stack in printed as well with Exception message
 
-So Each thread of execution has its own call stack and the thread is shown as first line of call stack 
+So Each thread of execution has its own call stack and the thread is shown as first line of call stack
+
+# Lecture 177 - Catching and Throwing Exception
+
+To get NoSuchElementException press CTRL+D / Command + D to send EOT (End of Transmission) or EOF (End of File)
+
+The less code there is in the catch block, the less there is to raise another exception 
