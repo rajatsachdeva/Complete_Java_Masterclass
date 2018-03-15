@@ -65,7 +65,7 @@ public class Theatre {
             }
         }
 
-        System.out.println("There is not seat " + seatNumber);
+        System.out.println("There is no seat " + seatNumber);
         return false;
     }
 
