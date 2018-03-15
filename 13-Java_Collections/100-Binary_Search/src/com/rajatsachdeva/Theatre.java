@@ -26,7 +26,9 @@ public class Theatre {
      * at java.util.TreeSet.add(TreeSet.java:255)
      * <p>
      * As TreeSet is below the SortedSet, we can't use that directly
-     * We can only use the ones that are below Collections
+     * We can only use the ones that are directly below Collections
+     *
+     * TreeSet has a requirement that it's elements should be comparable
      */
     //private Collection<Seat> seats = new TreeSet<>();
     public Theatre(String theatreName, int numRows, int seatsPerRow) {
@@ -65,10 +67,12 @@ public class Theatre {
             }
         }
 
-        System.out.println("There is not seat " + seatNumber);
+        System.out.println("There is no seat " + seatNumber);
         return false;
 
-        /**Seat requestedSeat = new Seat(seatNumber);
+        /** Better Approach have O(log n) so for 1024 elements it will take 10 comparisons (2^10)
+         *
+         * Seat requestedSeat = new Seat(seatNumber);
 
         int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
 
@@ -79,7 +83,8 @@ public class Theatre {
             return false;
          }*/
 
-        /**
+        /** Very inefficient
+         *
          for (Seat seat : seats) {
          System.out.print("."); // to check the number of comparisons to find if seat is reserved or not
          if (seat.getSeatNumber().equals(seatNumber)) {
