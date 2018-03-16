@@ -52,7 +52,13 @@ public class MapProgram {
         }
 
         // Replace value for a particular key, following returns previous value as well
-        System.out.println(languages.replace("Lisp", "a functional programming language with imperative features"));
+        //System.out.println(languages.replace("Lisp", "a functional programming language with imperative features"));
+        if(languages.replace("Lisp", "Therein lies madness", "a functional programming language with imperative " +
+                "features")) {
+            System.out.println("Lisp value replaced");
+        } else {
+            System.out.println("Lisp not replaced");
+        }
         //this does not add to map if key not present
         System.out.println(languages.replace("Lispnew", "a functional programming language with imperative features"));
         for (String key: languages.keySet()) {
