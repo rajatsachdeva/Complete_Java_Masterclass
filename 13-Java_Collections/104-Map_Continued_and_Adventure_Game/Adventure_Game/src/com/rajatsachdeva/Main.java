@@ -4,6 +4,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Lecture 106 Adventure Game Challenge
+ * ====================================
+ *
+ * Change the program to allow players to type full words, or phrases, then move to the
+ * correct location based upon their input.
+ * The player should be able to type commands such as "Go West", "run South", or just "East"
+ * and the program with move to the appropriate location if there is one. As at present, an
+ * attempt to move in an invalid direction should print a message and remain in the same place.
+ *
+ * Single Letter commands (N, W, S, E, Q) should still be available
+ */
+
 public class Main {
 
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
@@ -51,7 +64,7 @@ public class Main {
 //        locations.get(5).addExit("Q", 0);
 
         int loc = 1;
-/*        while(true) {
+        while(true) {
             // will generate a null pointer exception as value doesn't exists for the case of invalid key
             System.out.println(locations.get(loc).getDescription());
             if (loc == 0) {
@@ -77,10 +90,10 @@ public class Main {
 //            if (!locations.containsKey(loc)) {
 //                System.out.println("You cannot go in that direction");
 //            }
-        }*/
+        }
 
         // Usage of split method under String Class
-        String[] road = "You are standing at the end of a road before a small brick building".split(" ");
+        /*String[] road = "You are standing at the end of a road before a small brick building".split(" ");
         for (String i: road) {
             System.out.println(i);
         }
@@ -90,7 +103,6 @@ public class Main {
         String[] building = "You are inside a building, a well house for a small spring".split(", ");
         for (String i: building) {
             System.out.println(i);
-        }
-
+        }*/
     }
 }
