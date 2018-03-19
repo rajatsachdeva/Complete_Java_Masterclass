@@ -23,7 +23,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-
         /**
          *          <->          5 Forest            [ ^North ]
          *           |              |
@@ -35,7 +34,9 @@ public class Main {
         // Create temporary map that will be taken as input in constructor while defining the exits for a location
         // Add exit for 1 Road
         Map<String, Integer> tempExit = new HashMap<String, Integer>();
-        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", tempExit));
+//        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", tempExit));
+        // As there are no exits, but generates an exception
+        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", null));
 
         tempExit.put("W", 2);
         tempExit.put("E", 3);

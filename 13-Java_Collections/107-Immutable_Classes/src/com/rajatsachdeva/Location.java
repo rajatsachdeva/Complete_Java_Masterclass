@@ -14,7 +14,12 @@ public class Location {
         this.locationID = locationID;
         this.description = description;
 //        this.exits = new HashMap<String, Integer>();
-        this.exits = new HashMap<>(exits);
+        // To avoid NullPointerException we need a null check
+        if (null == exits) {
+            this.exits = new HashMap<>();
+        } else {
+            this.exits = new HashMap<>(exits);
+        }
         this.exits.put("Q", 0);
     }
 
