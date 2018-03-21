@@ -10,3 +10,12 @@ as link hash set and tree set.
 
 If you want to ensure that there are no duplicates in your collection than Set is best choice rather than a List.
 
+Just like List and Maps its possible to create Raw Sets
+
+A Set cannot be an element of itself
+
+Best performing implementation of Set is HashSet and that uses hashes to store the items now this is just like 
+HashMap Class, in fact it uses a HashMap as of Java 8.
+So whenever an item is added to HashSet it is internally added as a key in a HashMap with a dummy value.
+
+Union and Intersection is allowed on Sets
