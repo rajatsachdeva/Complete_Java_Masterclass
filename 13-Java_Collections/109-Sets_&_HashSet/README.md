@@ -19,3 +19,15 @@ HashMap Class, in fact it uses a HashMap as of Java 8.
 So whenever an item is added to HashSet it is internally added as a key in a HashMap with a dummy value.
 
 Union and Intersection is allowed on Sets
+
+
+# Lecture 110 - HashSet - equals() and hashCode()
+
+Java Documentation warns if you are using your own object as the key in a Map, then you should override the equals 
+and hashCode Methods.
+
+Note that it is generally necessary to override the {@code hashCode} 
+method whenever this method is overridden, so as to maintain the
+general contract for the {@code hashCode} method, which states
+that equal objects must have equal hash codes.
+

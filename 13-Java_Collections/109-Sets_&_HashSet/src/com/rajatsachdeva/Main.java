@@ -79,7 +79,7 @@ public class Main {
 
         System.out.println("Planets");
         for (HeavenlyBody planet: planets) {
-            System.out.println("\t" + planet.getName());
+            System.out.println("\t" + planet.toString());
         }
 
         HeavenlyBody body = solarSystem.get("Jupiter");
@@ -98,6 +98,19 @@ public class Main {
         for (HeavenlyBody moon: moons) {
             System.out.println("\t" + moon.getName());
         }
+
+        HeavenlyBody pluto = new HeavenlyBody("Pluto", 842);
+        planets.add(pluto);
+
+        System.out.println("\nPlanets");
+        for(HeavenlyBody planet: planets) {
+            System.out.println("\t" + planet.toString());
+        }
+
+        // Base Object from which all objects inherit from in Java
+        Object o = new Object();
+        o.equals(o);
+        "pluto".equals("");
 
     }
 }

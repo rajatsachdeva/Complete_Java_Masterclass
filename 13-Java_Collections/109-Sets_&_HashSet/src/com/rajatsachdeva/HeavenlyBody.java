@@ -30,4 +30,11 @@ public final class HeavenlyBody {
     public boolean addMoon(HeavenlyBody moon) {
         return this.satellites.add(moon);
     }
+
+    @Override
+    public String toString() {
+        return name + "\t:\t" + orbitalPeriod;
+    }
+
+
 }
