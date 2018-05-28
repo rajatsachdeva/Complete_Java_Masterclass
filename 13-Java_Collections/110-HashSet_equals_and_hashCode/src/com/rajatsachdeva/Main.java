@@ -109,8 +109,8 @@ public class Main {
 
         // Base Object from which all objects inherit from in Java
         Object o = new Object();
-        o.equals(o);
-        "pluto".equals("");
+        System.out.println(o.equals(o));    // true
+        System.out.println("pluto".equals("")); // false
 
     }
 }
