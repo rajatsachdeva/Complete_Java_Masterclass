@@ -107,10 +107,12 @@ public class Main {
             System.out.println("\t" + planet.toString());
         }
 
+        // Pluto is coming twice, which seems strange as its a set
+        // We need to override the equals method here
+
         // Base Object from which all objects inherit from in Java
         Object o = new Object();
         System.out.println(o.equals(o));    // true
         System.out.println("pluto".equals("")); // false
-
     }
 }
