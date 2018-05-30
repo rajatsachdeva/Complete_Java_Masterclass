@@ -6,7 +6,11 @@ public class Labrador extends Dog {
         super(name);
     }
 
-    @Override
+    /**
+     * Cannot override equals here as parent class definition is final.
+     * And final methods cannot be overridden
+     */
+   /* @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -18,5 +22,5 @@ public class Labrador extends Dog {
         }
 
         return false;
-    }
+    }*/
 }
