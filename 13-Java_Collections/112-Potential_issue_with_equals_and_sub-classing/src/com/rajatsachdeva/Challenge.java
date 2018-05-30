@@ -1,5 +1,6 @@
-# Lecture 112 - Potential issue with equals() and sub-classing
+package com.rajatsachdeva;
 
+public class Challenge {
     /**
      * When overriding the equals() method in the HeavenlyBody class, we
      * were careful to make sure that it would not return true if a HeavenlyBody
@@ -20,3 +21,6 @@
      * comparisons with a subclass.
      *
      **/
+
+
+}
