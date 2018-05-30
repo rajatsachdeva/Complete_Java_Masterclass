@@ -36,8 +36,6 @@ public final class HeavenlyBody {
         return name + "\t:\t" + orbitalPeriod;
     }
 
-
-
     @Override
     public boolean equals(Object obj) {
         if(this == obj) {
@@ -47,11 +45,20 @@ public final class HeavenlyBody {
         System.out.println("obj.getClass() is " + obj.getClass());
         System.out.println("this.getClass() is " + this.getClass());
 
+        // check if object is null and if its not of same class type i.e. HeavenlyBody
         if(obj == null || (obj.getClass() != this.getClass())) {
             return false;
         }
 
         String objName = ((HeavenlyBody) obj).getName();
         return this.name.equals(objName);
+    }
+
+    @Override
+    public int hashCode() {
+//        return super.hashCode();
+        System.out.println("hashCode called : " + (this.name.hashCode() + 57));
+        return this.name.hashCode() + 57; // Not good way of doing this
+
     }
 }
