@@ -1,0 +1,219 @@
+Script started on Sat Jun  2 01:28:08 2018
+[?1034h[Sat Jun 02 01:28:08 Rajat]:sqlite3_practice>sqlite3 
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+Connected to a [1mtransient in-memory database[0m.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> qq[Kuit
+   ...> 
+   ...> 
+   ...> quit
+   ...> ;
+Error: near "quit": syntax error
+sqlite> .quit
+[Sat Jun 02 01:28:53 Rajat]:sqlite3_practice>sqlite3 
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+Connected to a [1mtransient in-memory database[0m.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite> ./quit
+Error: unknown command or invalid arguments:  "/quit". Enter ".help" for help
+sqlite> ./[Kquir[Kt
+[Sat Jun 02 01:29:03 Rajat]:sqlite3_practice>echo "c[KCreating a test.db:[K"[K[K[K[K daya[K[Ktbase[K[K[K[Ka b[K[Kbase"
+Creating a test database
+[Sat Jun 02 01:29:34 Rajat]:sqlite3_practice>[H[2J[Sat Jun 02 01:29:34 Rajat]:sqlite3_practice>sqlite3 test.db
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+sqlite> ./[Khelp
+.auth ON|OFF           Show authorizer callbacks
+.backup ?DB? FILE      Backup DB (default "main") to FILE
+.bail on|off           Stop after hitting an error.  Default OFF
+.binary on|off         Turn binary output on or off.  Default OFF
+.changes on|off        Show number of rows changed by SQL
+.clone NEWDB           Clone data into NEWDB from the existing database
+.databases             List names and files of attached databases
+.dbinfo ?DB?           Show status information about the database
+.dump ?TABLE? ...      Dump the database in an SQL text format
+                         If TABLE specified, only dump tables matching
+                         LIKE pattern TABLE.
+.echo on|off           Turn command echo on or off
+.eqp on|off|full       Enable or disable automatic EXPLAIN QUERY PLAN
+.exit                  Exit this program
+.explain ?on|off|auto? Turn EXPLAIN output mode on or off or to automatic
+.fullschema ?--indent? Show schema and the content of sqlite_stat tables
+.headers on|off        Turn display of headers on or off
+.help                  Show this message
+.import FILE TABLE     Import data from FILE into TABLE
+.indexes ?TABLE?       Show names of all indexes
+                         If TABLE specified, only show indexes for tables
+                         matching LIKE pattern TABLE.
+.limit ?LIMIT? ?VAL?   Display or change the value of an SQLITE_LIMIT
+.load FILE ?ENTRY?     Load an extension library
+.log FILE|off          Turn logging on or off.  FILE can be stderr/stdout
+.mode MODE ?TABLE?     Set output mode where MODE is one of:
+                         ascii    Columns/rows delimited by 0x1F and 0x1E
+                         csv      Comma-separated values
+                         column   Left-aligned columns.  (See .width)
+                         html     HTML <table> code
+                         insert   SQL insert statements for TABLE
+                         line     One value per line
+                         list     Values delimited by .separator strings
+                         tabs     Tab-separated values
+                         tcl      TCL list elements
+.nullvalue STRING      Use STRING in place of NULL values
+.once FILENAME         Output for the next SQL command only to FILENAME
+.open ?FILENAME?       Close existing database and reopen FILENAME
+.output ?FILENAME?     Send output to FILENAME or stdout
+.print STRING...       Print literal STRING
+.prompt MAIN CONTINUE  Replace the standard prompts
+.quit                  Exit this program
+.read FILENAME         Execute SQL in FILENAME
+.restore ?DB? FILE     Restore content of DB (default "main") from FILE
+.save FILE             Write in-memory database into FILE
+.scanstats on|off      Turn sqlite3_stmt_scanstatus() metrics on or off
+.schema ?PATTERN?      Show the CREATE statements matching PATTERN
+                          Add --indent for pretty-printing
+.separator COL ?ROW?   Change the column separator and optionally the row
+                         separator for both the output mode and .import
+.shell CMD ARGS...     Run CMD ARGS... in a system shell
+.show                  Show the current values for various settings
+.stats ?on|off?        Show stats or turn stats on or off
+.system CMD ARGS...    Run CMD ARGS... in a system shell
+.tables ?TABLE?        List names of tables
+                         If TABLE specified, only list tables matching
+                         LIKE pattern TABLE.
+.timeout MS            Try opening locked tables for MS milliseconds
+.timer on|off          Turn SQL timer on or off
+.trace FILE|off        Output each SQL statement as it is run
+.vfsinfo ?AUX?         Information about the top-level VFS
+.vfslist               List all available VFSes
+.vfsname ?AUX?         Print the name of the VFS stack
+.width NUM1 NUM2 ...   Set column widths for "column" mode
+                         Negative values right-justify
+sqlite> ./data[K[K[K[K[Kdatabases
+seq  name             file                                                      
+---  ---------------  ----------------------------------------------------------
+0    main             /Users/rohanrajat/Documents/Java/Udemy/CompleteJavaMasterC
+sqlite> ./[Kheaders on
+sqlite> create tabel[K[Kle contacts [name, te[K[K[K test,[K[K[Kxt, phoen [Kne[K[K[Kne inter[Kger, emaill[K text[Pn[1@(nname text, phone integer, email text);
+sqlite> tables
+   ...> 
+   ...> ?
+   ...> .
+   ...> ;
+Error: near "tables": syntax error
+sqlite> tabke[Kles ?[K[K[K[Kles ?[K[K[K[K[K[K[K[Kinsert into contacts (raj[K[K[Kname, phone, email) values )[K("raja[K[K[K[K[K'Raa[Kjat', 123445[K[K56, rrajat [A[80G[K  [K[A[80G[K[K[K[9G[K;[K
+sqlite> 
+sqlite> 
+sqlite> 
+sqlite> ;.?tables[9G?[K.;[Kinsert into contacts (name, phone, email) values('Rajat', 12345, rajat12 3@abc.com);))[K')[A[80G[9G[K[80G 3[K[A[9G');
+   ...> 
+   ...> ;
+   ...> 
+   ...> 
+   ...> ;
+   ...> .
+   ...> .;
+   ...> assa
+   ...> .q
+   ...> 
+   ...> 
+   ...> 
+   ...> 
+   ...> databases;
+   ...> databes[K[Kases
+   ...> 
+   ...> 
+   ...> 
+   ...> 
+   ...> 
+   ...> 
+   ...> 
+   ...> 
+   ...> ^D
+Error: incomplete SQL: ');
+
+;
+
+
+;
+.
+.;
+assa
+.q
+
+
+
+
+databases;
+databases
+
+
+
+
+
+
+
+
+[Sat Jun 02 01:36:56 Rajat]:sqlite3_practice>sqlite3 test.db
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+sqlite> tabe[K[K[K[K?TABLE?
+   ...> ;
+Error: near "?": syntax error
+sqlite> ;?TABLE?[K[K[K[K[K[K[Kschmeschmea[K[K[K[K[K[K./t[K[Ktables
+contacts
+sqlite> select * from ytab[K[K[K[Ktable s[Kcontacts
+   ...> ;
+Error: near "table": syntax error
+sqlite> ;select * from table contacts[Pc[Pc[Pc[Pc[Pc[Pc
+   ...> ;
+sqlite> insert into tab[K[K[Kcontacts (name, phone, email) values('rajat;[K', 12344[K5, 'rajat@ com');
+sqlite> insert into contacts (name, phone, email) values('rajat', 12345, 'rajat@ com');[A> ;[K[80G c[K[A[10Ginsert into contacts (name, phone, email) values('rajat', 12345, 'rajat@ com');[A> [K[80G c[K[A[9G
+sqlite> 
+sqlite> 
+sqlite> 
+sqlite> 
+sqlite> select * from contacts
+   ...> l[K;
+rajat|12345|rajat@com
+sqlite> .schema contacts
+CREATE TABLE contacts (name text, phone integer, email text);
+sqlite> ./he[K[K[Kheader on
+sqlite> .header on[10Gschema contacts[9G;[K.schema contacts[9G;[K.schema contacts
+CREATE TABLE contacts (name text, phone integer, email text);
+sqlite> .schema contacts[10Gheader on[K[10Gschema contacts[9G;[Kselect * from contacts
+   ...> ;
+name|phone|email
+rajat|12345|rajat@com
+sqlite> crea[K[K[K[KSELECT 8[K* FROM CO[K[Kcontacts;
+name|phone|email
+rajat|12345|rajat@com
+sqlite> SELECT * FROM contacts;[P [1@n [1@a [1@m [1@e [1@,  [1@ F[1@p [1@h [1@o [1@n [1@e [1@,  [1@ F[1@e [1@m [1@a [1@i [1@l 
+name|phone|email
+rajat|12345|rajat@com
+sqlite> SELECT name, phone, email FROM contacts;[Pe[Pe[Pm[Pe[Pe[Pe[Pe[Pe[Pe[Pm[Pe[Pe[Pe
+email
+rajat@com
+sqlite> s[KSECL[K[KLECT EM[K[Kemail for[K[K[KFROM const[K[Ktacts;[K
+   ...> wher e name =='rajat';
+email
+rajat@com
+sqlite> INSERT INTO contacts VALUES("Brian", 1234, "bre[Kian[K[K[K[Ki[Kriean[K[K[Kan@com");
+sqlite> INSERT INTO contacts VALUES("Brian", 1234, "brian@com");[9Gwhere name=='rajat';[K[9GSELECT email FROM contacts;[16G[13@name, phone, e[49G[16G[17P*[32G
+name|phone|email
+rajat|12345|rajat@com
+Brian|1234|brian@com
+sqlite> INSERT INTO contacts VALE[KUES("se[Kteve", 98778);
+Error: table contacts has 3 columns but 2 values were supplied
+sqlite> INSERT INTO contacts VALUES("steve", 98778);VALUU[1@( [1@N [1@A [1@M [1@E [P [P [P [P [1@n [1@a [1@m [1@e [1@,  [1@ V[1@p [1@h [1@o [1@n [1@e [1@) 
+sqlite> INSERT INTO contacts(name, phone) VALUES("steve", 98778);[29G[13P [53G[9GSELECT * FROM contacts;[K
+name|phone|email
+rajat|12345|rajat@com
+Brian|1234|brian@com
+steve|98778|
+sqlite> .quit
+[Sat Jun 02 01:45:11 Rajat]:sqlite3_practice>exit
+exit
+
+Script done on Sat Jun  2 01:45:14 2018
