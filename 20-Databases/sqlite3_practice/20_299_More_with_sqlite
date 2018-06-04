@@ -1,0 +1,85 @@
+Last login: Mon Jun  4 21:53:28 on ttys001
+[Mon Jun 04 21:56:14 Rajat]:sqlite3_practice>sqlite3 test.db 
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+sqlite> .tables
+contacts
+sqlite> select * from contacts
+   ...> ;
+rajat|12345|rajat@com
+Brian|1234|brian@com
+steve|98778|
+sqlite> insert into contacts values("Avril", "+61 (0)87654321", "avril@gmail.com"
+   ...> ;
+Error: near ";": syntax error
+sqlite> insert into contacts values("Avril", "+61 (0)87654321", "avril@gmail.com");
+sqlite> select * from contacts                                                     ...> ;
+rajat|12345|rajat@com
+Brian|1234|brian@com
+steve|98778|
+Avril|+61 (0)87654321|avril@gmail.com
+sqlite> .backup testbackup
+sqlite> update contacts set email="steve@hotmail.com";
+sqlite> select * from contacts;
+rajat|12345|steve@hotmail.com
+Brian|1234|steve@hotmail.com
+steve|98778|steve@hotmail.com
+Avril|+61 (0)87654321|steve@hotmail.com
+sqlite> .tables
+contacts
+sqlite> .restore testbackup
+sqlite> select * from contacts;
+rajat|12345|rajat@com
+Brian|1234|brian@com
+steve|98778|
+Avril|+61 (0)87654321|avril@gmail.com
+sqlite> .header on
+sqlite> select * from contacts;
+name|phone|email
+rajat|12345|rajat@com
+Brian|1234|brian@com
+steve|98778|
+Avril|+61 (0)87654321|avril@gmail.com
+sqlite> update contacts set email="steve@hotmail.com" where name="steve";
+sqlite> select * from contacts;
+name|phone|email
+rajat|12345|rajat@com
+Brian|1234|brian@com
+steve|98778|steve@hotmail.com
+Avril|+61 (0)87654321|avril@gmail.com
+sqlite> select * from contacts where name = "steve";
+name|phone|email
+steve|98778|steve@hotmail.com
+sqlite> select phone, email from contacts where name = "rajat"
+   ...> ;
+phone|email
+12345|rajat@com
+sqlite> delete from contacts where phone = "1234";
+sqlite> select * from contacts;
+name|phone|email
+rajat|12345|rajat@com
+steve|98778|steve@hotmail.com
+Avril|+61 (0)87654321|avril@gmail.com
+sqlite> select * from contacts count;
+name|phone|email
+rajat|12345|rajat@com
+steve|98778|steve@hotmail.com
+Avril|+61 (0)87654321|avril@gmail.com
+sqlite> counr * from contacts;
+Error: near "counr": syntax error
+sqlite> count * from contacts;
+Error: near "count": syntax error
+sqlite> .tables
+contacts
+sqlite> .schema
+CREATE TABLE contacts (name text, phone integer, email text);
+sqlite> .dump
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE contacts (name text, phone integer, email text);
+INSERT INTO "contacts" VALUES('rajat',12345,'rajat@com');
+INSERT INTO "contacts" VALUES('steve',98778,'steve@hotmail.com');
+INSERT INTO "contacts" VALUES('Avril','+61 (0)87654321','avril@gmail.com');
+COMMIT;
+sqlite> .exit
+[Tue Jun 05 00:32:22 Rajat]:sqlite3_practice>
