@@ -1,0 +1,238 @@
+[Thu Jun 07 22:19:33 Rajat]:20_303_Wildcards_in_Queries_and_Views>
+[Thu Jun 07 22:20:08 Rajat]:20_303_Wildcards_in_Queries_and_Views>
+[Thu Jun 07 22:20:09 Rajat]:20_303_Wildcards_in_Queries_and_Views>ll
+total 376
+-rw-r--r--@ 1 rohanrajat  staff  190464 Jun  6 00:32 music.db
+[Thu Jun 07 22:20:09 Rajat]:20_303_Wildcards_in_Queries_and_Views>sqlite3 music.db 
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+sqlite> .schema
+CREATE TABLE songs (_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL, album INTEGER);
+CREATE TABLE albums (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
+CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+sqlite> .tables
+albums   artists  songs  
+sqlite> .read 
+303_Queries.sql music.db       
+sqlite> .read 303_Queries.sql 
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+
+sqlite> .header on
+sqlite> .read 303_Queries.sql
+name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+
+sqlite> .read 303_Queries.sql
+name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+
+sqlite> .read 303_Queries.sql
+name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+
+sqlite> .read 303_Queries.sql
+name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+
+sqlite> SELECT artists.name, albums.name, songs.track, songs.title from songs
+   ...> INNER JOIN albums ON songs.album = albums._id
+   ...> INNER JOIN artists ON artists._id = albums.artist
+   ...> WHERE albums.name LIKE '%doctor%'
+   ...> ORDER BY artists.name, albums.name, songs.track;
+sqlite> .read 303_Queries.sql                                              name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+name|name|track|title
+Black Sabbath|Technical Ecstasy|6|Rock 'N' Roll Doctor
+Dr Feelgood|Malpractice|11|You Shouldn't Call The Doctor (If You Can't Afford The Bills)
+Dr Feelgood|Private Practice|1|Down At The Doctors
+Fleetwood Mac|The Best of|11|Doctor Brown
+Hawkwind|25 Years On|5|Flying Doctor
+J.J. Cale|Naturally|2|Call the Doctor
+Nazareth|Razamanaz|13|Witchdoctor Woman
+Steely Dan|Katy Lied|5|Doctor Wu
+Steely Dan|Showbiz Kids|16|Doctor Wu
+Steve Hillage|Motivation Radio|8|Octave Doctors
+Ted Nugent|Ted Nugent|4|Just What The Doctor Ordered
+Ted Nugent|Ted Nugent|11|Just What The Doctor Ordered (Live At Hammersmith Odeon London 1977)
+UFO|Phenomenon|3|Doctor Doctor
+Wishbone Ash|Wishbone Four|5|Doctor
+
+sqlite> .read 303_Queries.sql
+name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+name|name|track|title
+Black Sabbath|Technical Ecstasy|6|Rock 'N' Roll Doctor
+Dr Feelgood|Malpractice|11|You Shouldn't Call The Doctor (If You Can't Afford The Bills)
+Dr Feelgood|Private Practice|1|Down At The Doctors
+Fleetwood Mac|The Best of|11|Doctor Brown
+Hawkwind|25 Years On|5|Flying Doctor
+J.J. Cale|Naturally|2|Call the Doctor
+Nazareth|Razamanaz|13|Witchdoctor Woman
+Steely Dan|Katy Lied|5|Doctor Wu
+Steely Dan|Showbiz Kids|16|Doctor Wu
+Steve Hillage|Motivation Radio|8|Octave Doctors
+Ted Nugent|Ted Nugent|4|Just What The Doctor Ordered
+Ted Nugent|Ted Nugent|11|Just What The Doctor Ordered (Live At Hammersmith Odeon London 1977)
+UFO|Phenomenon|3|Doctor Doctor
+Wishbone Ash|Wishbone Four|5|Doctor
+Error: near line 19: no such column: artists.title
+
+sqlite> .read 303_Queries.sql
+name|name|track|title
+Pixies|Doolittle|1|Debaser
+Pixies|Doolittle|2|Tame
+Pixies|Doolittle|3|Wave of Mutilation
+Pixies|Doolittle|4|I Bleed
+Pixies|Doolittle|5|Here Comes Your Man
+Pixies|Doolittle|6|Dead
+Pixies|Doolittle|7|Monkey Gone to Heaven
+Pixies|Doolittle|8|Mr Grieves
+Pixies|Doolittle|9|Crackity Jones
+Pixies|Doolittle|10|La La Love You
+Pixies|Doolittle|11|No 13 Baby
+Pixies|Doolittle|12|There Goes My Gun
+Pixies|Doolittle|13|Hey
+Pixies|Doolittle|14|Silver
+Pixies|Doolittle|15|Gouge Away
+name|name|track|title
+Black Sabbath|Technical Ecstasy|6|Rock 'N' Roll Doctor
+Dr Feelgood|Malpractice|11|You Shouldn't Call The Doctor (If You Can't Afford The Bills)
+Dr Feelgood|Private Practice|1|Down At The Doctors
+Fleetwood Mac|The Best of|11|Doctor Brown
+Hawkwind|25 Years On|5|Flying Doctor
+J.J. Cale|Naturally|2|Call the Doctor
+Nazareth|Razamanaz|13|Witchdoctor Woman
+Steely Dan|Katy Lied|5|Doctor Wu
+Steely Dan|Showbiz Kids|16|Doctor Wu
+Steve Hillage|Motivation Radio|8|Octave Doctors
+Ted Nugent|Ted Nugent|4|Just What The Doctor Ordered
+Ted Nugent|Ted Nugent|11|Just What The Doctor Ordered (Live At Hammersmith Odeon London 1977)
+UFO|Phenomenon|3|Doctor Doctor
+Wishbone Ash|Wishbone Four|5|Doctor
+name|name|track|title
+Jefferson Airplane|Surrealistic Pillow|1|She Has Funny Cars
+Jefferson Airplane|Surrealistic Pillow|2|Somebody To Love
+Jefferson Airplane|Surrealistic Pillow|3|My Best Friend
+Jefferson Airplane|Surrealistic Pillow|4|Today
+Jefferson Airplane|Surrealistic Pillow|5|Comin' Back To Me
+Jefferson Airplane|Surrealistic Pillow|6|3 5 Of A Mile In 10 Seconds
+Jefferson Airplane|Surrealistic Pillow|7|D.C.B.A. - 25
+Jefferson Airplane|Surrealistic Pillow|8|How Do You Feel
+Jefferson Airplane|Surrealistic Pillow|9|Embryonic Journey
+Jefferson Airplane|Surrealistic Pillow|10|White Rabbit
+Jefferson Airplane|Surrealistic Pillow|11|Plastic Fantastic Lover
+Jefferson Airplane|Surrealistic Pillow|12|In The Morning
+Jefferson Airplane|Surrealistic Pillow|13|J.P.P. McStep B. Blues
+Jefferson Airplane|Surrealistic Pillow|14|Go To Her (Version Two)
+Jefferson Airplane|Surrealistic Pillow|15|Come Back Baby
+Jefferson Airplane|Surrealistic Pillow|16|Somebody To Love (Mono Single Version)
+Jefferson Airplane|Surrealistic Pillow|17|White Rabbit (Mono Single Version)
+Jefferson Starship|Dragon Fly|1|Ride The Tiger
+Jefferson Starship|Dragon Fly|2|That's For Sure
+Jefferson Starship|Dragon Fly|3|Be Young You
+Jefferson Starship|Dragon Fly|4|Caroline
+Jefferson Starship|Dragon Fly|5|Devils Den
+Jefferson Starship|Dragon Fly|6|Come To Life
+Jefferson Starship|Dragon Fly|7|All Fly Away
+Jefferson Starship|Dragon Fly|8|Hyperdrive
+
+sqlite> .quit
+[Thu Jun 07 22:39:28 Rajat]:20_303_Wildcards_in_Queries_and_Views>
