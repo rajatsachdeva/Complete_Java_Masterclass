@@ -1,6 +1,6 @@
 /*
-	Use .read <filename.sql> to run following 
-*/
+ * Use .read <filename.sql> to run following 
+ */
 
 /*
  * Display all information with album name equal to Doolittle
