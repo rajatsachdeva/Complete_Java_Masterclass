@@ -1,0 +1,186 @@
+Last login: Sat Jun  9 00:38:13 on ttys000
+[Sat Jun 09 00:39:55 Rajat]:20_304_Housekeeping_and_final_SQL_Challenge>sqlite3 music.db 
+-- Loading resources from /Users/rohanrajat/.sqliterc
+
+SQLite version 3.13.0 2016-05-18 10:57:30
+Enter ".help" for usage hints.
+sqlite> .backup music-backup2
+sqlite> .schema
+CREATE TABLE songs (_id INTEGER PRIMARY KEY, track INTEGER, title TEXT NOT NULL, album INTEGER);
+CREATE TABLE albums (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER);
+CREATE TABLE artists (_id INTEGER PRIMARY KEY, name TEXT NOT NULL);
+CREATE VIEW album_list AS
+	SELECT name FROM albums
+	ORDER BY name collate nocase;
+CREATE VIEW artist_list AS 
+	SELECT artists.name AS artist , 
+	albums.name AS album , 
+	songs.track AS track, 
+	songs.title AS title From songs
+	INNER JOIN albums ON songs.album = albums._id
+	INNER JOIN artists ON albums.artist = artists._id
+	ORDER BY artists.name, albums.name, songs.track;
+sqlite> .read 
+304_queries.sql music-backup2   music.db       
+sqlite> .read 304_queries.sql 
+Run Time: real 0.013 user 0.005287 sys 0.004447
+_id         track       title       album     
+----------  ----------  ----------  ----------
+198         60          Turkeys     177       
+912         53          My Brother  177       
+1116        59          The Strain  177       
+1690        61          King Of Sc  177       
+1994        67          Fresh Woun  177       
+2135        63          Straight F  177       
+2434        57          Mr. Apollo  177       
+2535        50          I Want To   177       
+2583        68          Bad Blood   177       
+2621        69          Slush       177       
+2679        65          Rawlinson   177       
+2736        54          I'm Going   177       
+2794        66          Don't Get   177       
+3010        58          Ready Made  177       
+3358        64          Rusty (Cha  177       
+3618        72          Trouser Fr  177       
+3712        62          Waiting Fo  177       
+3797        70          Labio-Dent  177       
+3959        55          Alley Oop   177       
+4308        52          Busted      177       
+4881        51          Noises For  177       
+4991        56          Button Up   177       
+5256        50          Closer To   254       
+5312        71          Re-Cycled   177       
+Run Time: real 0.000 user 0.000168 sys 0.000069
+
+sqlite> .width 50
+sqlite> select * from songs;
+_id                                                 track       title       album     
+--------------------------------------------------  ----------  ----------  ----------
+198                                                 60          Turkeys     177       
+912                                                 53          My Brother  177       
+1116                                                59          The Strain  177       
+1690                                                61          King Of Sc  177       
+1994                                                67          Fresh Woun  177       
+2135                                                63          Straight F  177       
+2434                                                57          Mr. Apollo  177       
+2535                                                50          I Want To   177       
+2583                                                68          Bad Blood   177       
+2621                                                69          Slush       177       
+2679                                                65          Rawlinson   177       
+2736                                                54          I'm Going   177       
+2794                                                66          Don't Get   177       
+3010                                                58          Ready Made  177       
+3358                                                64          Rusty (Cha  177       
+3618                                                72          Trouser Fr  177       
+3712                                                62          Waiting Fo  177       
+3797                                                70          Labio-Dent  177       
+3959                                                55          Alley Oop   177       
+4308                                                52          Busted      177       
+4881                                                51          Noises For  177       
+4991                                                56          Button Up   177       
+5256                                                50          Closer To   254       
+5312                                                71          Re-Cycled   177       
+Run Time: real 0.001 user 0.000338 sys 0.000170
+sqlite> .read 304_queries.sql
+artist                                              album       track       title                
+--------------------------------------------------  ----------  ----------  ---------------------
+Bonzo Dog Band                                      Cornology   50          I Want To Be With You
+Bonzo Dog Band                                      Cornology   51          Noises For The Leg   
+Bonzo Dog Band                                      Cornology   52          Busted               
+Bonzo Dog Band                                      Cornology   53          My Brother Makes The 
+Bonzo Dog Band                                      Cornology   54          I'm Going To Bring A 
+Bonzo Dog Band                                      Cornology   55          Alley Oop            
+Bonzo Dog Band                                      Cornology   56          Button Up Your Overco
+Bonzo Dog Band                                      Cornology   57          Mr. Apollo (Single Ve
+Bonzo Dog Band                                      Cornology   58          Ready Mades          
+Bonzo Dog Band                                      Cornology   59          The Strain           
+Bonzo Dog Band                                      Cornology   60          Turkeys              
+Bonzo Dog Band                                      Cornology   61          King Of Scurf        
+Bonzo Dog Band                                      Cornology   62          Waiting For The Wardr
+Bonzo Dog Band                                      Cornology   63          Straight From The Hea
+Bonzo Dog Band                                      Cornology   64          Rusty (Champion Thrus
+Bonzo Dog Band                                      Cornology   65          Rawlinson End        
+Bonzo Dog Band                                      Cornology   66          Don't Get Me Wrong   
+Bonzo Dog Band                                      Cornology   67          Fresh Wound          
+Bonzo Dog Band                                      Cornology   68          Bad Blood            
+Bonzo Dog Band                                      Cornology   69          Slush                
+Bonzo Dog Band                                      Cornology   70          Labio-Dental Fricativ
+Bonzo Dog Band                                      Cornology   71          Re-Cycled Vinyl Blues
+Bonzo Dog Band                                      Cornology   72          Trouser Freak - Roger
+J.J. Cale                                           Anyway The  50          Closer To You        
+Run Time: real 0.002 user 0.000508 sys 0.000344
+
+sqlite> .read 304_queries.sql
+_id                                                 track       title       album     
+--------------------------------------------------  ----------  ----------  ----------
+198                                                 60          Turkeys     177       
+912                                                 53          My Brother  177       
+1116                                                59          The Strain  177       
+1690                                                61          King Of Sc  177       
+1994                                                67          Fresh Woun  177       
+2135                                                63          Straight F  177       
+2434                                                57          Mr. Apollo  177       
+2535                                                50          I Want To   177       
+2583                                                68          Bad Blood   177       
+2621                                                69          Slush       177       
+2679                                                65          Rawlinson   177       
+2736                                                54          I'm Going   177       
+2794                                                66          Don't Get   177       
+3010                                                58          Ready Made  177       
+3358                                                64          Rusty (Cha  177       
+3618                                                72          Trouser Fr  177       
+3712                                                62          Waiting Fo  177       
+3797                                                70          Labio-Dent  177       
+3959                                                55          Alley Oop   177       
+4308                                                52          Busted      177       
+4881                                                51          Noises For  177       
+4991                                                56          Button Up   177       
+5256                                                50          Closer To   254       
+Run Time: real 0.000 user 0.000265 sys 0.000120
+
+sqlite> .read 304_queries.sql
+count(*)                                          
+--------------------------------------------------
+24                                                
+Run Time: real 0.001 user 0.000143 sys 0.000210
+count(*)                                          
+--------------------------------------------------
+439                                               
+Run Time: real 0.001 user 0.000086 sys 0.000060
+count(*)                                          
+--------------------------------------------------
+202                                               
+Run Time: real 0.000 user 0.000053 sys 0.000030
+
+sqlite> .read 304_queries.sql
+SONGS                                             
+--------------------------------------------------
+24                                                
+Run Time: real 0.000 user 0.000091 sys 0.000128
+ALBUMS                                            
+--------------------------------------------------
+439                                               
+Run Time: real 0.000 user 0.000058 sys 0.000028
+ARTISTS                                           
+--------------------------------------------------
+202                                               
+Run Time: real 0.000 user 0.000033 sys 0.000017
+
+sqlite> .restore music-backup2 
+sqlite> SELECT count(*) AS SONGS FROM songs;
+SONGS                                             
+--------------------------------------------------
+5350                                              
+Run Time: real 0.000 user 0.000557 sys 0.000206
+sqlite>  SELECT count(*) AS ALBUMS FROM albums;
+ALBUMS                                            
+--------------------------------------------------
+439                                               
+Run Time: real 0.000 user 0.000131 sys 0.000072
+sqlite>  SELECT count(*) AS ARTISTS FROM artists;
+ARTISTS                                           
+--------------------------------------------------
+202                                               
+Run Time: real 0.000 user 0.000090 sys 0.000046
+sqlite> .quit
+[Sat Jun 09 00:53:56 Rajat]:20_304_Housekeeping_and_final_SQL_Challenge>
