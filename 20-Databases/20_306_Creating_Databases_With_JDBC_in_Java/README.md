@@ -1,4 +1,4 @@
-# Lecture 304 - JDBC and SQLite GUI Browser
+# Lecture 305 - Creating database with JDBC
 
 http://sqlitebrowser.org/
 
