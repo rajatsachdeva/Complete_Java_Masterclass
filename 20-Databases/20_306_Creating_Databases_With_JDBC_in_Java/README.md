@@ -1,4 +1,4 @@
-# Lecture 305 - Creating database with JDBC
+# Lecture 306 - Creating database with JDBC
 
 http://sqlitebrowser.org/
 
