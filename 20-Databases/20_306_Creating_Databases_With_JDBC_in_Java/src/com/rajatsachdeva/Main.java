@@ -30,9 +30,11 @@ public class Main {
                             "/20-Databases/20_306_Creating_Databases_With_JDBC_in_Java/testjava.db");
             Statement statement = conn.createStatement();
             statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
+            statement.close();
+            conn.close();
 
         } catch (SQLException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
-        }
     }
+}
