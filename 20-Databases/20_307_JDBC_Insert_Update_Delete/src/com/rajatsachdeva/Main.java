@@ -1,35 +1,51 @@
 package com.rajatsachdeva;
 
-import sun.plugin2.os.windows.Windows;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        /*try (Connection conn = DriverManager.getConnection
-                ("jdbc:sqlite:/Users/rohanrajat/Documents" +
-                        "/Java/Udemy/CompleteJavaMasterClass/Complete_Java_Masterclass" +
-                        "/20-Databases/20_306_Creating_Databases_With_JDBC_in_Java/testjava.db");
-             Statement statement = conn.createStatement();) {*/
-
         try {
-            /*
-            OLD ways
-            Class.forName("org.sql.JDBC");
-            Windows
-            Connection conn = DriverManager.getConnection("jdbc:sqlite:D:\\databases\\testjava.db");
-             Data Source Managers are also used but in enterprise editions
-             */
             Connection conn = DriverManager.getConnection
                     ("jdbc:sqlite:/Users/rohanrajat/Documents" +
                             "/Java/Udemy/CompleteJavaMasterClass/Complete_Java_Masterclass" +
-                            "/20-Databases/20_306_Creating_Databases_With_JDBC_in_Java/testjava.db");
+                            "/20-Databases/20_307_JDBC_Insert_Update_Delete/testjava.db");
+
+            // conn.setAutoCommit(false);
+
             Statement statement = conn.createStatement();
-            statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
+
+            // Create table only if it does not exists to avoid "table already exists" Exception
+            statement.execute("CREATE TABLE IF NOT EXISTS contacts " +
+                    "(name TEXT, phone INTEGER, email TEXT)");
+
+            // Insert some values (commented below so that we don't have duplicate entries)
+//            statement.execute("INSERT INTO contacts (name, phone, email) " +
+//                                    "VALUES('Rohan', '2345672', 'rohan@mymail.com')");
+//            statement.execute("INSERT INTO contacts (name, phone, email) " +
+//                                    "VALUES('Dog', '878978', 'dog@mymail.com')");
+//            statement.execute("INSERT INTO contacts (name, phone, email) " +
+//                                    "VALUES('Cat', '98989', 'cat@mymail.com')");
+//
+            // Update Rohan's phone number
+            //statement.execute("UPDATE contacts SET phone=5566789 WHERE name='Rohan'");
+
+            // Delete Cat record
+            //statement.execute("DELETE FROM contacts WHERE name='Cat'");
+
+            // statement.execute returns a boolean that if it was successful
+            statement.execute("SELECT * FROM contacts");
+
+            // Only one active ResultSet is associated with one query
+            ResultSet results = statement.getResultSet();
+            while (results.next()) {
+                System.out.println(results.getString("name") + " " +
+                        results.getString("phone") + " " +
+                        results.getString("email"));
+            }
+
+            // Close all the db resources
+            results.close();
             statement.close();
             conn.close();
 
