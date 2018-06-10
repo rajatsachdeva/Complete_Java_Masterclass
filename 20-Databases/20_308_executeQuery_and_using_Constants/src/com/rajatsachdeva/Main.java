@@ -34,11 +34,18 @@ public class Main {
             //statement.execute("DELETE FROM contacts WHERE name='Cat'");
 
             // statement.execute returns a boolean that if it was successful
-            statement.execute("SELECT * FROM contacts");
+            //statement.execute("SELECT * FROM contacts");
 
             // Only one active ResultSet is associated with one query
-            ResultSet results = statement.getResultSet();
+            //ResultSet results = statement.getResultSet();
+
+            // Easy way to perform the queries and get the results
+            // we will use executeQuery method
+            ResultSet results = statement.executeQuery("SELECT * FROM contacts");
+
             while (results.next()) {
+                // We can also retrieve the data using column indices rather than column name
+                // As it's faster as well
                 System.out.println(results.getString("name") + " " +
                         results.getString("phone") + " " +
                         results.getString("email"));
