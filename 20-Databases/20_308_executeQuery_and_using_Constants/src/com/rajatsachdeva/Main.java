@@ -1,37 +1,74 @@
 package com.rajatsachdeva;
 
+import javax.swing.table.TableModel;
 import java.sql.*;
 
 public class Main {
+    // Creating some constants for sql queries
+    public static final String DB_NAME = "testjava.db";
+    public static final String CONNECTION_NAME = "jdbc:sqlite:/Users/rohanrajat/Documents" +
+            "/Java/Udemy/CompleteJavaMasterClass/Complete_Java_Masterclass" +
+            "/20-Databases/20_307_JDBC_Insert_Update_Delete/" +
+            DB_NAME;
+
+    public static final String TABLE_CONTACTS = "contacts";
+
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_EMAIL = "email";
 
     public static void main(String[] args) {
         try {
-            Connection conn = DriverManager.getConnection
-                    ("jdbc:sqlite:/Users/rohanrajat/Documents" +
-                            "/Java/Udemy/CompleteJavaMasterClass/Complete_Java_Masterclass" +
-                            "/20-Databases/20_307_JDBC_Insert_Update_Delete/testjava.db");
-
+            Connection conn = DriverManager.getConnection(CONNECTION_NAME);
             // conn.setAutoCommit(false);
-
             Statement statement = conn.createStatement();
 
+            statement.execute("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
             // Create table only if it does not exists to avoid "table already exists" Exception
-            statement.execute("CREATE TABLE IF NOT EXISTS contacts " +
-                    "(name TEXT, phone INTEGER, email TEXT)");
+            statement.execute("CREATE TABLE IF NOT EXISTS " + TABLE_CONTACTS +
+                    " (" + COLUMN_NAME + " text, " +
+                    COLUMN_PHONE + " integer, " +
+                    COLUMN_EMAIL + " text" +
+                    ")");
 
-            // Insert some values (commented below so that we don't have duplicate entries)
-//            statement.execute("INSERT INTO contacts (name, phone, email) " +
-//                                    "VALUES('Rohan', '2345672', 'rohan@mymail.com')");
-//            statement.execute("INSERT INTO contacts (name, phone, email) " +
-//                                    "VALUES('Dog', '878978', 'dog@mymail.com')");
-//            statement.execute("INSERT INTO contacts (name, phone, email) " +
-//                                    "VALUES('Cat', '98989', 'cat@mymail.com')");
-//
+            statement.execute("INSERT INTO " + TABLE_CONTACTS +
+                    " (" +
+                    COLUMN_NAME + ", " +
+                    COLUMN_PHONE + ", " +
+                    COLUMN_EMAIL +
+                    " ) " +
+                    "VALUES('Rohan', '2345672', 'rohan@mymail.com')");
+
+            statement.execute("INSERT INTO " + TABLE_CONTACTS +
+                    " (" +
+                    COLUMN_NAME + ", " +
+                    COLUMN_PHONE + ", " +
+                    COLUMN_EMAIL +
+                    " ) " +
+                    "VALUES('Dog', '878978', 'dog@mymail.com')");
+
+            statement.execute("INSERT INTO " + TABLE_CONTACTS +
+                    " (" +
+                    COLUMN_NAME + ", " +
+                    COLUMN_PHONE + ", " +
+                    COLUMN_EMAIL +
+                    " ) " +
+                    "VALUES('Cat', '98989', 'cat@mymail.com')");
+
+            statement.execute("INSERT INTO " + TABLE_CONTACTS +
+                    " (" +
+                    COLUMN_NAME + ", " +
+                    COLUMN_PHONE + ", " +
+                    COLUMN_EMAIL +
+                    " ) " +
+                    "VALUES('Rajat', '1234567', 'rajat@mymail.com')");
+
             // Update Rohan's phone number
-            //statement.execute("UPDATE contacts SET phone=5566789 WHERE name='Rohan'");
+            statement.execute("UPDATE " + TABLE_CONTACTS + " SET " + COLUMN_PHONE + "=5566789 WHERE " +
+                    COLUMN_NAME + " ='Rohan'");
 
             // Delete Cat record
-            //statement.execute("DELETE FROM contacts WHERE name='Cat'");
+            statement.execute("DELETE FROM " + TABLE_CONTACTS + " WHERE " + COLUMN_NAME + " ='Cat'");
 
             // statement.execute returns a boolean that if it was successful
             //statement.execute("SELECT * FROM contacts");
@@ -43,14 +80,16 @@ public class Main {
             // we will use executeQuery method
             // It's bad practice to access table columns in code using column names rather than
             // column indices (position), as name may change in future
-            ResultSet results = statement.executeQuery("SELECT * FROM contacts");
+            // Hard coded values can lead to Sql Injection attack
+            // To Solve this issue we can use of constants also make use of methods to remove duplicate code
+            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS);
 
             while (results.next()) {
                 // We can also retrieve the data using column indices rather than column name
                 // As it's faster as well
-                System.out.println(results.getString("name") + " " +
-                        results.getString("phone") + " " +
-                        results.getString("email"));
+                System.out.println(results.getString(COLUMN_NAME) + " " +
+                        results.getString(COLUMN_PHONE) + " " +
+                        results.getString(COLUMN_EMAIL));
             }
 
             // Close all the db resources
@@ -60,6 +99,7 @@ public class Main {
 
         } catch (SQLException e) {
             System.out.println("Something went wrong: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
