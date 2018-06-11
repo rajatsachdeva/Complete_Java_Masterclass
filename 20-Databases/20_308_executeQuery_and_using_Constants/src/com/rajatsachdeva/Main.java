@@ -31,37 +31,11 @@ public class Main {
                     COLUMN_EMAIL + " text" +
                     ")");
 
-            statement.execute("INSERT INTO " + TABLE_CONTACTS +
-                    " (" +
-                    COLUMN_NAME + ", " +
-                    COLUMN_PHONE + ", " +
-                    COLUMN_EMAIL +
-                    " ) " +
-                    "VALUES('Rohan', '2345672', 'rohan@mymail.com')");
-
-            statement.execute("INSERT INTO " + TABLE_CONTACTS +
-                    " (" +
-                    COLUMN_NAME + ", " +
-                    COLUMN_PHONE + ", " +
-                    COLUMN_EMAIL +
-                    " ) " +
-                    "VALUES('Dog', '878978', 'dog@mymail.com')");
-
-            statement.execute("INSERT INTO " + TABLE_CONTACTS +
-                    " (" +
-                    COLUMN_NAME + ", " +
-                    COLUMN_PHONE + ", " +
-                    COLUMN_EMAIL +
-                    " ) " +
-                    "VALUES('Cat', '98989', 'cat@mymail.com')");
-
-            statement.execute("INSERT INTO " + TABLE_CONTACTS +
-                    " (" +
-                    COLUMN_NAME + ", " +
-                    COLUMN_PHONE + ", " +
-                    COLUMN_EMAIL +
-                    " ) " +
-                    "VALUES('Rajat', '1234567', 'rajat@mymail.com')");
+            // insert data in table contacts
+            insertContact(statement, "Rohan", 2345672, "rohan@mymail.com");
+            insertContact(statement, "Dog", 878978, "dog@mymail.com");
+            insertContact(statement, "Cat", 98989, "cat@mymail.com");
+            insertContact(statement, "Rajat", 1234567, "rajat@mymail.com");
 
             // Update Rohan's phone number
             statement.execute("UPDATE " + TABLE_CONTACTS + " SET " + COLUMN_PHONE + "=5566789 WHERE " +
@@ -101,5 +75,16 @@ public class Main {
             System.out.println("Something went wrong: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    // created method to remove duplicate code
+    public static void insertContact(Statement statement, String name, int phone, String email) throws SQLException {
+        statement.execute("INSERT INTO " + TABLE_CONTACTS +
+                " (" +
+                COLUMN_NAME + ", " +
+                COLUMN_PHONE + ", " +
+                COLUMN_EMAIL +
+                " ) " +
+                "VALUES('" + name + "'," + "'" + phone + "', '" + email + "')");
     }
 }
