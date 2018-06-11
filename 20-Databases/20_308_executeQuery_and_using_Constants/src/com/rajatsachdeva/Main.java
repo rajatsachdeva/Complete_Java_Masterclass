@@ -41,6 +41,8 @@ public class Main {
 
             // Easy way to perform the queries and get the results
             // we will use executeQuery method
+            // It's bad practice to access table columns in code using column names rather than
+            // column indices (position), as name may change in future
             ResultSet results = statement.executeQuery("SELECT * FROM contacts");
 
             while (results.next()) {
