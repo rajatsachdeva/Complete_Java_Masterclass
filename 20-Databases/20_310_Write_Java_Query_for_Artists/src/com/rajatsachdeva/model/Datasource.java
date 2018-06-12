@@ -73,12 +73,14 @@ public class Datasource {
     }
 
     public List<Artist> queryArtists() {
-        Statement statement = null;
-        ResultSet results = null;
+     /*   Statement statement = null;
+        ResultSet results = null;*/
 
-        try {
-            statement = conn.createStatement();
-            results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS);
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
+
+            /*statement = conn.createStatement();
+            results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS);*/
 
             List<Artist> artists = new ArrayList<>();
             while (results.next()) {
@@ -92,11 +94,11 @@ public class Datasource {
             }
             return artists;
 
-        } catch (SQLException e) {
+        } catch (SQLException e) { // Now here resources are automatically closed for us
             System.out.println("Query Failed: " + e.getMessage());
             e.printStackTrace();
             return null;
-        } finally {
+        } /*finally {     // To remove this finally, we can make first try block to try with resources
             try {
                 if(results != null) {
                     results.close();
@@ -108,14 +110,15 @@ public class Datasource {
             }
             try {
                 if (statement != null) {
-                    statement.close();
+                    statement.close(); // closing the statement would infact close the resources, so above is not
+                                       // actually required
                     System.out.println("statement closed");
                 }
             } catch (SQLException e) {
                 System.out.println("statment close failure: " + e.getMessage());
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 }
 

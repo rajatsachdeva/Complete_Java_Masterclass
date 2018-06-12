@@ -16,6 +16,16 @@ public class Main {
             System.out.println("Cannot open the connection to database.");
             return;
         }
+        List<Artist> artists = datasource.queryArtists();
+
+        if(artists  == null) {
+            System.out.println("No artists present now !");
+            return;
+        }
+
+        for (Artist artist: artists) {
+            System.out.println(artist.toString());
+        }
 
         datasource.close();
     }
