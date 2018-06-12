@@ -1,8 +1,8 @@
 package com.rajatsachdeva.model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Datasource {
 
@@ -69,6 +69,52 @@ public class Datasource {
         } catch (SQLException e) {
             System.out.println("Something went wrong: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    public List<Artist> queryArtists() {
+        Statement statement = null;
+        ResultSet results = null;
+
+        try {
+            statement = conn.createStatement();
+            results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS);
+
+            List<Artist> artists = new ArrayList<>();
+            while (results.next()) {
+                // set values from table
+                Artist artist = new Artist();
+                artist.setId(results.getInt(COLUMN_ARTISTS_ID));
+                artist.setName(results.getString(COLUMN_ARTISTS_NAME));
+
+                // Add to array list
+                artists.add(artist);
+            }
+            return artists;
+
+        } catch (SQLException e) {
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if(results != null) {
+                    results.close();
+                    System.out.println("results closed");
+                }
+            } catch (SQLException e) {
+                System.out.println("results close failure: " + e.getMessage());
+                e.printStackTrace();
+            }
+            try {
+                if (statement != null) {
+                    statement.close();
+                    System.out.println("statement closed");
+                }
+            } catch (SQLException e) {
+                System.out.println("statment close failure: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 }

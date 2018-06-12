@@ -1,6 +1,9 @@
 package com.rajatsachdeva;
 
+import com.rajatsachdeva.model.Artist;
 import com.rajatsachdeva.model.Datasource;
+
+import java.util.List;
 
 public class Main {
 
@@ -13,6 +16,7 @@ public class Main {
             System.out.println("Cannot open the connection to database.");
             return;
         }
+
         datasource.close();
     }
 }
