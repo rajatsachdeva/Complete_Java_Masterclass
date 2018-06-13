@@ -16,7 +16,7 @@ public class Main {
             System.out.println("Cannot open the connection to database.");
             return;
         }
-        List<Artist> artists = datasource.queryArtists();
+        List<Artist> artists = datasource.queryArtists(4);
 
         if(artists  == null) {
             System.out.println("No artists present now !");

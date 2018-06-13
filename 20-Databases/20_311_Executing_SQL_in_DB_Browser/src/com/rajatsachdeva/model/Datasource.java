@@ -48,6 +48,10 @@ public class Datasource {
     public static final int INDEX_SONGS_TITLE = 3;
     public static final int INDEX_SONGS_ALBUM = 4;
 
+    public static final int ORDER_BY_NONE = 1;
+    public static final int ORDER_BY_ASC = 2;
+    public static final int ORDER_BY_DSC = 3;
+
     private Connection conn;
 
     /**
@@ -84,12 +88,28 @@ public class Datasource {
         }
     }
 
-    public List<Artist> queryArtists() {
-     /*   Statement statement = null;
-        ResultSet results = null;*/
+    public List<Artist> queryArtists(int sortOrder) {
+
+        StringBuilder sb = new StringBuilder("SELECT * FROM ");
+        sb.append(TABLE_ARTISTS);
+        if (sortOrder != ORDER_BY_NONE) {
+            sb.append(" ORDER BY ");
+            sb.append(COLUMN_ARTISTS_NAME);
+            sb.append(" COLLATE NOCASE ");
+
+            if (sortOrder == ORDER_BY_DSC) {
+                sb.append("DESC");
+            } else {
+                // Default Case
+                sb.append("ASC");
+            }
+        }
+
+        System.out.println("Executing : " + sb.toString());
 
         try (Statement statement = conn.createStatement();
-             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
+             //ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
+             ResultSet results = statement.executeQuery(sb.toString())) {
 
             List<Artist> artists = new ArrayList<>();
             while (results.next()) {
