@@ -136,6 +136,8 @@ public class Datasource {
 
         // select albums.name from albums inner join artists on albums.artist = artists._id where
         // artists.name = "Carol King" order by albums.name collate nocase asc;
+
+        // from below it seems most of the data is static so we can make use of Constants to reduce the code here
         StringBuilder sb = new StringBuilder("SELECT ");
         sb.append(TABLE_ALBUM);
         sb.append(".");
