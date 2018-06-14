@@ -17,7 +17,7 @@ public class Datasource {
 
     // Album table details
     // CREATE TABLE albums (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER)
-    public static final String TABLE_ALBUM = "albums";
+    public static final String TABLE_ALBUMS = "albums";
 
     public static final String COLUMN_ALBUM_ID = "_id";
     public static final String COLUMN_ALBUM_NAME = "name";
@@ -51,6 +51,18 @@ public class Datasource {
     public static final int ORDER_BY_NONE = 1;
     public static final int ORDER_BY_ASC = 2;
     public static final int ORDER_BY_DSC = 3;
+
+    // select albums.name from albums inner join artists on albums.artist = artists._id where
+    // artists.name = "Carol King" order by albums.name collate nocase asc;
+    public static final String QUERY_ALBUMS_BY_ARTIST_NAME_START =
+            "SELECT " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " FROM " +
+                    TABLE_ALBUMS + " INNER JOIN " + TABLE_ARTISTS + " ON " +
+                    TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID + " = " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " WHERE "+
+                    TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + " = \"";
+
+    public static final String QUERY_ALBUMS_BY_ARTISTS_SORT =
+            "\" ORDER BY " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " COLLATE NOCASE ";
 
     private Connection conn;
 
@@ -138,16 +150,16 @@ public class Datasource {
         // artists.name = "Carol King" order by albums.name collate nocase asc;
 
         // from below it seems most of the data is static so we can make use of Constants to reduce the code here
-        StringBuilder sb = new StringBuilder("SELECT ");
-        sb.append(TABLE_ALBUM);
+        /*StringBuilder sb = new StringBuilder("SELECT ");
+        sb.append(TABLE_ALBUMS);
         sb.append(".");
         sb.append(COLUMN_ALBUM_NAME);
         sb.append(" FROM ");
-        sb.append(TABLE_ALBUM);
+        sb.append(TABLE_ALBUMS);
         sb.append(" INNER JOIN ");
         sb.append(TABLE_ARTISTS);
         sb.append(" on ");
-        sb.append(TABLE_ALBUM);
+        sb.append(TABLE_ALBUMS);
         sb.append(".");
         sb.append(COLUMN_ALBUM_ARTIST);
         sb.append(" = ");
@@ -161,13 +173,19 @@ public class Datasource {
         sb.append(" = \"");
         sb.append(artistName);
         sb.append("\"");
+*/
+
+        StringBuilder sb = new StringBuilder(QUERY_ALBUMS_BY_ARTIST_NAME_START);
+        sb.append(artistName);
 
         if (sortOrder != ORDER_BY_NONE) {
-            sb.append(" ORDER BY ");
-            sb.append(TABLE_ALBUM);
+            /*sb.append(" ORDER BY ");
+            sb.append(TABLE_ALBUMS);
             sb.append(".");
             sb.append(COLUMN_ALBUM_NAME);
-            sb.append(" COLLATE NOCASE ");
+            sb.append(" COLLATE NOCASE ");*/
+
+            sb.append(QUERY_ALBUMS_BY_ARTISTS_SORT);
 
             if (sortOrder == ORDER_BY_DSC) {
                 sb.append("DESC");
