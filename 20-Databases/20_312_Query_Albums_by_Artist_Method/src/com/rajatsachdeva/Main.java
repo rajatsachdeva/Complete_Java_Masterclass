@@ -27,6 +27,12 @@ public class Main {
             System.out.println(artist.toString());
         }
 
+        List<String> albums = datasource.queryAlbumsForAritist("Pink Floyd", datasource.ORDER_BY_DSC);
+        System.out.println();
+        for (String album : albums) {
+            System.out.println(album);
+        }
+        System.out.println();
         datasource.close();
     }
 }

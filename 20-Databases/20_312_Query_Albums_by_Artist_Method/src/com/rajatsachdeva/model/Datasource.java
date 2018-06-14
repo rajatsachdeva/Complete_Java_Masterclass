@@ -131,5 +131,71 @@ public class Datasource {
             return null;
         }
     }
+
+    public List<String> queryAlbumsForAritist(String artistName, int sortOrder) {
+
+        // select albums.name from albums inner join artists on albums.artist = artists._id where
+        // artists.name = "Carol King" order by albums.name collate nocase asc;
+        StringBuilder sb = new StringBuilder("SELECT ");
+        sb.append(TABLE_ALBUM);
+        sb.append(".");
+        sb.append(COLUMN_ALBUM_NAME);
+        sb.append(" FROM ");
+        sb.append(TABLE_ALBUM);
+        sb.append(" INNER JOIN ");
+        sb.append(TABLE_ARTISTS);
+        sb.append(" on ");
+        sb.append(TABLE_ALBUM);
+        sb.append(".");
+        sb.append(COLUMN_ALBUM_ARTIST);
+        sb.append(" = ");
+        sb.append(TABLE_ARTISTS);
+        sb.append(".");
+        sb.append(COLUMN_ARTISTS_ID);
+        sb.append(" WHERE ");
+        sb.append(TABLE_ARTISTS);
+        sb.append(".");
+        sb.append(COLUMN_ARTISTS_NAME);
+        sb.append(" = \"");
+        sb.append(artistName);
+        sb.append("\"");
+
+        if (sortOrder != ORDER_BY_NONE) {
+            sb.append(" ORDER BY ");
+            sb.append(TABLE_ALBUM);
+            sb.append(".");
+            sb.append(COLUMN_ALBUM_NAME);
+            sb.append(" COLLATE NOCASE ");
+
+            if (sortOrder == ORDER_BY_DSC) {
+                sb.append("DESC");
+            } else {
+                // Default Case
+                sb.append("ASC");
+            }
+        }
+
+        System.out.println("Executing : " + sb.toString());
+
+        try (Statement statement = conn.createStatement();
+             //ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_ARTISTS)) {
+             ResultSet results = statement.executeQuery(sb.toString())) {
+
+            List<String> albums = new ArrayList<>();
+            while (results.next()) {
+                // set values from table
+                String albumName = results.getString(1);
+
+                // Add to array list
+                albums.add(albumName);
+            }
+            return albums;
+
+        } catch (SQLException e) { // Now here resources are automatically closed for us
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
 
