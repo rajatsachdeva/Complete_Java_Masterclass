@@ -13,7 +13,7 @@ public class Datasource {
     public static final String CONNECTION_STRING =
             "jdbc:sqlite:/Users/rohanrajat/Documents/Java/Udemy/" +
             "CompleteJavaMasterClass/Complete_Java_Masterclass/20-Databases/" +
-            "20_312_Query_Albums_by_Artist_Method/" + DB_NAME;
+                    "20_313_Query_Artists_for_Song_method/" + DB_NAME;
 
     // Album table details
     // CREATE TABLE albums (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER)
