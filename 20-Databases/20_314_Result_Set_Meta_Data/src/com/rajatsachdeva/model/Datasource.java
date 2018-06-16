@@ -178,6 +178,8 @@ public class Datasource {
                 // Default Case
                 sb.append("ASC");
             }
+        } else {
+            sb.append("\"");
         }
 
         System.out.println("Executing : " + sb.toString());
@@ -200,6 +202,25 @@ public class Datasource {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<SongAritst> queryArtistsForSong(String songName, int sortOrder) {
+        StringBuilder sb = new StringBuilder(QUERY_ARTIST_FOR_SONG_START);
+        sb.append(songName);
+
+        if (sortOrder != ORDER_BY_NONE) {
+            sb.append(QUERY_ARTIST_FOR_SONG_SORT);
+            if (sortOrder == ORDER_BY_DSC) {
+                sb.append("DESC");
+            } else {
+                // Default Case
+                sb.append("ASC");
+            }
+        } else {
+            sb.append("\"");
+        }
+
+        System.out.println("Executing SQL: " + sb.toString());
     }
 }
 
