@@ -12,7 +12,7 @@ public class Datasource {
     // Connection Name
     public static final String CONNECTION_STRING =
             "jdbc:sqlite:/Users/rohanrajat/Documents/Java/Udemy/" +
-            "CompleteJavaMasterClass/Complete_Java_Masterclass/20-Databases/" +
+                    "CompleteJavaMasterClass/Complete_Java_Masterclass/20-Databases/" +
                     "20_313_Query_Artists_for_Song_method/" + DB_NAME;
 
     // Album table details
@@ -58,17 +58,38 @@ public class Datasource {
             "SELECT " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " FROM " +
                     TABLE_ALBUMS + " INNER JOIN " + TABLE_ARTISTS + " ON " +
                     TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID + " = " +
-                    TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " WHERE "+
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " WHERE " +
                     TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + " = \"";
 
     public static final String QUERY_ALBUMS_BY_ARTISTS_SORT =
             "\" ORDER BY " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " COLLATE NOCASE ";
 
+    /*
+        select artists.name, albums.name, songs.track from songs
+        inner join albums on songs.album = albums._id
+        inner join artists on albums.artist = artists._id
+        where songs.title= "Go Your Own Way"
+        order by artists.name, albums.name collate nocase asc
+     */
+    public static final String QUERY_ARTIST_FOR_SONG_START =
+            "SELECT " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + ", " + TABLE_SONGS +
+                    "." + COLUMN_SONGS_TRACK + " FROM " + TABLE_SONGS + " INNER JOIN " +
+                    TABLE_ALBUMS + " ON " + TABLE_SONGS + "." + COLUMN_SONGS_ALBUM +
+                    " = " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ID + " INNER JOIN " +
+                    TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST +
+                    " = " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID +
+                    " WHERE " + TABLE_SONGS + "." + COLUMN_SONGS_TITLE + " = \"";
+
+    public static final String QUERY_ARTIST_FOR_SONG_SORT =
+            "\" ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
+                    " COLLATE NOCASE ";
+
     private Connection conn;
 
     /**
      * open()
-     *  Open connection to database
+     * Open connection to database
      *
      * @return true/false if connection is successful/unsuccessful
      */
@@ -90,7 +111,7 @@ public class Datasource {
      */
     public void close() {
         try {
-            if(conn != null) {
+            if (conn != null) {
                 conn.close();
                 System.out.println("Connection Closed to " + DB_NAME);
             }
