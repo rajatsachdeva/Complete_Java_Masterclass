@@ -42,6 +42,8 @@ public class Main {
         }
         System.out.println();
 
+        datasource.querySongsMetadata();
+
 
         datasource.close();
     }

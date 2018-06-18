@@ -1,5 +1,6 @@
 package com.rajatsachdeva.model;
 
+import javax.sound.midi.Soundbank;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -243,6 +244,26 @@ public class Datasource {
             System.out.println("Query Failed: " + e.getMessage());
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void querySongsMetadata() {
+        String sql = "SELECT * FROM " + TABLE_SONGS;
+
+        try (Statement statement = conn.createStatement();
+        ResultSet results = statement.executeQuery(sql)){
+
+            ResultSetMetaData meta = results.getMetaData();
+            int numColumns = meta.getColumnCount();
+
+            System.out.println("\nSCHEMA OF " + TABLE_SONGS + " TABLE\n");
+            for (int i = 1; i <= numColumns; i++) {
+                System.out.format("Column %d is %s\n", i, meta.getColumnName(i));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Query Failed : " + e.toString());
+            e.printStackTrace();
         }
     }
 }
