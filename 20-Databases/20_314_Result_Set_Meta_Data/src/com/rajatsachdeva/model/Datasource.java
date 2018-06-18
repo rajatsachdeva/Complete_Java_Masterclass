@@ -83,6 +83,7 @@ public class Datasource {
 
     public static final String QUERY_ARTIST_FOR_SONG_SORT =
             "\" ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME +
                     " COLLATE NOCASE ";
 
     private Connection conn;
@@ -210,6 +211,7 @@ public class Datasource {
 
         if (sortOrder != ORDER_BY_NONE) {
             sb.append(QUERY_ARTIST_FOR_SONG_SORT);
+
             if (sortOrder == ORDER_BY_DSC) {
                 sb.append("DESC");
             } else {
@@ -221,6 +223,27 @@ public class Datasource {
         }
 
         System.out.println("Executing SQL: " + sb.toString());
+
+        try(Statement statement = conn.createStatement();
+        ResultSet results = statement.executeQuery(sb.toString())) {
+
+            List<SongAritst> songAritsts = new ArrayList<>();
+
+            while(results.next()) {
+                SongAritst songAritst = new SongAritst();
+                songAritst.setArtistName(results.getString(1));
+                songAritst.setAlbumName(results.getString(2));
+                songAritst.setTrack(results.getInt(3));
+
+                songAritsts.add(songAritst);
+            }
+            return  songAritsts;
+
+        } catch (SQLException e) {
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 

@@ -2,6 +2,7 @@ package com.rajatsachdeva;
 
 import com.rajatsachdeva.model.Artist;
 import com.rajatsachdeva.model.Datasource;
+import com.rajatsachdeva.model.SongAritst;
 
 import java.util.List;
 
@@ -33,6 +34,15 @@ public class Main {
             System.out.println(album);
         }
         System.out.println();
+
+        List<SongAritst> songAritsts = datasource.queryArtistsForSong("Go Your Own Way", datasource.ORDER_BY_ASC);
+        System.out.println();
+        for (SongAritst songAritst : songAritsts) {
+            System.out.println(songAritst.toString());
+        }
+        System.out.println();
+
+
         datasource.close();
     }
 }

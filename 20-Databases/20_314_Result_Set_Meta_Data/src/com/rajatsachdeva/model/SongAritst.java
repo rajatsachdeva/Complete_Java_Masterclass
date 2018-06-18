@@ -32,10 +32,8 @@ public class SongAritst {
 
     @Override
     public String toString() {
-        return "SongAritst{" +
-                "artistName='" + artistName + '\'' +
-                ", albumName='" + albumName + '\'' +
-                ", track=" + track +
-                '}';
+        return "Artist Name= '" + artistName + '\'' +
+                ", Album Name= '" + albumName + '\'' +
+                ", Track= " + track;
     }
 }
