@@ -109,6 +109,10 @@ public class Datasource {
             " ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
             TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + ", " + TABLE_SONGS + "." + COLUMN_SONGS_TRACK;
 
+    //SELECT artist, album, track FROM artists_list WHERE title = "Go Your Own Way"
+    public static final String QUERY_VIEW_SONG_INFO = "SELECT artist, album, track FROM " +
+            TABLE_ARTIST_SONG_VIEW + " WHERE title = ";
+
     private Connection conn;
 
     /**

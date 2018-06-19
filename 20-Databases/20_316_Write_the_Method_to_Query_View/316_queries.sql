@@ -24,3 +24,5 @@ CREATE VIEW IF NOT EXISTS artists_list AS SELECT artists.name AS artist, albums.
 
 SELECT * FROM artists_list;
 
+SELECT artist, album, track FROM artists_list WHERE title = "Go Your Own Way";
+
