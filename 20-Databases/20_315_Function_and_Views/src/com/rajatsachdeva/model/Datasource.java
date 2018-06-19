@@ -238,6 +238,9 @@ public class Datasource {
 
                 songAritsts.add(songAritst);
             }
+
+            // SELECT COUNT(*) FROM songs
+
             return  songAritsts;
 
         } catch (SQLException e) {
@@ -266,5 +269,42 @@ public class Datasource {
             e.printStackTrace();
         }
     }
+
+    public int getCount(String table) {
+        String sql = "SELECT COUNT(*) AS count, MIN(_id) AS min_id FROM " + table;
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sql)) {
+
+            int count = results.getInt("count");
+            int min_id = results.getInt("min_id");
+
+            System.out.format("count = %d, min_id = %d\n", count, min_id);
+            return count;
+
+        } catch (SQLException e) {
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int getMin(String table) {
+        String sql = "SELECT MIN(_id) FROM " + table;
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sql)) {
+
+            int minId = results.getInt(1);
+            return minId;
+
+        } catch (SQLException e) {
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
 }
 

@@ -44,6 +44,11 @@ public class Main {
 
         datasource.querySongsMetadata();
 
+        int count = datasource.getCount(datasource.TABLE_SONGS);
+        System.out.println("Number of Songs are: " + count);
+
+        int minId = datasource.getMin(datasource.TABLE_SONGS);
+        System.out.println("Minimum id: " + minId);
 
         datasource.close();
     }
