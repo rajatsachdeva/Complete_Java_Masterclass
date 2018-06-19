@@ -14,4 +14,13 @@ select artists.name, albums.name, songs.track from  songs
 inner join albums on songs.album = albums._id
 inner join artists on albums.artist = artists._id
 where songs.title= "Go Your Own Way"
-order by artists.name, albums.name collate nocase asc
+order by artists.name, albums.name collate nocase asc;
+
+CREATE VIEW IF NOT EXISTS artists_list AS SELECT artists.name AS artist, albums.name AS album,
+	songs.track , songs.title FROM songs
+	INNER JOIN albums ON songs.album = albums._id
+	INNER JOIN artists ON albums.artist = artists._id
+	ORDER BY artists.name, albums.name, songs.track;
+
+SELECT * FROM artists_list;
+

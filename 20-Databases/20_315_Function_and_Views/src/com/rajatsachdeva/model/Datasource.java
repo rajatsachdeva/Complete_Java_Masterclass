@@ -1,6 +1,5 @@
 package com.rajatsachdeva.model;
 
-import javax.sound.midi.Soundbank;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ public class Datasource {
     public static final String CONNECTION_STRING =
             "jdbc:sqlite:/Users/rohanrajat/Documents/Java/Udemy/" +
                     "CompleteJavaMasterClass/Complete_Java_Masterclass/20-Databases/" +
-                    "20_313_Query_Artists_for_Song_method/" + DB_NAME;
+                    "20_315_Function_and_Views/" + DB_NAME;
 
     // Album table details
     // CREATE TABLE albums (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER)
@@ -86,6 +85,29 @@ public class Datasource {
             "\" ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
                     TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME +
                     " COLLATE NOCASE ";
+
+
+    /**
+     * CREATE VIEW IF NOT EXISTS artists_list AS SELECT artists.name AS artist, albums.name AS album,
+     * songs.track , songs.title FROM songs
+     * INNER JOIN albums ON songs.album = albums._id
+     * INNER JOIN artists ON albums.artist = artists._id
+     * ORDER BY artists.name, albums.name, songs.track;
+     */
+    public static final String TABLE_ARTIST_SONG_VIEW = "artists_list";
+    public static final String CREATE_ARTIST_FOR_SONG_VIEW = "CREATE VIEW IF NOT EXISTS " +
+            TABLE_ARTIST_SONG_VIEW + " AS SELECT " +
+            TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + " AS artist, " +
+            TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " AS album, " +
+            TABLE_SONGS + "." + COLUMN_SONGS_TRACK + ", " +
+            TABLE_SONGS + "." + COLUMN_SONGS_TITLE +
+            " FROM " + TABLE_SONGS +
+            " INNER JOIN " + TABLE_ALBUMS + " ON " + TABLE_SONGS + "." + COLUMN_SONGS_ALBUM + " = " +
+            TABLE_ALBUMS + "." + COLUMN_ALBUM_ID +
+            " INNER JOIN " + TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " = " +
+            TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID +
+            " ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
+            TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + ", " + TABLE_SONGS + "." + COLUMN_SONGS_TRACK;
 
     private Connection conn;
 
@@ -225,12 +247,12 @@ public class Datasource {
 
         System.out.println("Executing SQL: " + sb.toString());
 
-        try(Statement statement = conn.createStatement();
-        ResultSet results = statement.executeQuery(sb.toString())) {
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sb.toString())) {
 
             List<SongAritst> songAritsts = new ArrayList<>();
 
-            while(results.next()) {
+            while (results.next()) {
                 SongAritst songAritst = new SongAritst();
                 songAritst.setArtistName(results.getString(1));
                 songAritst.setAlbumName(results.getString(2));
@@ -241,7 +263,7 @@ public class Datasource {
 
             // SELECT COUNT(*) FROM songs
 
-            return  songAritsts;
+            return songAritsts;
 
         } catch (SQLException e) {
             System.out.println("Query Failed: " + e.getMessage());
@@ -254,7 +276,7 @@ public class Datasource {
         String sql = "SELECT * FROM " + TABLE_SONGS;
 
         try (Statement statement = conn.createStatement();
-        ResultSet results = statement.executeQuery(sql)){
+             ResultSet results = statement.executeQuery(sql)) {
 
             ResultSetMetaData meta = results.getMetaData();
             int numColumns = meta.getColumnCount();
@@ -271,15 +293,14 @@ public class Datasource {
     }
 
     public int getCount(String table) {
-        String sql = "SELECT COUNT(*) AS count, MIN(_id) AS min_id FROM " + table;
+        String sql = "SELECT COUNT(*) AS count FROM " + table;
 
         try (Statement statement = conn.createStatement();
              ResultSet results = statement.executeQuery(sql)) {
 
             int count = results.getInt("count");
-            int min_id = results.getInt("min_id");
 
-            System.out.format("count = %d, min_id = %d\n", count, min_id);
+            System.out.format("count = %d\n", count);
             return count;
 
         } catch (SQLException e) {
@@ -305,6 +326,18 @@ public class Datasource {
         }
     }
 
+    public boolean createViewForSongArtists() {
+        try (Statement statement = conn.createStatement()) {
 
+            statement.execute(CREATE_ARTIST_FOR_SONG_VIEW);
+            System.out.println("View Created");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
 

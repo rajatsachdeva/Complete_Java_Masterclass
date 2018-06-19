@@ -50,6 +50,8 @@ public class Main {
         int minId = datasource.getMin(datasource.TABLE_SONGS);
         System.out.println("Minimum id: " + minId);
 
+        datasource.createViewForSongArtists();
+
         datasource.close();
     }
 }
