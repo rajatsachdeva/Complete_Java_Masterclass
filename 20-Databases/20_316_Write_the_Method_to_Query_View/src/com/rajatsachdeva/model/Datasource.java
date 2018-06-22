@@ -111,7 +111,7 @@ public class Datasource {
 
     //SELECT artist, album, track FROM artists_list WHERE title = "Go Your Own Way"
     public static final String QUERY_VIEW_SONG_INFO = "SELECT artist, album, track FROM " +
-            TABLE_ARTIST_SONG_VIEW + " WHERE title = ";
+            TABLE_ARTIST_SONG_VIEW + " WHERE title = \"";
 
     private Connection conn;
 
@@ -341,6 +341,33 @@ public class Datasource {
             System.out.println("Query Failed: " + e.getMessage());
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public List<SongAritst> querySongInfoView(String title) {
+        StringBuilder sb = new StringBuilder(QUERY_VIEW_SONG_INFO);
+        sb.append(title);
+        sb.append("\"");
+
+        System.out.println("SQL : " + sb.toString());
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sb.toString())) {
+
+            List<SongAritst> songArtists = new ArrayList<>();
+            while (results.next()) {
+                SongAritst songAritst = new SongAritst();
+                songAritst.setArtistName(results.getString(1));
+                songAritst.setAlbumName(results.getString(2));
+                songAritst.setTrack(results.getInt(3));
+                songArtists.add(songAritst);
+            }
+
+            return songArtists;
+        } catch (SQLException e) {
+            System.out.println("Query Failed: " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
     }
 }

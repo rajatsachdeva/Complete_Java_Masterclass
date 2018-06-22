@@ -52,6 +52,13 @@ public class Main {
 
         datasource.createViewForSongArtists();
 
+        List<SongAritst> songAritsts2 = datasource.querySongInfoView("Go Your Own Way");
+        System.out.println();
+        for (SongAritst songAritst : songAritsts2) {
+            System.out.println(songAritst.toString());
+        }
+        System.out.println();
+
         datasource.close();
     }
 }
