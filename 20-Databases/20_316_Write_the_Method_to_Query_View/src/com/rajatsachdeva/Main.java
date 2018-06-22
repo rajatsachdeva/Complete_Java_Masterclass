@@ -52,9 +52,15 @@ public class Main {
 
         datasource.createViewForSongArtists();
 
-        List<SongAritst> songAritsts2 = datasource.querySongInfoView("Go Your Own Way");
-        System.out.println();
-        for (SongAritst songAritst : songAritsts2) {
+        songAritsts = datasource.querySongInfoView("She's On Fire");
+        System.out.println("\n* GETTING INFO FROM VIEW " + datasource.TABLE_ARTIST_SONG_VIEW);
+
+        if (songAritsts.isEmpty()) {
+            System.out.println("Couldn't find the artist for the song");
+            return;
+        }
+
+        for (SongAritst songAritst : songAritsts) {
             System.out.println(songAritst.toString());
         }
         System.out.println();
