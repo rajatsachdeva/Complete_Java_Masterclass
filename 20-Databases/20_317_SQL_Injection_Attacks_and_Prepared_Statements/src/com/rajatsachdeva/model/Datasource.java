@@ -113,7 +113,15 @@ public class Datasource {
     public static final String QUERY_VIEW_SONG_INFO = "SELECT artist, album, track FROM " +
             TABLE_ARTIST_SONG_VIEW + " WHERE title = \"";
 
+    // Placeholder statement
+    //SELECT artist, album, track FROM artists_list WHERE title = ?
+    public static final String QUERY_VIEW_SONG_INFO_PREP = "SELECT artist, " + COLUMN_SONGS_ALBUM + ", " +
+            COLUMN_SONGS_TRACK + " FROM " +
+            TABLE_ARTIST_SONG_VIEW + " WHERE " + COLUMN_SONGS_TITLE + " = ?";
+
     private Connection conn;
+
+    private PreparedStatement querySongInfoView;
 
     /**
      * open()
@@ -125,6 +133,8 @@ public class Datasource {
         try {
             conn = DriverManager.getConnection(CONNECTION_STRING);
             System.out.println("Connection Open to " + DB_NAME);
+            querySongInfoView = conn.prepareStatement(QUERY_VIEW_SONG_INFO_PREP);
+
             return true;
         } catch (SQLException e) {
             System.out.println("Something went wrong: " + e.getMessage());
@@ -345,14 +355,9 @@ public class Datasource {
     }
 
     public List<SongAritst> querySongInfoView(String title) {
-        StringBuilder sb = new StringBuilder(QUERY_VIEW_SONG_INFO);
-        sb.append(title);
-        sb.append("\"");
-
-        System.out.println("SQL : " + sb.toString());
-
-        try (Statement statement = conn.createStatement();
-             ResultSet results = statement.executeQuery(sb.toString())) {
+        try {
+            querySongInfoView.setString(1, title);
+            ResultSet results = querySongInfoView.executeQuery(title);
 
             List<SongAritst> songArtists = new ArrayList<>();
             while (results.next()) {
@@ -361,8 +366,8 @@ public class Datasource {
                 songAritst.setAlbumName(results.getString(2));
                 songAritst.setTrack(results.getInt(3));
                 songArtists.add(songAritst);
-            }
 
+            }
             return songArtists;
         } catch (SQLException e) {
             System.out.println("Query Failed: " + e.getMessage());

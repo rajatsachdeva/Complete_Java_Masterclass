@@ -5,6 +5,7 @@ import com.rajatsachdeva.model.Datasource;
 import com.rajatsachdeva.model.SongAritst;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -28,14 +29,14 @@ public class Main {
             System.out.println(artist.toString());
         }
 
-        List<String> albums = datasource.queryAlbumsForAritist("Pink Floyd", datasource.ORDER_BY_DSC);
+        List<String> albums = datasource.queryAlbumsForAritist("Pink Floyd", Datasource.ORDER_BY_DSC);
         System.out.println();
         for (String album : albums) {
             System.out.println(album);
         }
         System.out.println();
 
-        List<SongAritst> songAritsts = datasource.queryArtistsForSong("Go Your Own Way", datasource.ORDER_BY_ASC);
+        List<SongAritst> songAritsts = datasource.queryArtistsForSong("Go Your Own Way", Datasource.ORDER_BY_ASC);
         System.out.println();
         for (SongAritst songAritst : songAritsts) {
             System.out.println(songAritst.toString());
@@ -44,19 +45,24 @@ public class Main {
 
         datasource.querySongsMetadata();
 
-        int count = datasource.getCount(datasource.TABLE_SONGS);
+        int count = datasource.getCount(Datasource.TABLE_SONGS);
         System.out.println("Number of Songs are: " + count);
 
-        int minId = datasource.getMin(datasource.TABLE_SONGS);
+        int minId = datasource.getMin(Datasource.TABLE_SONGS);
         System.out.println("Minimum id: " + minId);
 
         datasource.createViewForSongArtists();
 
-        songAritsts = datasource.querySongInfoView("She's On Fire");
-        System.out.println("\n* GETTING INFO FROM VIEW " + datasource.TABLE_ARTIST_SONG_VIEW);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nEnter the song title: ");
+        String title = scanner.nextLine();
+
+        songAritsts = datasource.querySongInfoView(title);
+        System.out.println("\n* Getting information for songs " + title + "FROM VIEW " +
+                Datasource.TABLE_ARTIST_SONG_VIEW);
 
         if (songAritsts.isEmpty()) {
-            System.out.println("Couldn't find the artist for the song");
+            System.out.println("Couldn't find the artist for the song " + title);
             return;
         }
 
