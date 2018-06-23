@@ -114,7 +114,7 @@ public class Datasource {
             TABLE_ARTIST_SONG_VIEW + " WHERE title = \"";
 
     // Placeholder statement
-    //SELECT artist, album, track FROM artists_list WHERE title = ?
+    //SELECT artist, album, track FROM artists_list WHERE title = ? ORDER BY ?, ?
     public static final String QUERY_VIEW_SONG_INFO_PREP = "SELECT artist, " + COLUMN_SONGS_ALBUM + ", " +
             COLUMN_SONGS_TRACK + " FROM " +
             TABLE_ARTIST_SONG_VIEW + " WHERE " + COLUMN_SONGS_TITLE + " = ?";
@@ -149,6 +149,10 @@ public class Datasource {
      */
     public void close() {
         try {
+            if (querySongInfoView != null) {
+                querySongInfoView.close();
+            }
+
             if (conn != null) {
                 conn.close();
                 System.out.println("Connection Closed to " + DB_NAME);
@@ -357,7 +361,7 @@ public class Datasource {
     public List<SongAritst> querySongInfoView(String title) {
         try {
             querySongInfoView.setString(1, title);
-            ResultSet results = querySongInfoView.executeQuery(title);
+            ResultSet results = querySongInfoView.executeQuery();
 
             List<SongAritst> songArtists = new ArrayList<>();
             while (results.next()) {
@@ -373,6 +377,8 @@ public class Datasource {
             System.out.println("Query Failed: " + e.getMessage());
             e.printStackTrace();
             return null;
+        } finally {
+
         }
     }
 }

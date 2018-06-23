@@ -10,3 +10,6 @@ Enter the song title: Go Your Own Way" or 1=1 or"
 SQL : SELECT artist, album, track FROM artists_list WHERE title = "Go Your Own Way" or 1=1 or""`
 
 Due to above sensitive/other private information can be retrieved, which is not good
+
+Using prepared statements we can stop the SQL injection attack, as in prepared statements Strings are treated as 
+Literals rather SQL statements using String Builder
