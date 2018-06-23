@@ -130,6 +130,15 @@ public class Datasource {
     public static final String INSERT_INTO_SONGS = "INSERT INTO " + TABLE_SONGS + " (" +
             COLUMN_SONGS_TRACK + ", " + COLUMN_SONGS_TITLE + ", " + COLUMN_SONGS_ALBUM + ") VALUES (?, ?, ?)";
 
+    /**
+     * Constants to Check if any artist/album/songs already exists
+     */
+    public static final String QUERY_ARTISTS = "SELECT " + COLUMN_ARTISTS_ID + " FROM " + TABLE_ARTISTS
+            + " WHERE " + COLUMN_ARTISTS_NAME + " = ?";
+
+    public static final String QUERY_ALBUMS = "SELECT " + COLUMN_ALBUM_ID + " FROM " + TABLE_ALBUMS
+            + " WHERE " + COLUMN_ALBUMS_NAME + " = ?";
+
     private Connection conn;
 
     private PreparedStatement querySongInfoView;
@@ -137,6 +146,9 @@ public class Datasource {
     private PreparedStatement insertIntoArtists;
     private PreparedStatement insertIntoAlbums;
     private PreparedStatement insertIntoSongs;
+
+    private PreparedStatement queryArtists;
+    private PreparedStatement queryAlbums;
 
     /**
      * open()
@@ -153,6 +165,9 @@ public class Datasource {
             insertIntoArtists = conn.prepareStatement(INSERT_INTO_ARTISTS, Statement.RETURN_GENERATED_KEYS);
             insertIntoAlbums = conn.prepareStatement(INSERT_INTO_ALBUMS, Statement.RETURN_GENERATED_KEYS);
             insertIntoSongs = conn.prepareStatement(INSERT_INTO_SONGS);
+
+            queryArtists = conn.prepareStatement(QUERY_ARTISTS);
+            queryAlbums = conn.prepareStatement(QUERY_ALBUMS);
 
             return true;
         } catch (SQLException e) {
@@ -182,6 +197,14 @@ public class Datasource {
 
             if (insertIntoSongs != null) {
                 insertIntoSongs.close();
+            }
+
+            if (queryArtists != null) {
+                queryArtists.close();
+            }
+
+            if (queryAlbums != null) {
+                queryAlbums.close();
             }
 
             if (conn != null) {
