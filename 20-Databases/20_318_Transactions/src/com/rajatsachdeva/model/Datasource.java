@@ -370,7 +370,6 @@ public class Datasource {
                 songAritst.setAlbumName(results.getString(2));
                 songAritst.setTrack(results.getInt(3));
                 songArtists.add(songAritst);
-
             }
             return songArtists;
         } catch (SQLException e) {
