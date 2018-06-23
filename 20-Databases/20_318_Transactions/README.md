@@ -102,3 +102,52 @@ mentioned, this ends the transaction, so we don't need to also run the END TRANS
  that have occurred since the last COMMIT or ROLLBACK.
  
 Note that if we close a connection before we commit any outstanding changes the changes are rolled back.
+
+When using JDBC, we don't code the transaction-related SQL statements and use Statement objects to execute them.
+We call methods in the Connection class to execute transaction-related comands. We perform the following steps:
+
+1. Turn off the default auto-commit behaviour by calling `Connection.setAutoCommit(false)`
+2. Perform the SQL operations that form the transaction
+3. If there are no errors, call `Connection.commit()` to commit the changes. If there are errors, call `Connection
+.rollback()` to rollback any changes made since the transaction began.
+4. Turn the dafault auto-commit behaviour back on by calling setAutoCommit(true)
+
+To demonstrate a transaction, we'll add the code to insert a song into the songs table, which has columns for the 
+song title, the _id, the _id for the album the song is on, and the track number of the song on the album.
+
+When we want to add a song, how do we get the _id for the album ? As we pointed out earlier, before adding a song, we
+ have to add the album it's on to the albums table, which has the column for the _id, the name of the album, and the 
+ _id for the artist. How do we get the artist _id ? We'll have to add the artist to the artists table before adding 
+ the album. Of course, if there is already a record for the artist or album, then we won't want to add them again, so
+  we'll have to check for that case.
+  
+To add a song, the user has to provide the song title, the album it's on, the artist, and the track number for this 
+song.
+
+So, we'll perform the following steps: 
+1. Get the title, album, track number, and the artist(we'll just have the main() methods pass them as parameters, 
+rather than prompting for them)
+2. Check to see the there's a record for the artists in the artists table. If yes, go to Step 4. If no, do step 3
+3. Add the artist to the artists table.
+4. Check to see if the album is in the albums table. If yes, go to step 6. Otherwise, do step 5
+5. Add the album to the albums table.
+6. Add the song to songs table
+
+We'll want all the insertions to take place within a single transaction, so that we don't end up with records in the 
+artists table that aren't associated with any albums/ songs or with albums that aren't associated with any songs.
+
+We should check for the existence of the song too, before we add it. But since more than one song can have the same 
+title, we'd have to check that the album was also the same, and the artist was also the same, which would involve 
+querying all three tables (check in the view ?)
+
+So we're going to assume that we know the song doesn't already exist, so we can focus on using a transaction when 
+inserting a song. In real-world application we wouldn't make this assumption.
+
+Also we're not going to worry about updating the artist_list view. In a real-world application, we'd also have to 
+update the view.
+
+We'll need an INSERT statement for each table. We'll use PreparedStatements for the following: 
+
+INSERT INTO artists(name) VALUES (?)
+INSERT INTO albums(name, artist) VALUES (?, ?)
+INSERT INTO songs(track, title, album) VALUES (?, ?, ?)
