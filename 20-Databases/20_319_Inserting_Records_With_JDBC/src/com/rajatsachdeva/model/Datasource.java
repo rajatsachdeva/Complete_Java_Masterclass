@@ -20,8 +20,8 @@ public class Datasource {
     public static final String TABLE_ALBUMS = "albums";
 
     public static final String COLUMN_ALBUM_ID = "_id";
-    public static final String COLUMN_ALBUM_NAME = "name";
-    public static final String COLUMN_ALBUM_ARTIST = "artist";
+    public static final String COLUMN_ALBUMS_NAME = "name";
+    public static final String COLUMN_ALBUMS_ARTIST = "artist";
     public static final int INDEX_ALBUM_ID = 1;
     public static final int INDEX_ALBUM_NAME = 2;
     public static final int INDEX_ALBUM_ARTIST = 3;
@@ -55,14 +55,14 @@ public class Datasource {
     // select albums.name from albums inner join artists on albums.artist = artists._id where
     // artists.name = "Carol King" order by albums.name collate nocase asc;
     public static final String QUERY_ALBUMS_BY_ARTIST_NAME_START =
-            "SELECT " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " FROM " +
+            "SELECT " + TABLE_ALBUMS + "." + COLUMN_ALBUMS_NAME + " FROM " +
                     TABLE_ALBUMS + " INNER JOIN " + TABLE_ARTISTS + " ON " +
                     TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID + " = " +
-                    TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " WHERE " +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUMS_ARTIST + " WHERE " +
                     TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + " = \"";
 
     public static final String QUERY_ALBUMS_BY_ARTISTS_SORT =
-            "\" ORDER BY " + TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " COLLATE NOCASE ";
+            "\" ORDER BY " + TABLE_ALBUMS + "." + COLUMN_ALBUMS_NAME + " COLLATE NOCASE ";
 
     /*
         select artists.name, albums.name, songs.track from songs
@@ -73,19 +73,18 @@ public class Datasource {
      */
     public static final String QUERY_ARTIST_FOR_SONG_START =
             "SELECT " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
-                    TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + ", " + TABLE_SONGS +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUMS_NAME + ", " + TABLE_SONGS +
                     "." + COLUMN_SONGS_TRACK + " FROM " + TABLE_SONGS + " INNER JOIN " +
                     TABLE_ALBUMS + " ON " + TABLE_SONGS + "." + COLUMN_SONGS_ALBUM +
                     " = " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ID + " INNER JOIN " +
-                    TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST +
+                    TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUMS_ARTIST +
                     " = " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID +
                     " WHERE " + TABLE_SONGS + "." + COLUMN_SONGS_TITLE + " = \"";
 
     public static final String QUERY_ARTIST_FOR_SONG_SORT =
             "\" ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
-                    TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME +
+                    TABLE_ALBUMS + "." + COLUMN_ALBUMS_NAME +
                     " COLLATE NOCASE ";
-
 
     /**
      * CREATE VIEW IF NOT EXISTS artists_list AS SELECT artists.name AS artist, albums.name AS album,
@@ -98,16 +97,16 @@ public class Datasource {
     public static final String CREATE_ARTIST_FOR_SONG_VIEW = "CREATE VIEW IF NOT EXISTS " +
             TABLE_ARTIST_SONG_VIEW + " AS SELECT " +
             TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + " AS artist, " +
-            TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + " AS album, " +
+            TABLE_ALBUMS + "." + COLUMN_ALBUMS_NAME + " AS album, " +
             TABLE_SONGS + "." + COLUMN_SONGS_TRACK + ", " +
             TABLE_SONGS + "." + COLUMN_SONGS_TITLE +
             " FROM " + TABLE_SONGS +
             " INNER JOIN " + TABLE_ALBUMS + " ON " + TABLE_SONGS + "." + COLUMN_SONGS_ALBUM + " = " +
             TABLE_ALBUMS + "." + COLUMN_ALBUM_ID +
-            " INNER JOIN " + TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUM_ARTIST + " = " +
+            " INNER JOIN " + TABLE_ARTISTS + " ON " + TABLE_ALBUMS + "." + COLUMN_ALBUMS_ARTIST + " = " +
             TABLE_ARTISTS + "." + COLUMN_ARTISTS_ID +
             " ORDER BY " + TABLE_ARTISTS + "." + COLUMN_ARTISTS_NAME + ", " +
-            TABLE_ALBUMS + "." + COLUMN_ALBUM_NAME + ", " + TABLE_SONGS + "." + COLUMN_SONGS_TRACK;
+            TABLE_ALBUMS + "." + COLUMN_ALBUMS_NAME + ", " + TABLE_SONGS + "." + COLUMN_SONGS_TRACK;
 
     //SELECT artist, album, track FROM artists_list WHERE title = "Go Your Own Way"
     public static final String QUERY_VIEW_SONG_INFO = "SELECT artist, album, track FROM " +
@@ -119,9 +118,25 @@ public class Datasource {
             COLUMN_SONGS_TRACK + " FROM " +
             TABLE_ARTIST_SONG_VIEW + " WHERE " + COLUMN_SONGS_TITLE + " = ?";
 
+    /**
+     * INSERT INTO artists(name) VALUES (?)
+     * INSERT INTO albums(name, artist) VALUES (?, ?)
+     * INSERT INTO songs(track, title, album) VALUES (?, ?, ?)
+     */
+    public static final String INSERT_INTO_ARTISTS = "INSERT INTO " + TABLE_ARTISTS + " (" +
+            COLUMN_ARTISTS_NAME + ") VALUES(?)";
+    public static final String INSERT_INTO_ALBUMS = "INSERT INTO " + TABLE_ALBUMS + " (" +
+            COLUMN_ALBUMS_NAME + ", " + COLUMN_ALBUMS_ARTIST + ") VALUES(?, ?)";
+    public static final String INSERT_INTO_SONGS = "INSERT INTO " + TABLE_SONGS + " (" +
+            COLUMN_SONGS_TRACK + ", " + COLUMN_SONGS_TITLE + ", " + COLUMN_SONGS_ALBUM + ") VALUES (?, ?, ?)";
+
     private Connection conn;
 
     private PreparedStatement querySongInfoView;
+
+    private PreparedStatement insertIntoArtists;
+    private PreparedStatement insertIntoAlbums;
+    private PreparedStatement insertIntoSongs;
 
     /**
      * open()
@@ -134,6 +149,10 @@ public class Datasource {
             conn = DriverManager.getConnection(CONNECTION_STRING);
             System.out.println("Connection Open to " + DB_NAME);
             querySongInfoView = conn.prepareStatement(QUERY_VIEW_SONG_INFO_PREP);
+
+            insertIntoArtists = conn.prepareStatement(INSERT_INTO_ARTISTS, Statement.RETURN_GENERATED_KEYS);
+            insertIntoAlbums = conn.prepareStatement(INSERT_INTO_ALBUMS, Statement.RETURN_GENERATED_KEYS);
+            insertIntoSongs = conn.prepareStatement(INSERT_INTO_SONGS);
 
             return true;
         } catch (SQLException e) {
@@ -151,6 +170,18 @@ public class Datasource {
         try {
             if (querySongInfoView != null) {
                 querySongInfoView.close();
+            }
+
+            if (insertIntoArtists != null) {
+                insertIntoArtists.close();
+            }
+
+            if (insertIntoAlbums != null) {
+                insertIntoAlbums.close();
+            }
+
+            if (insertIntoSongs != null) {
+                insertIntoSongs.close();
             }
 
             if (conn != null) {
@@ -381,4 +412,3 @@ public class Datasource {
         }
     }
 }
-

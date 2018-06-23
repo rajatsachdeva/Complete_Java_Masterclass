@@ -72,7 +72,5 @@ public class Main {
         System.out.println();
 
         datasource.close();
-
-        // SELECT artist, album, track FROM artist_list WHERE title = ? OR artist = ?
     }
 }
