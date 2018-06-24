@@ -53,7 +53,7 @@ public class Main {
 
         datasource.createViewForSongArtists();
 
-        Scanner scanner = new Scanner(System.in);
+        /*Scanner scanner = new Scanner(System.in);
         System.out.print("\nEnter the song title: ");
         String title = scanner.nextLine();
 
@@ -68,8 +68,12 @@ public class Main {
 
         for (SongAritst songAritst : songAritsts) {
             System.out.println(songAritst.toString());
-        }
+        }*/
         System.out.println();
+
+        datasource.insertSong("Touch of Grey", "Grateful Dead", "In The Dark", 1);
+        datasource.insertSong("Like A Rolling Stone", "Bod Dylan", "Bob Dylan's Greatest Hits", 5);
+        datasource.insertSong("Bird Dog", "Everly Brothers", "All-Time Greatest Hits", 7);
 
         datasource.close();
     }

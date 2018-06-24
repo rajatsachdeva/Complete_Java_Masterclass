@@ -13,7 +13,7 @@ public class Datasource {
     public static final String CONNECTION_STRING =
             "jdbc:sqlite:/Users/rohanrajat/Documents/Java/Udemy/" +
                     "CompleteJavaMasterClass/Complete_Java_Masterclass/20-Databases/" +
-                    "20_320_Insert_Albums_Artists_and_Songs/" + DB_NAME;
+                    "20_321_Test_Insert_JDBC_Code/" + DB_NAME;
 
     // Album table details
     // CREATE TABLE albums (_id INTEGER PRIMARY KEY, name TEXT NOT NULL, artist INTEGER)
@@ -139,6 +139,9 @@ public class Datasource {
     public static final String QUERY_ALBUMS = "SELECT " + COLUMN_ALBUM_ID + " FROM " + TABLE_ALBUMS
             + " WHERE " + COLUMN_ALBUMS_NAME + " = ?";
 
+    public static final String QUERY_SONGS = "SELECT " + COLUMN_SONGS_ID + " FROM " + TABLE_SONGS
+            + " WHERE " + COLUMN_SONGS_TITLE + " = ?";
+
     private Connection conn;
 
     private PreparedStatement querySongInfoView;
@@ -149,6 +152,7 @@ public class Datasource {
 
     private PreparedStatement queryArtists;
     private PreparedStatement queryAlbums;
+    private PreparedStatement querySongs;
 
     /**
      * open()
@@ -168,6 +172,7 @@ public class Datasource {
 
             queryArtists = conn.prepareStatement(QUERY_ARTISTS);
             queryAlbums = conn.prepareStatement(QUERY_ALBUMS);
+            querySongs = conn.prepareStatement(QUERY_SONGS);
 
             return true;
         } catch (SQLException e) {
@@ -205,6 +210,10 @@ public class Datasource {
 
             if (queryAlbums != null) {
                 queryAlbums.close();
+            }
+
+            if (querySongs != null) {
+                querySongs.close();
             }
 
             if (conn != null) {
@@ -484,25 +493,32 @@ public class Datasource {
         }
     }
 
-    private int insertSong(String title, String artist, String album, int track) {
+    public void insertSong(String title, String artist, String album, int track) {
         try {
             conn.setAutoCommit(false);
 
-            // Insert the artist and get the _id for artist
-            int artistId = insertArtist(artist);
-            int albumId = insertAlbum(album, artistId);
-            insertIntoSongs.setInt(1, track);
-            insertIntoSongs.setString(2, title);
-            insertIntoSongs.setInt(3, albumId);
+            querySongs.setString(1, title);
+            ResultSet results = querySongs.executeQuery();
 
-            int affectedRows = insertIntoSongs.executeUpdate();
-            if (affectedRows == 1) {
-                conn.commit();
+            if (results.next()) {
+                // Do Nothing
+                // Means that we have some entry for the song
             } else {
-                throw new SQLException("Couldn't insert Song " + title + " !");
-            }
+                // Insert the artist and get the _id for artist
+                int artistId = insertArtist(artist);
+                int albumId = insertAlbum(album, artistId);
+                insertIntoSongs.setInt(1, track);
+                insertIntoSongs.setString(2, title);
+                insertIntoSongs.setInt(3, albumId);
 
-        } catch (SQLException e) {
+                int affectedRows = insertIntoSongs.executeUpdate();
+                if (affectedRows == 1) {
+                    conn.commit();
+                } else {
+                    throw new SQLException("Couldn't insert Song " + title + " !");
+                }
+            }
+        } catch (Exception e) {
             System.out.println("Insert song exception: " + e.getMessage());
             try {
                 System.out.println("Performing rollback");
