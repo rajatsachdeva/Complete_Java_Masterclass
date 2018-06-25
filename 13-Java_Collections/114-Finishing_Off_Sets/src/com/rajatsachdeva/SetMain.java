@@ -47,30 +47,49 @@ public class SetMain {
         String[] natureWords = {"all", "nature", "is", "but", "art", "unknown", "to", "thee"};
         nature.addAll(Arrays.asList(natureWords));
         System.out.print("\nnature: ");
-        for (String s : nature) {
-            System.out.print(s + " ");
-        }
+        printSet(nature);
 
         String[] divineWords = {"to", "err", "is", "human", "to", "forgive", "divine"};
         divine.addAll(Arrays.asList(divineWords));
         System.out.print("\ndivine: ");
-        for (String s : divine) {
-            System.out.print(s + " ");
-        }
+        printSet(divine);
 
         // Set Differences are asymmetric
         System.out.print("\nnature - divine: ");
         Set<String> diff1 = new HashSet<>(nature);
         diff1.removeAll(divine);
-        for (String s : diff1) {
-            System.out.print(s + " ");
-        }
+        printSet(diff1);
 
         System.out.print("\ndivine - nature: ");
         Set<String> diff2 = new HashSet<>(divine);
         diff2.removeAll(nature);
-        for (String s : diff2) {
-            System.out.print(s + " ");
+        printSet(diff2);
+
+        Set<String> unionTest = new HashSet<>(nature);
+        unionTest.addAll(divine);
+        System.out.print("\nnature union divine: ");
+        printSet(unionTest);
+
+        Set<String> intersectionTest = new HashSet<>(nature);
+        intersectionTest.retainAll(divine);
+        System.out.print("\nnature intersection divine: ");
+        printSet(intersectionTest);
+
+        System.out.print("\nSymmetric difference: ");
+        unionTest.removeAll(intersectionTest);
+        printSet(unionTest);
+
+        // Check if one set is superset of other containsAll method and is not destructive like other bulk operations
+        if (nature.containsAll(divine)) {
+            System.out.println("\ndivine is a subset of nature");
+        }
+
+        if (nature.containsAll(intersectionTest)) {
+            System.out.println("\nintersectionTest is subset of nature");
+        }
+
+        if (divine.containsAll(intersectionTest)) {
+            System.out.println("intersectionTest is subset of divine");
         }
     }
 
