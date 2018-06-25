@@ -3,15 +3,36 @@ package com.rajatsachdeva;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class HeavenlyBody {
+public class HeavenlyBody {
     private final String name;
     private final double orbitalPeriod;
     private final Set<HeavenlyBody> satellites;
+    private final BodyTypes bodyType;
 
-    public HeavenlyBody(String name, double orbitalPeriod) {
+    // We can either use constants
+//    public static final int STAR = 1;
+//    public static final int PLANET = 2;
+//    public static final int DWARF_PLANET = 3;
+//    public static final int MOON = 4;
+//    public static final int COMET = 5;
+//    public static final int ASTEROID = 6;
+
+    // Or we can use enums
+    // nested enum is already static
+    public enum BodyTypes {
+        STAR,
+        PLANET,
+        DWARF_PLANET,
+        MOON,
+        COMET,
+        ASTEROID
+    }
+
+    public HeavenlyBody(String name, double orbitalPeriod, BodyTypes bodyType) {
         this.name = name;
         this.orbitalPeriod = orbitalPeriod;
         this.satellites = new HashSet<HeavenlyBody>();
+        this.bodyType = bodyType;
     }
 
     public String getName() {
@@ -22,43 +43,43 @@ public final class HeavenlyBody {
         return orbitalPeriod;
     }
 
+    public BodyTypes getBodyType() {
+        return bodyType;
+    }
+
     public Set<HeavenlyBody> getSatellites() {
         // To return the copy of set rather than original
         return new HashSet<>(this.satellites);
     }
 
-    public boolean addMoon(HeavenlyBody moon) {
+    public boolean addSatellite(HeavenlyBody moon) {
         return this.satellites.add(moon);
     }
 
     @Override
     public String toString() {
-        return name + "\t:\t" + orbitalPeriod;
+        return this.name + "\t:\t" + this.bodyType + "\t:\t" + this.orbitalPeriod;
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
 
-        System.out.println("obj.getClass() is " + obj.getClass());
-        System.out.println("this.getClass() is " + this.getClass());
-
-        // check if object is null and if its not of same class type i.e. HeavenlyBody
-        if (obj == null || (obj.getClass() != this.getClass())) {
-            return false;
+        if (obj instanceof HeavenlyBody) {
+            HeavenlyBody theObject = (HeavenlyBody) obj;
+            if (this.name.equals(theObject.getName())) {
+                return this.bodyType == theObject.getBodyType();
+            }
         }
-
-        String objName = ((HeavenlyBody) obj).getName();
-        return this.name.equals(objName);
+        return false;
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
 //        return super.hashCode();
-        System.out.println("hashCode called : " + (this.name.hashCode() + 57));
-        return this.name.hashCode() + 57; // Not good way of doing this
-
+        System.out.println("hashCode called : " + (this.name.hashCode() + 57 + this.bodyType.hashCode()));
+        return this.name.hashCode() + 57 + this.bodyType.hashCode(); // Not good way of doing this
     }
 }
