@@ -46,10 +46,37 @@ public class SetMain {
         Set<String> divine = new HashSet<>();
         String[] natureWords = {"all", "nature", "is", "but", "art", "unknown", "to", "thee"};
         nature.addAll(Arrays.asList(natureWords));
+        System.out.print("\nnature: ");
+        for (String s : nature) {
+            System.out.print(s + " ");
+        }
 
         String[] divineWords = {"to", "err", "is", "human", "to", "forgive", "divine"};
         divine.addAll(Arrays.asList(divineWords));
+        System.out.print("\ndivine: ");
+        for (String s : divine) {
+            System.out.print(s + " ");
+        }
 
         // Set Differences are asymmetric
+        System.out.print("\nnature - divine: ");
+        Set<String> diff1 = new HashSet<>(nature);
+        diff1.removeAll(divine);
+        for (String s : diff1) {
+            System.out.print(s + " ");
+        }
+
+        System.out.print("\ndivine - nature: ");
+        Set<String> diff2 = new HashSet<>(divine);
+        diff2.removeAll(nature);
+        for (String s : diff2) {
+            System.out.print(s + " ");
+        }
+    }
+
+    private static void printSet(Set<String> set) {
+        for (String s : set) {
+            System.out.print(s + " ");
+        }
     }
 }
