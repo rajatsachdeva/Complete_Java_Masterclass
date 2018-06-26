@@ -51,4 +51,17 @@ public class StockItem implements Comparable<StockItem>{
         String objName = ((StockItem) obj).getName();
         return this.getName().equals(objName);
     }
+
+    @Override
+    public int hashCode() {
+        return this.name.hashCode() + 621;
+    }
+
+    @Override
+    public int compareTo(StockItem o) {
+        System.out.println("Entering StockItem.compareTo()");
+        if (this == o) {
+            return 0;
+        }
+    }
 }
