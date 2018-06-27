@@ -11,6 +11,12 @@ public class StockItem implements Comparable<StockItem>{
         this.quantityStock = 0; // we don't need this twice but we do either way
     }
 
+    public StockItem(String name, double price, int quantityStock) {
+        this.name = name;
+        this.price = price;
+        this.quantityStock = quantityStock;
+    }
+
     public String getName() {
         return name;
     }
@@ -63,5 +69,16 @@ public class StockItem implements Comparable<StockItem>{
         if (this == o) {
             return 0;
         }
+
+        if(o != null) {
+            return this.name.compareTo(o.getName());
+        }
+
+        throw new NullPointerException();
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " price: " + this.price;
     }
 }
