@@ -28,12 +28,11 @@ public class Basket {
 
     @Override
     public String toString() {
-        String s = "\n Shopping basket " + name + " contains " + list.size() + " items\n";
+        String s = "\nShopping basket " + name + " contains " + list.size() + " items\n";
         double totalCost = 0.0;
         for (Map.Entry<StockItem, Integer> item : list.entrySet()) {
             s = s + item.getKey() + ". " + item.getValue() + " purchased\n";
             totalCost += item.getKey().getPrice() * item.getValue();
-
         }
         return s + "Total Cost = " + totalCost;
     }
