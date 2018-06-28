@@ -5,7 +5,7 @@ public class Main {
     private static StockList stockList = new StockList();
 
     public static void main(String[] args) {
-        StockItem temp = new StockItem("bread", 0.85, 100);
+        StockItem temp = new StockItem("bread", 0.86, 100);
         stockList.addStock(temp);
 
         temp = new StockItem("cake", 1.10, 7);
@@ -18,6 +18,9 @@ public class Main {
         stockList.addStock(temp);
 
         temp = new StockItem("cup", 0.50, 200);
+        stockList.addStock(temp);
+
+        temp = new StockItem("cup", 0.45, 7);
         stockList.addStock(temp);
 
         temp = new StockItem("door", 72.95, 4);
@@ -41,5 +44,39 @@ public class Main {
         for (String s : stockList.Items().keySet()) {
             System.out.println(s);
         }
+
+        Basket rajatsBasket = new Basket("Rajat");
+
+        sellItem(rajatsBasket, "car", 1);
+        System.out.println(rajatsBasket);
+
+        sellItem(rajatsBasket, "car", 1);
+        System.out.println(rajatsBasket);
+
+        sellItem(rajatsBasket, "car", 1);
+        sellItem(rajatsBasket, "item that does not exists", 1);
+        System.out.println(rajatsBasket);
+
+        sellItem(rajatsBasket, "juice", 4);
+        sellItem(rajatsBasket, "cup", 12);
+        sellItem(rajatsBasket, "bread", 1);
+        System.out.println(rajatsBasket);
+
+        System.out.println(stockList);
+    }
+
+    public static int sellItem(Basket basket, String item, int quantity) {
+        // retrieve the item from stock list
+        StockItem stockItem = stockList.get(item);
+        if (stockItem == null) {
+            System.out.println("We don't sell " + item);
+            return 0;
+        }
+
+        if (stockList.sellStock(item, quantity) != 0) {
+            basket.addToBasket(stockItem, quantity);
+            return quantity;
+        }
+        return 0; // didn't have sufficient quantity to sell
     }
 }
