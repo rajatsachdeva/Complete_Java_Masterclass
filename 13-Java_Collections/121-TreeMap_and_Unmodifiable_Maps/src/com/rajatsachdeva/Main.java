@@ -53,7 +53,9 @@ public class Main {
         sellItem(rajatsBasket, "car", 1);
         System.out.println(rajatsBasket);
 
-        sellItem(rajatsBasket, "car", 1);
+        if (sellItem(rajatsBasket, "car", 1) != 1) {
+            System.out.println("There are no more cars to sell");
+        }
         sellItem(rajatsBasket, "item that does not exists", 1);
         System.out.println(rajatsBasket);
 
@@ -63,6 +65,10 @@ public class Main {
         System.out.println(rajatsBasket);
 
         System.out.println(stockList);
+
+        // Following generates an exception as we are adding element in an Unmodifiable Map
+        temp = new StockItem("pen", 1.12);
+        stockList.Items().put(temp.getName(), temp);
     }
 
     public static int sellItem(Basket basket, String item, int quantity) {
