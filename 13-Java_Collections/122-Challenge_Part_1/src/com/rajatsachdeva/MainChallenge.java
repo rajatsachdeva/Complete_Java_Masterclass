@@ -1,7 +1,7 @@
-# Lecture 122 - Challenge Part 1
+package com.rajatsachdeva;
 
-    /*
-
+public class MainChallenge {
+    /**
     Modify the program so that adding items to the shopping basket doesn't
     actually reduce the stock count but, instead, reserves the requested
     number of items.
@@ -30,5 +30,6 @@
 
     After checking out the baskets, display the full stock list and the contents of each
     basket that you created.
-
      */
+
+}
