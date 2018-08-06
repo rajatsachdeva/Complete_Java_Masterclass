@@ -63,7 +63,7 @@ public class Main {
 
         sellItem(rajatsBasket, "juice", 4);
         sellItem(rajatsBasket, "cup", 12);
-        removeItem(rajatsBasket, "bread", 1);
+        sellItem(rajatsBasket, "bread", 1);
 //        System.out.println(rajatsBasket);
 
 //        System.out.println(stockList);
@@ -97,8 +97,16 @@ public class Main {
         // Following generates an exception as we are adding element in an Unmodifiable Map
 //        temp = new StockItem("pen", 1.12);
 //        stockList.Items().put(temp.getName(), temp);
-        stockList.Items().get("car").adjustStock(2000);
-        stockList.get("car").adjustStock(-1000);
+//        stockList.Items().get("car").adjustStock(2000); // adjusting the quantity of a stock that doesn't exist
+        StockItem car = stockList.Items().get("car");
+        if (car != null) {
+            car.adjustStock(2000);
+        }
+
+        if (car != null) {
+            car.adjustStock(-1000);
+        }
+
         System.out.println(stockList);
 
 //        for (Map.Entry<String, Double> price : stockList.PriceList().entrySet()) {
