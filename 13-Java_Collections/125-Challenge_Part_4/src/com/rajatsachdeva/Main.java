@@ -59,13 +59,39 @@ public class Main {
             System.out.println("There are no more cars to sell");
         }
         sellItem(rajatsBasket, "item that does not exists", 1);
-        System.out.println(rajatsBasket);
+//        System.out.println(rajatsBasket);
 
         sellItem(rajatsBasket, "juice", 4);
         sellItem(rajatsBasket, "cup", 12);
-        sellItem(rajatsBasket, "bread", 1);
+        removeItem(rajatsBasket, "bread", 1);
+//        System.out.println(rajatsBasket);
+
+//        System.out.println(stockList);
+
+        Basket basket = new Basket("customer");
+        sellItem(basket, "cup", 100);
+        sellItem(basket, "juice", 5);
+        removeItem(basket, "cup", 1);
+        System.out.println(basket);
+
+        removeItem(rajatsBasket, "car", 1);
+        removeItem(rajatsBasket, "cup", 9);
+        removeItem(rajatsBasket, "car", 1);
+        System.out.println("cars removed : " + removeItem(rajatsBasket, "car", 1)); // should not remove any
         System.out.println(rajatsBasket);
 
+        // remove remaining items from rajatsBasket
+        removeItem(rajatsBasket, "bread", 1);
+        removeItem(rajatsBasket, "cup", 3);
+        removeItem(rajatsBasket, "juice", 4);
+        removeItem(rajatsBasket, "cup", 3);
+        System.out.println(rajatsBasket);
+
+        System.out.println("\nDisplay Stock List before and after checkout");
+        System.out.println(basket);
+        System.out.println(stockList);
+        checkOut(basket);
+        System.out.println(basket);
         System.out.println(stockList);
 
         // Following generates an exception as we are adding element in an Unmodifiable Map
@@ -75,9 +101,12 @@ public class Main {
         stockList.get("car").adjustStock(-1000);
         System.out.println(stockList);
 
-        for (Map.Entry<String, Double> price : stockList.PriceList().entrySet()) {
-            System.out.println(price.getKey() + " costs " + price.getValue());
-        }
+//        for (Map.Entry<String, Double> price : stockList.PriceList().entrySet()) {
+//            System.out.println(price.getKey() + " costs " + price.getValue());
+//        }
+
+        checkOut(rajatsBasket);
+        System.out.println(rajatsBasket);
     }
 
     public static int sellItem(Basket basket, String item, int quantity) {
