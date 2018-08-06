@@ -107,4 +107,11 @@ public class Main {
         }
         return 0; // didn't have sufficient quantity to sell
     }
+
+    public static void checkOut(Basket basket) {
+        for(Map.Entry<StockItem, Integer> item : basket.Items().entrySet()) {
+            stockList.sellStock(item.getKey().getName(), item.getValue());
+        }
+        basket.clearBasket();
+    }
 }
