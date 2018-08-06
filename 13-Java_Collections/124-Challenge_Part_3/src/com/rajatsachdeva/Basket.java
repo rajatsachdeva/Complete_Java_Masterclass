@@ -40,6 +40,10 @@ public class Basket {
         return 0;
     }
 
+    public void clearBasket() {
+        this.list.clear();
+    }
+
     public Map<StockItem, Integer> Items() {
         return Collections.unmodifiableMap(list);
     }
