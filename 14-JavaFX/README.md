@@ -2,4 +2,7 @@
 
 __Lectures__: _157-200_
 
-175. [Introduction]()
+157. [Introduction]()<br/>
+158. [Code Vs FXml]()<br/>
+159. [GridPane Layout]()<br/>
+160. [HBox Layout]()<br/>
