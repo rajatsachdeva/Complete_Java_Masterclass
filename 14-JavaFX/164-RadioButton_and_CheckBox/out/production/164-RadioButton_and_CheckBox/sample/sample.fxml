@@ -37,24 +37,26 @@
     <fx:define>
         <ToggleGroup fx:id="colorToggleGroup"/>
     </fx:define>
-    <RadioButton GridPane.rowIndex="0" GridPane.columnIndex="2" text="Red" toggleGroup="$colorToggleGroup"/>
-    <RadioButton GridPane.rowIndex="0" GridPane.columnIndex="3" text="Blue" toggleGroup="$colorToggleGroup"
-                 selected="true"/>
-    <RadioButton GridPane.rowIndex="0" GridPane.columnIndex="4" text="Green" toggleGroup="$colorToggleGroup"/>
-    <CheckBox text="Subscribe to our newsletter" GridPane.rowIndex="0" GridPane.columnIndex="5"
-              indeterminate="true"/>
 
-    <VBox GridPane.rowIndex="0" GridPane.columnIndex="6">
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="2">
+    <RadioButton text="Red" toggleGroup="$colorToggleGroup"/>
+    <RadioButton text="Blue" toggleGroup="$colorToggleGroup"
+                 selected="true"/>
+    <RadioButton text="Green" toggleGroup="$colorToggleGroup"/>
+    </VBox>
+
+    <VBox GridPane.rowIndex="0" GridPane.columnIndex="3">
         <CheckBox text="Dog"/>
         <CheckBox text="Cat"/>
         <CheckBox text="Bird"/>
     </VBox>
 
-    <ToggleButton text="Toggle Me" GridPane.rowIndex="0" GridPane.columnIndex="7"/>
-
-    <HBox GridPane.rowIndex="1" GridPane.columnIndex="0">
+    <HBox GridPane.rowIndex="0" GridPane.columnIndex="4">
         <ToggleButton text="Toggle Me"/>
         <ToggleButton text="Hello"/>
         <ToggleButton text="GoodBye"/>
     </HBox>
+
+    <CheckBox text="Subscribe to our newsletter" GridPane.rowIndex="1" GridPane.columnIndex="0"
+              indeterminate="true"/>
 </GridPane>
