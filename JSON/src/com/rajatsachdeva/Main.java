@@ -11,12 +11,25 @@ public class Main {
     public static void main(String[] args) {
 	// write your code here
         Gson gson = new Gson();
+        Buys buys = new Buys();
+
+        buys.open();
 
         try {
 
-            String jsonString = " { 'Buys': { 'bHeading1': { 'bkey1': 'value1', 'bkey2': 'value2', 'bkey3': 'value3'" +
-                    " " +
-                    "}, 'bbHeading2': { 'bbkey1': 'value1', 'bbkey2': 'value2', 'bbkey3': 'value3' } } }";
+            String jsonString = " { " +
+                    "'Buys': " +
+                    "{ " +
+                        "'bHeading1': " +
+                            "{'bkey1': 'value1', " +
+                            "'bkey2': 'value2', " +
+                            "'bkey3': 'value3'}," +
+                        "'bbHeading2': " +
+                            "{ 'bbkey1': 'value1', " +
+                            "'bbkey2': 'value2', " +
+                            "'bbkey3': 'value3' } " +
+                    "} " +
+                    "}";
 
             // convert to java class
             System.out.println("String: " + jsonString);
@@ -26,6 +39,8 @@ public class Main {
             // convert to json
             String jsonStringFromObj = gson.toJson(obj);
             System.out.println("JSON : " + jsonStringFromObj);
+            buys.insertIntoHeading(obj);
+            buys.close();
 
         } catch (Exception e) {
             e.printStackTrace();
