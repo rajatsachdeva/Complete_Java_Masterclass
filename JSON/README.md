@@ -1,7 +1,14 @@
-# [ HackerRank ] Java
+# JSON
 
-Java Practice: <br />
-[HackerRank Java Link](https://www.hackerrank.com/domains/java/java-introduction)<br />
+JSON OUTPUT
+```
+Connection Open to mydb.db
+String:  { 'Buys': { 'bHeading1': {'bkey1': 'value1', 'bkey2': 'value2', 'bkey3': 'value3'},'bbHeading2': { 'bbkey1': 'value1', 'bbkey2': 'value2', 'bbkey3': 'value3' } } }
+OBJECT : Proposal{Buys={bHeading1={bkey1=value1, bkey2=value2, bkey3=value3}, bbHeading2={bbkey1=value1, bbkey2=value2, bbkey3=value3}}}
+JSON : {"Buys":{"bHeading1":{"bkey1":"value1","bkey2":"value2","bkey3":"value3"},"bbHeading2":{"bbkey1":"value1","bbkey2":"value2","bbkey3":"value3"}}}
+Connection Closed to mydb.db
+```
 
-Topics:<br />
-[Section 1: Java Introduction](https://github.com/rajatsachdeva/Complete_Java_Masterclass/tree/master/HackerRank/Introduction_Challenges)<br />
+##Output after adding headings to DB
+
+![1](DB_UPDATE.png?raw=true)
