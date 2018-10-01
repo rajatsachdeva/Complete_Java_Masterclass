@@ -11,7 +11,6 @@ public class Main {
          *
          * EAFP: Easy to Ask for Forgiveness than Permission
          */
-
         int x = 98;
         int y = 0;
 
@@ -62,6 +61,8 @@ public class Main {
             return 0;
         }
     }
+
+    /* Test the arguments before doing an operation */
     private static int divideLBYL(int x, int y) {
         if (y != 0) {
             return x / y;
