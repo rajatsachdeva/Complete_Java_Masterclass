@@ -12,6 +12,12 @@ public class Example {
     }
 
     private static int divide() {
+        // Following code generates ArithmeticException in case of divide by zero
+//        int x = getInt();
+//        int y = getInt();
+//        System.out.println("x is " + x + ", y is " + y);
+//        return x / y;
+
         int x, y;
         try {
             x = getInt();
@@ -29,6 +35,11 @@ public class Example {
     }
 
     private static int getInt() {
+        // Following commented code generates InputMismatchException in case user enters any input other than integer
+//        Scanner s = new Scanner(System.in);
+//        System.out.print("Please enter an integer ");
+//        return s.nextInt();
+
         Scanner s = new Scanner(System.in);
         System.out.print("Please enter an integer ");
         while (true) {
