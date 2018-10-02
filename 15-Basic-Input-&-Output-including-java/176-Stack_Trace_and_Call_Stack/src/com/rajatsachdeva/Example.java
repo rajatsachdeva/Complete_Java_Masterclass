@@ -23,6 +23,11 @@ public class Example {
             x = getInt();
             y = getInt();
         } catch (NoSuchElementException e) {
+            // we can't retry input here in-case of EOF as input stream will be closed as result of EOF
+            // (Ctrl/Command + D), so we will end-up generating a new exception NoSuchElementException under
+            // catch block only
+//            x = getInt();
+//            y = getInt();
             throw new ArithmeticException("No Suitable Input");
         }
 
