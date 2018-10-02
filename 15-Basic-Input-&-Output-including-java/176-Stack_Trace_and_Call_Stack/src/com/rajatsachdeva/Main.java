@@ -59,6 +59,7 @@ public class Main {
         try {
             return s.nextInt();
         } catch (InputMismatchException e) {
+            // we could just used Exception e here, but that would have been very generic
             return 0;
         }
     }
