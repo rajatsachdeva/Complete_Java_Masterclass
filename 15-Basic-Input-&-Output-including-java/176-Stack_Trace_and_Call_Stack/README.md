@@ -20,4 +20,4 @@ So Each thread of execution has its own call stack and the thread is shown as fi
 
 To get NoSuchElementException press CTRL+D / Command + D to send EOT (End of Transmission) or EOF (End of File)
 
-The less code there is in the catch block, the less there is to raise another exception 
+The less code there is in the catch block, the less chance there is to raise another exception 
