@@ -11,6 +11,7 @@ public class Example {
             int result = divide();
             System.out.println(result);
             // Catching multiple exceptions with single catch block
+            // this was allowed from Java 7
         } catch (ArithmeticException | NoSuchElementException e) {
             System.out.println(e.toString());
             System.out.println("Unable to perform division, shutting down");
@@ -27,7 +28,7 @@ public class Example {
         System.out.println("x is " + x + ", y is " + y);
 
         return x / y;
-
+// we can have multiple catch blocks
 //        } catch (NoSuchElementException e) {
 //            throw new ArithmeticException("No Suitable Input");
 //        } catch (ArithmeticException e) {
