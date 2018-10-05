@@ -2,7 +2,7 @@
 
 Java I/O package has different I/O methods, useful ways of getting data into and out of programs
 
-Java nio package introduced in Java 7
+Java nio package was introduced in Java 7
 
 Input: Involves reading data from source 
 Output: Involves writing data to destination
@@ -12,11 +12,14 @@ as well the computer's keyboard and screen.
 
 I/O can be performed by either byte or character data and the methods used are 
 pretty much the same its just the actual classes used that will vary so when reading and
-writing character data, the data is in a readable format and you can open the files if it is files that have been 
-read or written in a text editor and you can make sense of it, but binary data on the other hand involves writing 
+writing character data, the data is in a readable format and you can open the resulting files if it is files that have 
+been read or written in a text editor and you can make sense of it, but binary data on the other hand involves writing 
 bytes that will not look very meaningful when you read the file.
 
-Serial, Sequential and Random access of files
+spreadsheet - character string
+XML or JSON - character
+
+Serial/Sequential and Random access of files
 
 Serial/ Sequential access can be thought of as a stream of data that arrives 
 at your program or sent out of your program in a defined order with each piece of data 
