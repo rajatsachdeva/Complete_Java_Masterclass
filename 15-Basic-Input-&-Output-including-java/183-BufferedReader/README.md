@@ -23,3 +23,7 @@ Solution
      *
      */
  ```
+
+ Use of BufferedReader <br/>
+ Reading using BufferedReader , input is not done in character by character or byte by byte fashion but its done using a buffer 
+ with default size of buffer equal to 8 KB. This basically is very effecient rather reading from the file stream byte by byte.
