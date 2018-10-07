@@ -10,29 +10,24 @@ import java.util.Set;
 public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        // Challenge: why did we declare locFile outside try block and not inside it ?
         FileWriter locFile = null;
         try {
             locFile = new FileWriter("locations.txt");
             for (Location location : locations.values()) {
                 locFile.write(location.getLocationID() + ", " + location.getDescription() + "\n");
             }
-//            locFile.close();
-        } catch (IOException e) {
-            System.out.println("In Catch Block");
-            e.printStackTrace();
         } finally {
             System.out.println("In Finally Block");
-            try {
-                if(locFile != null) {
-                    System.out.println("Attempting to close locfile");
-                    locFile.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            if (locFile != null) {
+                System.out.println("Attempting to close locfile");
+                locFile.close();
             }
         }
     }
+
     // static initialization block
     // This block will be loaded only once , when the Locations class is loaded
     static {
@@ -48,32 +43,32 @@ public class Locations implements Map<Integer, Location> {
         tempExit.put("S", 4);
         tempExit.put("N", 5);
 
-        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building ",tempExit));
+        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building ", tempExit));
 
         // Add exit for 2 Hill
         tempExit = new HashMap<String, Integer>();
         tempExit.put("N", 5);
 
-        locations.put(2, new Location(2, "You are at the top of a hill",tempExit));
+        locations.put(2, new Location(2, "You are at the top of a hill", tempExit));
 
         // Add exit for 3 Building
         tempExit = new HashMap<String, Integer>();
         tempExit.put("W", 1);
 
-        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring",tempExit));
+        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring", tempExit));
 
         // Add exit for 4 Valley
         tempExit = new HashMap<String, Integer>();
         tempExit.put("N", 1);
         tempExit.put("W", 2);
 
-        locations.put(4, new Location(4, "You are in a valley beside a stream",tempExit));
+        locations.put(4, new Location(4, "You are in a valley beside a stream", tempExit));
 
         // Add exit for 5 Forest
         tempExit = new HashMap<String, Integer>();
         tempExit.put("S", 1);
         tempExit.put("W", 2);
-        locations.put(5, new Location(5, "You are in the forest",tempExit));
+        locations.put(5, new Location(5, "You are in the forest", tempExit));
     }
 
     @Override
