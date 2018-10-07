@@ -26,10 +26,8 @@ public class Locations implements Map<Integer, Location> {
     // static initialization block
     // This block will be loaded only once , when the Locations class is loaded
     static {
-        Scanner scanner = null;
-
-        try {
-            scanner = new Scanner(new FileReader("locations_big.txt"));
+        try (Scanner scanner = new Scanner(new FileReader("locations_big.txt"))){
+//            scanner = new Scanner(new FileReader("locations_big.txt"));
             scanner.useDelimiter(",");
 
             while(scanner.hasNextLine()) {
@@ -45,26 +43,14 @@ public class Locations implements Map<Integer, Location> {
         } catch(IOException e) {
             e.printStackTrace();
         }
-        finally {
-            if(scanner != null) {
-                scanner.close();
-            }
-        }
 
         // read the exits from directions.txt
+//        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader("directions_big.txt")))){
+        try (BufferedReader dirFile = new BufferedReader(new FileReader("directions_big.txt"))){
+           // scanner = new Scanner(new BufferedReader(new FileReader("directions_big.txt")));
+            String input;
+            while ((input = dirFile.readLine()) != null) {
 
-        try {
-            scanner = new Scanner(new BufferedReader(new FileReader("directions_big.txt")));
-            scanner.useDelimiter(",");
-            while (scanner.hasNextLine()) {
-//                int loc = scanner.nextInt();
-//                scanner.skip(scanner.delimiter());
-//                String direction = scanner.next();
-//                scanner.skip(scanner.delimiter());
-//                String dest = scanner.nextLine();
-//                int destination = Integer.parseInt(dest);
-
-                String input = scanner.nextLine();
                 String[] data = input.split(",");
                 int loc = Integer.parseInt(data[0]);
                 String direction = data[1];
@@ -76,10 +62,6 @@ public class Locations implements Map<Integer, Location> {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            // closing the scanner will close the BufferedReader/FileReader Objects as they implements Closable
-            // and Readable , hence freeing up the resources
-            scanner.close();
         }
     }
 
