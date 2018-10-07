@@ -13,3 +13,4 @@ __Lectures__: _175-212_
 183. [BufferedReader](183-BufferedReader)<br/>
 184. [Load Big Location and Exits Files](184-Load_Big_Location_and_Exits_Files)<br/>
 185. [Challenge](185-Challenge)<br/>
+186. [Buffered Writer and Challenge](186-Buffered_Writer_and_Challenge)<br/>
