@@ -9,3 +9,4 @@ __Lectures__: _175-212_
 179. [Introduction to I/O](179-Introduction_to_IO) <br/>
 180. [Writing content - FileWriter class and Finally block](180-Writing_content_FileWriter_class_and_Finally_block)<br/>
 181. [Try with Resources](181-Try_with_Resources)<br/>
+182. [FileReader and Closeable](182-FileReader_and_Closeable)<br/>
