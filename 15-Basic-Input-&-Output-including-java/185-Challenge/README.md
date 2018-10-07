@@ -1,0 +1,7 @@
+# Lecture 185 - Challenge
+
+**Challenge:**
+its time for achallenge and a challenge is to rewrite the static initialization block the you can see on screen now 
+using the try with resources that we've talked aboutand discussed in this section instead of the try finally code 
+that we got in here in place now so pause the video and go away and convert this static initialization block into 
+using try with resources
