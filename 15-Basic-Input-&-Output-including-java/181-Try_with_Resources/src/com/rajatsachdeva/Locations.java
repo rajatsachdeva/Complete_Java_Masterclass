@@ -11,22 +11,30 @@ public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
 
     public static void main(String[] args) throws IOException {
-        // Challenge: why did we declare locFile outside try block and not inside it ?
-        FileWriter locFile = null;
-        try {
-            locFile = new FileWriter("locations.txt");
-            for (Location location : locations.values()) {
+        // try with resources
+        // with this approach we don't need to explicitly close the file stream
+        // even if exception occurs or not try with resources will close the stream automatically
+        try(FileWriter locFile = new FileWriter("locations.txt")) {
+            for(Location location: locations.values()) {
                 locFile.write(location.getLocationID() + ", " + location.getDescription() + "\n");
-                //throw new IOException("test exception thrown while writing");
-            }
-        } finally {
-            System.out.println("In Finally Block");
-
-            if (locFile != null) {
-                System.out.println("Attempting to close locfile");
-                locFile.close();
             }
         }
+//        // Challenge: why did we declare locFile outside try block and not inside it ?
+//        FileWriter locFile = null;
+//        try {
+//            locFile = new FileWriter("locations.txt");
+//            for (Location location : locations.values()) {
+//                locFile.write(location.getLocationID() + ", " + location.getDescription() + "\n");
+//                //throw new IOException("test exception thrown while writing");
+//            }
+//        } finally {
+//            System.out.println("In Finally Block");
+//
+//            if (locFile != null) {
+//                System.out.println("Attempting to close locfile");
+//                locFile.close();
+//            }
+//        }
     }
 
     // static initialization block
