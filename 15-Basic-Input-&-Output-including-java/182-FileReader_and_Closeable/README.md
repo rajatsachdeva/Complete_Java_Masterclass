@@ -7,3 +7,19 @@ here is your mini challenge why is the file reader object not closed despite me 
 important and a hint here is to remember that you can view the source code for Java objects and methods by control 
 or command clicking on the method see if you can figure that out and come back come when you ready and we will go 
 through and solve this mini challenge so see you when you get back pause the video now.
+
+Solution
+``` /**
+     * Closes this scanner.
+     *
+     * <p> If this scanner has not yet been closed then if its underlying
+     * {@linkplain java.lang.Readable readable} also implements the {@link
+     * java.io.Closeable} interface then the readable's <tt>close</tt> method
+     * will be invoked.  If this scanner is already closed then invoking this
+     * method will have no effect.
+     *
+     * <p>Attempting to perform search operations after a scanner has
+     * been closed will result in an {@link IllegalStateException}.
+     *
+     */
+ ```

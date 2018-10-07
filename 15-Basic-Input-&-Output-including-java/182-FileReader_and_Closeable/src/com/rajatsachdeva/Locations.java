@@ -1,11 +1,10 @@
 package com.rajatsachdeva;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
@@ -14,9 +13,15 @@ public class Locations implements Map<Integer, Location> {
         // try with resources
         // with this approach we don't need to explicitly close the file stream
         // even if exception occurs or not try with resources will close the stream automatically
-        try(FileWriter locFile = new FileWriter("locations.txt")) {
+        try(FileWriter locFile = new FileWriter("locations.txt");
+            FileWriter dirFile = new FileWriter("directions.txt")) {
+
             for(Location location: locations.values()) {
-                locFile.write(location.getLocationID() + ", " + location.getDescription() + "\n");
+                locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
+                for(String direction: location.getExits().keySet()) {
+                    dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get
+                            (direction) + "\n");
+                }
             }
         }
 //        // Challenge: why did we declare locFile outside try block and not inside it ?
@@ -40,44 +45,72 @@ public class Locations implements Map<Integer, Location> {
     // static initialization block
     // This block will be loaded only once , when the Locations class is loaded
     static {
+        Scanner scanner = null;
+
+        try {
+            scanner = new Scanner(new FileReader("locations.txt"));
+            scanner.useDelimiter(",");
+
+            while(scanner.hasNextLine()) {
+                int loc = scanner.nextInt();
+                scanner.skip(scanner.delimiter());
+                String description = scanner.nextLine();
+                System.out.println("Imported: " + loc + " : " + description);
+
+                Map<String, Integer> tempExit = new HashMap<String, Integer>();
+                locations.put(loc, new Location(loc, description, tempExit));
+
+            }
+
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(scanner != null) {
+                scanner.close();
+            }
+        }
+
+
         // Create temporary map that will be taken as input in constructor while defining the exits for a location
         // Add exit for 1 Road
-        Map<String, Integer> tempExit = new HashMap<String, Integer>();
-//        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", tempExit));
-        // As there are no exits, but generates an exception
-        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", null));
-
-        tempExit.put("W", 2);
-        tempExit.put("E", 3);
-        tempExit.put("S", 4);
-        tempExit.put("N", 5);
-
-        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building ", tempExit));
-
-        // Add exit for 2 Hill
-        tempExit = new HashMap<String, Integer>();
-        tempExit.put("N", 5);
-
-        locations.put(2, new Location(2, "You are at the top of a hill", tempExit));
-
-        // Add exit for 3 Building
-        tempExit = new HashMap<String, Integer>();
-        tempExit.put("W", 1);
-
-        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring", tempExit));
-
-        // Add exit for 4 Valley
-        tempExit = new HashMap<String, Integer>();
-        tempExit.put("N", 1);
-        tempExit.put("W", 2);
-
-        locations.put(4, new Location(4, "You are in a valley beside a stream", tempExit));
-
-        // Add exit for 5 Forest
-        tempExit = new HashMap<String, Integer>();
-        tempExit.put("S", 1);
-        tempExit.put("W", 2);
-        locations.put(5, new Location(5, "You are in the forest", tempExit));
+//        Map<String, Integer> tempExit = new HashMap<String, Integer>();
+////        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", tempExit));
+//        // As there are no exits, but generates an exception
+//        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java", null));
+//
+//        tempExit.put("W", 2);
+//        tempExit.put("E", 3);
+//        tempExit.put("S", 4);
+//        tempExit.put("N", 5);
+//
+//        locations.put(1, new Location(1, "You are standing at the end of a road before a small brick building ", tempExit));
+//
+//        // Add exit for 2 Hill
+//        tempExit = new HashMap<String, Integer>();
+//        tempExit.put("N", 5);
+//
+//        locations.put(2, new Location(2, "You are at the top of a hill", tempExit));
+//
+//        // Add exit for 3 Building
+//        tempExit = new HashMap<String, Integer>();
+//        tempExit.put("W", 1);
+//
+//        locations.put(3, new Location(3, "You are inside a building, a well house for a small spring", tempExit));
+//
+//        // Add exit for 4 Valley
+//        tempExit = new HashMap<String, Integer>();
+//        tempExit.put("N", 1);
+//        tempExit.put("W", 2);
+//
+//        locations.put(4, new Location(4, "You are in a valley beside a stream", tempExit));
+//
+//        // Add exit for 5 Forest
+//        tempExit = new HashMap<String, Integer>();
+//        tempExit.put("S", 1);
+//        tempExit.put("W", 2);
+//        locations.put(5, new Location(5, "You are in the forest", tempExit));
     }
 
     @Override
