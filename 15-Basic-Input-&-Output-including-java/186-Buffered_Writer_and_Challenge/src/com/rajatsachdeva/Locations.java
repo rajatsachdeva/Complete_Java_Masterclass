@@ -27,7 +27,6 @@ public class Locations implements Map<Integer, Location> {
     // This block will be loaded only once , when the Locations class is loaded
     static {
         try (Scanner scanner = new Scanner(new FileReader("locations_big.txt"))){
-//            scanner = new Scanner(new FileReader("locations_big.txt"));
             scanner.useDelimiter(",");
 
             while(scanner.hasNextLine()) {
@@ -45,9 +44,7 @@ public class Locations implements Map<Integer, Location> {
         }
 
         // read the exits from directions.txt
-//        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader("directions_big.txt")))){
         try (BufferedReader dirFile = new BufferedReader(new FileReader("directions_big.txt"))){
-           // scanner = new Scanner(new BufferedReader(new FileReader("directions_big.txt")));
             String input;
             while ((input = dirFile.readLine()) != null) {
 

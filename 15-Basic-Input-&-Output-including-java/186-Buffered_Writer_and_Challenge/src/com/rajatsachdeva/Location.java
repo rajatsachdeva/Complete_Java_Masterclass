@@ -13,7 +13,6 @@ public class Location {
     public Location(int locationID, String description, Map<String, Integer> exits) {
         this.locationID = locationID;
         this.description = description;
-//        this.exits = new HashMap<String, Integer>();
         // To avoid NullPointerException we need a null check
         if (null == exits) {
             this.exits = new HashMap<>();
@@ -36,7 +35,6 @@ public class Location {
     }
 
     public Map<String, Integer> getExits() {
-//        return exits;
 
         // Following doesn't allows the external entities to change original copy
         // So only copy of Map is provided to the caller, which is good

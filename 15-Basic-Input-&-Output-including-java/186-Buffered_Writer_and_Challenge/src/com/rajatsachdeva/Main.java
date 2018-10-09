@@ -40,7 +40,6 @@ public class Main {
         vocabulary.put("EAST", "E");
 
         int loc = 1;
-//        int loc = 64;
         while(true) {
             // will generate a null pointer exception as value doesn't exists for the case of invalid key
             System.out.println(locations.get(loc).getDescription());
