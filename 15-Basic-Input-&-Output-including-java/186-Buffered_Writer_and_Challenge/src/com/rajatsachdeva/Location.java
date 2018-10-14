@@ -1,6 +1,7 @@
 package com.rajatsachdeva;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 // To make the class purely Immutable, we need following change
@@ -15,9 +16,9 @@ public class Location {
         this.description = description;
         // To avoid NullPointerException we need a null check
         if (null == exits) {
-            this.exits = new HashMap<>();
+            this.exits = new LinkedHashMap<>();
         } else {
-            this.exits = new HashMap<>(exits);
+            this.exits = new LinkedHashMap<>(exits);
         }
         this.exits.put("Q", 0);
     }
@@ -39,7 +40,7 @@ public class Location {
         // Following doesn't allows the external entities to change original copy
         // So only copy of Map is provided to the caller, which is good
         // return a new HashMap, and copied exits Map in it , Copy Constructor ?
-        return new HashMap<String, Integer>(exits);
+        return new LinkedHashMap<String, Integer>(exits);
     }
 
     protected void addExit(String direction, int destination) {

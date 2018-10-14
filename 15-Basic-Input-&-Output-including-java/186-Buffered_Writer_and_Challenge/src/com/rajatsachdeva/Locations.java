@@ -4,20 +4,22 @@ import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
-    private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
+    private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
 
     public static void main(String[] args) throws IOException {
         // try with resources
         // with this approach we don't need to explicitly close the file stream
         // even if exception occurs or not try with resources will close the stream automatically
-        try(FileWriter locFile = new FileWriter("locations.txt");
-            FileWriter dirFile = new FileWriter("directions.txt")) {
+        try(BufferedWriter locFile = new BufferedWriter(new FileWriter("locations.txt"));
+            BufferedWriter dirFile = new BufferedWriter(new FileWriter("directions.txt"))) {
 
             for(Location location: locations.values()) {
                 locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
                 for(String direction: location.getExits().keySet()) {
-                    dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get
-                            (direction) + "\n");
+                    if(!direction.equalsIgnoreCase("Q")) {
+                        dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get
+                                (direction) + "\n");
+                    }
                 }
             }
         }
@@ -26,7 +28,7 @@ public class Locations implements Map<Integer, Location> {
     // static initialization block
     // This block will be loaded only once , when the Locations class is loaded
     static {
-        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader("locations_big.txt")))){
+        try (Scanner scanner = new Scanner(new BufferedReader(new FileReader("locations_big.txt")))) {
             scanner.useDelimiter(",");
 
             while(scanner.hasNextLine()) {
