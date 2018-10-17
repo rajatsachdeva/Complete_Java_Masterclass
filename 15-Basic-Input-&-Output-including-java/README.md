@@ -15,3 +15,4 @@ __Lectures__: _175-212_
 185. [Challenge](185-Challenge)<br/>
 186. [Buffered Writer and Challenge](186-Buffered_Writer_and_Challenge)<br/>
 187. [Bytes Stream](187-Bytes_Streams)<br/>
+188. [Reading Binary Data and End of File Exceptions](188-Reading_Binary_Data_and_End_of_File_Exceptions)<br/>
