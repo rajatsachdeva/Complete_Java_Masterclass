@@ -7,18 +7,20 @@ public class Locations implements Map<Integer, Location> {
     private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
 
     public static void main(String[] args) throws IOException {
-        // try with resources
-        // with this approach we don't need to explicitly close the file stream
-        // even if exception occurs or not try with resources will close the stream automatically
-        try(BufferedWriter locFile = new BufferedWriter(new FileWriter("locations.txt"));
-            BufferedWriter dirFile = new BufferedWriter(new FileWriter("directions.txt"))) {
+        try (DataOutputStream locFile = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("locations" +
+                ".dat")))) {
+            for (Location location : locations.values()) {
+                locFile.writeInt(location.getLocationID());
+                locFile.writeUTF(location.getDescription()); // used to write string
+                System.out.println("Writing Location: " + location.getLocationID() + " : " + location.getDescription());
+                System.out.println("Writing " + (location.getExits().size() - 1) + " exits.");
+                locFile.writeInt(location.getExits().size() - 1);
 
-            for(Location location: locations.values()) {
-                locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
-                for(String direction: location.getExits().keySet()) {
-                    if(!direction.equalsIgnoreCase("Q")) {
-                        dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get
-                                (direction) + "\n");
+                for (String direction : location.getExits().keySet()) {
+                    if (!direction.equalsIgnoreCase("Q")) {
+                        System.out.println("\t\t" + direction + "," + location.getExits().get(direction));
+                        locFile.writeUTF(direction);
+                        locFile.writeInt(location.getExits().get(direction));
                     }
                 }
             }
