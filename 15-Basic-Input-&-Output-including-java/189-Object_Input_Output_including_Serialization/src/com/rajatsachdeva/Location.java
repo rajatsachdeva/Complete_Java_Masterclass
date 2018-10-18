@@ -1,15 +1,17 @@
 package com.rajatsachdeva;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-// To make the class purely Immutable, we need following change
-public class Location {
+public class Location implements Serializable {
     // final makes it clear that these fields shouldn't be changed
     private final int locationID;
     private final String description;
     private final Map<String, Integer> exits;
+
+    private long serialVersionUID = 1L;
 
     public Location(int locationID, String description, Map<String, Integer> exits) {
         this.locationID = locationID;
