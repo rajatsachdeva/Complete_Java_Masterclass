@@ -18,6 +18,23 @@ public class Locations implements Map<Integer, Location> {
 
     // static initialization block
     // This block will be loaded only once , when the Locations class is loaded
+
+    /**
+     *
+     * Lecture 190
+     * ===========
+     *
+     * Random Access File
+     * File Pointer points to the last read location in the file
+     *
+     * startByte = (n - 1) * 30;
+     *
+     * 1. The First four bytes will contain the number of locations (bytes 0 - 3)
+     * 2. The next four bytes will contain the start offset of the location section (bytes 4 - 7)
+     * 3. The next section of the file will contain the index (the index is 1692 bytes long. It will start from byte
+     *    8 to 1699
+     * 4. The final section of the file will contain the location records (the data).
+     */
     static {
         try (ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream
                 ("locations.dat")))) {
