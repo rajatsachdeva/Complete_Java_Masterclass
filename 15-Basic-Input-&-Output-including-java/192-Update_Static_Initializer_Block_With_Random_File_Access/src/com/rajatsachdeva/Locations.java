@@ -31,6 +31,8 @@ public class Locations implements Map<Integer, Location> {
                         builder.append(",");
                         builder.append(location.getExits().get(direction));
                         builder.append(",");
+                        // direction,locationId,direction,locationId
+                        //
                     }
                 }
                 rao.writeUTF(builder.toString());
