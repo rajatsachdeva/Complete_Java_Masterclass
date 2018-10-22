@@ -7,6 +7,7 @@ public class Locations implements Map<Integer, Location> {
 
     private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
     private static Map<Integer, IndexRecord> index = new LinkedHashMap<>();
+    private static RandomAccessFile ra;
 
     public static void main(String[] args) throws IOException {
         try (RandomAccessFile rao = new RandomAccessFile("locations_rand.dat", "rwd")) {
@@ -74,32 +75,50 @@ public class Locations implements Map<Integer, Location> {
      */
     static {
 
-        try (ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream
-                ("locations.dat")))) {
-            boolean eof = false;
+        try {
+            ra = new RandomAccessFile("locations_rand.dat", "rwd");
+            int numLocations = ra.readInt();
+            long locationStartPoint = ra.readInt();
 
-            while (!eof) {
-                try {
-                    Location location = (Location) locFile.readObject();
-                    System.out.println("Read Location " + location.getLocationID() + " : " + location.getDescription());
-                    System.out.println("Found " + location.getExits().size() + " exits");
+            while(ra.getFilePointer() < locationStartPoint) {
+                int locationId = ra.readInt();
+                int locationStart = ra.readInt();
+                int locationLength = ra.readInt();
 
-                    locations.put(location.getLocationID(), location);
-
-                } catch (EOFException e) {
-                    eof = true;
-                }
+                IndexRecord record = new IndexRecord(locationStart, locationLength);
+                index.put(locationId, record);
             }
-        } catch (InvalidClassException e) {
-            System.out.println("InvalidClassException: " + e.getMessage());
-            e.printStackTrace();
-        } catch (IOException io) {
-            System.out.println("IO Exception: " + io.getMessage());
-            io.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("ClassNotFoundException: " + e.getMessage());
-            e.printStackTrace();
+
+        } catch (IOException e) {
+            System.out.println("IOException in static initializer: " + e.getMessage());
         }
+
+//        try (ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream
+//                ("locations.dat")))) {
+//            boolean eof = false;
+//
+//            while (!eof) {
+//                try {
+//                    Location location = (Location) locFile.readObject();
+//                    System.out.println("Read Location " + location.getLocationID() + " : " + location.getDescription());
+//                    System.out.println("Found " + location.getExits().size() + " exits");
+//
+//                    locations.put(location.getLocationID(), location);
+//
+//                } catch (EOFException e) {
+//                    eof = true;
+//                }
+//            }
+//        } catch (InvalidClassException e) {
+//            System.out.println("InvalidClassException: " + e.getMessage());
+//            e.printStackTrace();
+//        } catch (IOException io) {
+//            System.out.println("IO Exception: " + io.getMessage());
+//            io.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("ClassNotFoundException: " + e.getMessage());
+//            e.printStackTrace();
+//        }
     }
 
     @Override
