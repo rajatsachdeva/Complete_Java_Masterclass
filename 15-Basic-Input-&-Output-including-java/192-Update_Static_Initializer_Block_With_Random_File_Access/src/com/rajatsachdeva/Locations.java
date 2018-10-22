@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
+
     private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
     private static Map<Integer, IndexRecord> index = new LinkedHashMap<>();
 
@@ -20,7 +21,7 @@ public class Locations implements Map<Integer, Location> {
             int startPointer = locationStart;
             rao.seek(startPointer);
 
-            for(Location location: locations.values()) {
+            for (Location location : locations.values()) {
                 rao.writeInt(location.getLocationID());
                 rao.writeUTF(location.getDescription());
                 StringBuilder builder = new StringBuilder();
@@ -32,14 +33,22 @@ public class Locations implements Map<Integer, Location> {
                         builder.append(location.getExits().get(direction));
                         builder.append(",");
                         // direction,locationId,direction,locationId
-                        //
+                        // N,1,U,2
                     }
-                }
-                rao.writeUTF(builder.toString());
-                IndexRecord record = new IndexRecord(startPointer, (int) (rao.getFilePointer() - startPointer));
-                index.put(location.getLocationID(), record);
+                    rao.writeUTF(builder.toString());
 
-                startPointer = (int) rao.getFilePointer();
+                    IndexRecord record = new IndexRecord(startPointer, (int) (rao.getFilePointer() - startPointer));
+                    index.put(location.getLocationID(), record);
+
+                    startPointer = (int) rao.getFilePointer();
+                }
+
+                rao.seek(indexStart);
+                for (Integer locationID : index.keySet()) {
+                    rao.writeInt(locationID);
+                    rao.writeInt(index.get(locationID).getStartByte());
+                    rao.writeInt(index.get(locationID).getLength());
+                }
             }
         }
     }
@@ -64,6 +73,7 @@ public class Locations implements Map<Integer, Location> {
      * 4. The final section of the file will contain the location records (the data).
      */
     static {
+
         try (ObjectInputStream locFile = new ObjectInputStream(new BufferedInputStream(new FileInputStream
                 ("locations.dat")))) {
             boolean eof = false;
@@ -80,7 +90,7 @@ public class Locations implements Map<Integer, Location> {
                     eof = true;
                 }
             }
-        } catch(InvalidClassException e) {
+        } catch (InvalidClassException e) {
             System.out.println("InvalidClassException: " + e.getMessage());
             e.printStackTrace();
         } catch (IOException io) {
